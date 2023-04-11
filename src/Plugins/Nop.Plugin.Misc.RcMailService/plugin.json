@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Robert College",
+  "FriendlyName": "RC Mail Service",
+  "SystemName": "RC.MailService",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Robert College",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Misc.RcMailService.dll",
+  "Description": ""
+}
