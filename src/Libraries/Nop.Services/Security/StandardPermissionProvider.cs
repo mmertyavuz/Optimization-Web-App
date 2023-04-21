@@ -225,4 +225,22 @@ namespace Nop.Services.Security
             };
         }
     }
+    
+    public partial class OptimizationAppPermissionProvider : IPermissionProvider
+    {
+        public static readonly PermissionRecord ManageCorporations = new() { Name = "Manage Corporations", SystemName = "ManageCorporations", Category = "Corporation" };
+
+        public IEnumerable<PermissionRecord> GetPermissions()
+        {
+            return new[]
+            {
+                ManageCorporations
+            };
+        }
+
+        public HashSet<(string systemRoleName, PermissionRecord[] permissions)> GetDefaultPermissions()
+        {
+            return null;
+        }
+    }
 }

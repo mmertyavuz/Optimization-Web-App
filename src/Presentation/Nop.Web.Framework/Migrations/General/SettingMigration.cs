@@ -1,19 +1,12 @@
 ﻿using FluentMigrator;
-using Nop.Core.Domain.Catalog;
-using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Configuration;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Orders;
-using Nop.Core.Domain.Seo;
-using Nop.Core.Domain.Shipping;
 using Nop.Core.Infrastructure;
 using Nop.Data;
 using Nop.Data.Migrations;
-using Nop.Services.Catalog;
 using Nop.Services.Configuration;
-using Nop.Services.Seo;
 
-namespace Nop.Web.Framework.Migrations.Rc
+namespace Nop.Web.Framework.Migrations.General
 {
     [NopMigration("2022-11-17 00:00:01", "4.60.0", UpdateMigrationType.Settings, MigrationProcessType.Update)]
     public class SettingMigration : MigrationBase
