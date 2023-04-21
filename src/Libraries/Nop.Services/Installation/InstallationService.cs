@@ -9490,14 +9490,9 @@ namespace Nop.Services.Installation
             (string languagePackDownloadLink, int languagePackProgress) languagePackInfo, RegionInfo regionInfo, CultureInfo cultureInfo)
         {
             await InstallStoresAsync();
-            //await InstallMeasuresAsync(regionInfo);
-            //await InstallTaxCategoriesAsync();
             await InstallLanguagesAsync(languagePackInfo, cultureInfo, regionInfo);
             await InstallCurrenciesAsync(cultureInfo, regionInfo);
             await InstallCountriesAndStatesAsync();
-            //await InstallShippingMethodsAsync();
-            //await InstallDeliveryDatesAsync();
-            //await InstallProductAvailabilityRangesAsync();
             await InstallEmailAccountsAsync();
             await InstallMessageTemplatesAsync();
             await InstallTopicTemplatesAsync();
@@ -9505,12 +9500,7 @@ namespace Nop.Services.Installation
             await InstallCustomersAndUsersAsync(defaultUserEmail, defaultUserPassword);
             await InstallTopicsAsync();
             await InstallActivityLogTypesAsync();
-            //await InstallProductTemplatesAsync();
-            //await InstallCategoryTemplatesAsync();
-            //await InstallManufacturerTemplatesAsync();
             await InstallScheduleTasksAsync();
-            //await InstallReturnRequestReasonsAsync();
-            //await InstallReturnRequestActionsAsync();
         }
 
         /// <summary>
