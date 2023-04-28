@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
+using Nop.Core.Domain;
 using Nop.Core.Domain.Configuration;
-using Nop.Core.Domain.Corporations;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Infrastructure;
 using Nop.Data;

@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Office2021.DocumentTasks;
-using Nop.Core.Domain.Corporations;
+using Nop.Core.Domain;
 using Nop.Web.Areas.Admin.Models.Corporations;
 
 namespace Nop.Web.Areas.Admin.Factories;
