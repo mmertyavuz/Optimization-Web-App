@@ -181,5 +181,11 @@
         public static string CloseConfigurationStepsAttribute => "CloseConfigurationSteps";
 
         #endregion
+
+        #region Optimization App Roles
+
+        public static string DepartmentLeadRoleName => "DepartmentLead";
+
+        #endregion
     }
 }

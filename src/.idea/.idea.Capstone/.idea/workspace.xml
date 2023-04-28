@@ -7,30 +7,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/Classroom.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/Course.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/CourseSectionPlan.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/CourseSectionPlanEducatorMapping.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/EducationalDepartment.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/Educator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/Faculty.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/Section.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/Student.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/StudentSectionMapping.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Mapping/Builders/ClassroomBuilder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Mapping/Builders/CourseBuilder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Mapping/Builders/EducationalDepartmentBuilder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Mapping/Builders/EducatorBuilder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Mapping/Builders/FacultyBuilder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Mapping/Builders/SectionBuilder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Mapping/Builders/StudentBuilder.cs" afterDir="false" />
+    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="Faculty and EducationalDepartment module development">
+      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/DataMigration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/CorporationService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ICorporationService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IBaseOptimizationAppModelFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IEducationalDepartmentModelFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IFacultyModelFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Corporations/EducationalDepartmentModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Corporations/FacultyModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/Corporations/CorporationSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/CorporationSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Data/Nop.Data.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Data/Nop.Data.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Migrations/OptimizationApp/Initial/SettingMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Migrations/OptimizationApp/Initial/SettingMigration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/CorporationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/CorporationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/ICorporationModelFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/ICorporationModelFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/Customers/NopCustomerDefaults.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/Customers/NopCustomerDefaults.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Infrastructure/NopStartup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Infrastructure/NopStartup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Migrations/OptimizationApp/Initial/LocalizationMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Migrations/OptimizationApp/Initial/LocalizationMigration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Infrastructure/Mapper/AdminMapperConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Infrastructure/Mapper/AdminMapperConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Infrastructure/NopStartup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Infrastructure/NopStartup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +107,8 @@
       <workItem from="1682111404433" duration="871000" />
       <workItem from="1682113159457" duration="781000" />
       <workItem from="1682271303758" duration="33000" />
-      <workItem from="1682659563526" duration="3095000" />
+      <workItem from="1682659563526" duration="8180000" />
+      <workItem from="1682671791628" duration="949000" />
     </task>
     <task id="LOCAL-00001" summary="Corporaiton Modül Geliştirmeleri">
       <created>1682113816848</created>
@@ -125,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682113816848</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Domain objelerinin ve builderların oluşturulması.">
+      <created>1682662858434</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1682662858434</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,7 +145,9 @@
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Corporaiton Modül Geliştirmeleri" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corporaiton Modül Geliştirmeleri" />
+    <MESSAGE value="Domain objelerinin ve builderların oluşturulması." />
+    <MESSAGE value="Faculty and EducationalDepartment module development" />
+    <option name="LAST_COMMIT_MESSAGE" value="Faculty and EducationalDepartment module development" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

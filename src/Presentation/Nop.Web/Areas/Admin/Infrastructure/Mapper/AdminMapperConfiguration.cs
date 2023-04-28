@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.Internal;
 using Nop.Core.Configuration;
+using Nop.Core.Domain;
 using Nop.Core.Domain.Affiliates;
 using Nop.Core.Domain.Blogs;
 using Nop.Core.Domain.Catalog;
@@ -41,6 +42,7 @@ using Nop.Web.Areas.Admin.Models.Blogs;
 using Nop.Web.Areas.Admin.Models.Catalog;
 using Nop.Web.Areas.Admin.Models.Cms;
 using Nop.Web.Areas.Admin.Models.Common;
+using Nop.Web.Areas.Admin.Models.Corporations;
 using Nop.Web.Areas.Admin.Models.Customers;
 using Nop.Web.Areas.Admin.Models.Directory;
 using Nop.Web.Areas.Admin.Models.Discounts;
@@ -110,6 +112,7 @@ namespace Nop.Web.Areas.Admin.Infrastructure.Mapper
             CreateTopicsMaps();
             CreateVendorsMaps();
             CreateWarehouseMaps();
+            CreateCorporationMaps();
 
             //add some generic mapping rules
             this.Internal().ForAllMaps((mapConfiguration, map) =>
@@ -1716,6 +1719,15 @@ namespace Nop.Web.Areas.Admin.Infrastructure.Mapper
                 .ForMember(entity => entity.Address, options => options.Ignore());
             CreateMap<WarehouseModel, Warehouse>()
                 .ForMember(entity => entity.AddressId, options => options.Ignore());
+        }
+        
+        protected virtual void CreateCorporationMaps()
+        {
+            CreateMap<Faculty, FacultyModel>();
+            CreateMap<FacultyModel, Faculty>();
+            
+            CreateMap<EducationalDepartment, EducationalDepartmentModel>();
+            CreateMap<EducationalDepartmentModel, EducationalDepartment>();
         }
         #endregion
 

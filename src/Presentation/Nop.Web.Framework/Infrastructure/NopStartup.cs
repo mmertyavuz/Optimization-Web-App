@@ -38,6 +38,7 @@ using Nop.Services.Media;
 using Nop.Services.Media.RoxyFileman;
 using Nop.Services.Messages;
 using Nop.Services.News;
+using Nop.Services.OptimizationApp;
 using Nop.Services.Orders;
 using Nop.Services.Payments;
 using Nop.Services.Plugins;
@@ -228,6 +229,8 @@ namespace Nop.Web.Framework.Infrastructure
             services.AddScoped<IHtmlFormatter, HtmlFormatter>();
             services.AddScoped<IVideoService, VideoService>();
             services.AddScoped<INopUrlHelper, NopUrlHelper>();
+            
+            services.AddScoped<ICorporationService, CorporationService>();
             
             //plugin managers
             services.AddScoped(typeof(IPluginManager<>), typeof(PluginManager<>));

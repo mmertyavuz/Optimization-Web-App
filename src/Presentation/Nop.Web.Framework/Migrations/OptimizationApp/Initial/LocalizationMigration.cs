@@ -33,6 +33,28 @@ public class LocalizationMigration : MigrationBase
             new("Admin.Corporations.Updated", "Kurum bilgileri başarıyla güncellenmiştir.", "Corporation info is successfully updated."),
             new("Admin.Corporations", "Kurum Ayarları", "Corporation Settings"),
             new("Admin.Corporations.Info", "Kurum Bilgileri", "Info"),
+            
+            #region Faculty
+
+            new("Admin.Corporations.Faculties.Fields.Name", "Ad", "Name"),
+            new("Admin.Corporations.Faculties.Fields.Description", "Açıklama", "Description"),
+            new("Admin.Corporations.Faculties.Fields.Name.Required", "Ad zorunludur", "Name is required"),
+            
+
+            #endregion
+
+            #region EducationalDepartment
+
+            new("Admin.Corporations.EducationalDepartments.Fields.Name", "Ad", "Name"),
+            new("Admin.Corporations.EducationalDepartments.Fields.Name.Required", "Ad", "Name"),
+            new("Admin.Corporations.EducationalDepartments.Fields.Code", "Kod", "Code"),
+            new("Admin.Corporations.EducationalDepartments.Fields.Code.Required", "Kod", "Code"),
+            new("Admin.Corporations.EducationalDepartments.Fields.Description", "Açıklama", "Description"),
+            new("Admin.Corporations.EducationalDepartments.Fields.Faculty", "Fakülte", "Faculty"),
+            new("Admin.Corporations.EducationalDepartments.Fields.FacultyId.Required", "Fakülte seçimi zorunludur", "Faculty is required"),
+            new("Admin.Corporations.EducationalDepartments.Fields.DepartmentLeadCustomerId", "Yönetici Hesabı", "Department Lead Account"),
+
+            #endregion
         };
 
         //table types
