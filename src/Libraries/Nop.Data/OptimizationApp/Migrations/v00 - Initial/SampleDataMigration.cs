@@ -34,6 +34,8 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
         /// </summary>
         public override void Up()
         {
+            #region Educational Departments and Faculties
+
             #region Doğa Bilimleri Fakultesi
 
             {
@@ -333,6 +335,28 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
 
                     _dataProvider.InsertEntity(department);
                 }
+            }
+
+#endregion
+
+            #endregion
+
+            #region Clasrooms
+
+            var classrooms = new List<string>()
+            {
+                "IDEASERGI", "GLTSC02", "B204", "GLT702", "D401", "GLT701", "GLT705", "GLT703", "KA105", "KA104", "SYOK", "IDEA202", "B301", "IDEAANIM", "A206", "GLT601", "A105", "TANZER-MAC01", "D305", "KA103", "IDEA101", "D505", "B201", "DSC05", "GCONF", "D303", "B304", "GLT301", "A201", "A203", "B402", "GLTBUG", "KA504", "KA402", "KST302", "KST301", "KA502", "KA302", "KMUTFAK3", "B307", "KA101", "SYOK KUZEY", "KA201", "B203", "KA102", "SB112", "KACONF", "PERASAHNE", "PERA105", "GLTSC03", "KB101", "D304", "A101", "DPHYS2", "KALAB-OPT", "KST602", "KST601", "DHDGT", "A207", "DHMESLEKILAB", "IDEASES", "KB102", "DSC02", "KA701", "KALAB-FTR-1", "BMAKERLAB", "D404", "KST501", "KST502", "KA401", "SB114", "BROBOTIC", "B306", "B405", "OFFICE", "KSC01", "KALAB-FTR-2", "BFRC", "D504", "KLINIK", "SB101", "A102", "KST402", "KST401", "B404", "B303", "D306", "DSC03", "KSC02", "D405", "GLTMAC03", "D307", "KA204", "A103", "DSC04", "DSC01", "D506", "D402", "GLTANIM", "D301", "D406", "D302", "GLTBASIC", "DPOWER", "DELEK1", "DELEK2", "KA203", "D403", "D312", "B401", "PERACAMENSEMBLE", "HUK201", "D308", "PERA206", "A202", "KA403", "B305", "PERA103", "A205", "KA304", "PERA203", "DCHEM", "MP", "KMUTFAK2", "KA202", "KMUTFAK1", "KPASTANE", "GLT704", "KA205", "PERA201", "KA301", "KALAB-ODL", "DENERGY", "A104", "G401", "HUKCONF", "GLTSC01", "PERA205", "KSC03", "BM-M", "GLTCINE", "PERA208", "B403", "B302", "G103", "WEBINAR1", "DCONTROL", "GLTVR", "KA305", "IDEASEMINER", "DGEN", "KA503", "GLTMAC02", "G102", "A204", "HUK302", "HUK202", "HUK301", "KSC04", "KA501", "BMELAB", "KA601", "PERA202", "PERA212", "KALAB-MLTDSP", "PERA214", "KALAB-ANATOMI", "SANALSINIF10", "GLTDARK", "KA303", "SB115", "KALAB-BMKP-1", "D502", "SYOK6", "D501", "IDEAANIMSCRN", "DHF904", "DHF903", "BWEB", "KALAB-BMKP-2", "DPHYS1", "IDEASC", "IDEAIMAGELAB", "SYOK GOZTEPE", "DHF902", "KOLEJ", "PERA204", "GLTTV", "DHF901", "PERA213", "KFARM", "GLTFOCUS", "SB116", "SYOK5", "IDEAICON", "GO204", "BU101", "MCONF", "SYOK GALATA", "SYOK BURSA", "BU104", "BU103", "BU102"
+            };
+            
+            foreach (var classroom in classrooms)
+            {
+                var classroomEntity = new Classroom
+                {
+                    Name = classroom,
+                    Description = $"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit, arcu vel ultrices lobortis, augue sapien pulvinar odio, sed tristique arcu mauris ac ipsum.",
+                };
+
+                _dataProvider.InsertEntity(classroomEntity);
             }
 
             #endregion

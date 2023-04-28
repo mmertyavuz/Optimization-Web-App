@@ -12,15 +12,17 @@ public class CorporationService : ICorporationService
 
     private readonly IRepository<Faculty> _facultyRepository;
     private readonly IRepository<EducationalDepartment> _educationalDepartmentRepository;
+    private  readonly IRepository<Classroom> _classroomRepository;
 
     #endregion
 
     #region Ctor
 
-    public CorporationService(IRepository<Faculty> facultyRepository, IRepository<EducationalDepartment> educationalDepartmentRepository)
+    public CorporationService(IRepository<Faculty> facultyRepository, IRepository<EducationalDepartment> educationalDepartmentRepository, IRepository<Classroom> classroomRepository)
     {
         _facultyRepository = facultyRepository;
         _educationalDepartmentRepository = educationalDepartmentRepository;
+        _classroomRepository = classroomRepository;
     }
 
     #endregion
@@ -103,6 +105,51 @@ public class CorporationService : ICorporationService
     public async Task UpdateEducationalDepartmentAsync(EducationalDepartment educationalDepartment)
     {
         await _educationalDepartmentRepository.UpdateAsync(educationalDepartment);
+    }
+
+    
+    #endregion
+
+    #region Classroom
+
+    public async Task DeleteClassroomAsync(Classroom classroom)
+    {
+        await _classroomRepository.DeleteAsync(classroom);
+    }
+
+    public async Task<Classroom> GetClassroomByIdAsync(int classroomId)
+    {
+        return await _classroomRepository.GetByIdAsync(classroomId);
+    }
+
+    public async Task<IList<Classroom>> GetAllClassroomsAsync(string name = null, int minCapacity = 0, int maxCapacity = 0)
+    {
+        var query = _classroomRepository.Table;
+        
+        if (!string.IsNullOrEmpty(name))
+        {
+            query = query.Where(ed => ed.Name.Contains(name));
+        }
+        if (minCapacity > 0)
+        {
+            query = query.Where(ed => ed.Capacity >= minCapacity);
+        }
+        if (maxCapacity > 0)
+        {
+            query = query.Where(ed => ed.Capacity <= maxCapacity);
+        }
+
+        return await query.ToListAsync();
+    }
+
+    public async Task InsertClassroomAsync(Classroom classroom)
+    {
+        await _classroomRepository.InsertAsync(classroom);
+    }
+
+    public async Task UpdateClassroomAsync(Classroom classroom)
+    {
+        await _classroomRepository.UpdateAsync(classroom);
     }
 
     #endregion

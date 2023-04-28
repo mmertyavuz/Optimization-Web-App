@@ -1728,6 +1728,10 @@ namespace Nop.Web.Areas.Admin.Infrastructure.Mapper
             
             CreateMap<EducationalDepartment, EducationalDepartmentModel>();
             CreateMap<EducationalDepartmentModel, EducationalDepartment>();
+            
+            CreateMap<Classroom, ClassroomModel>();
+            CreateMap<ClassroomModel, Classroom>();
+
         }
         #endregion
 

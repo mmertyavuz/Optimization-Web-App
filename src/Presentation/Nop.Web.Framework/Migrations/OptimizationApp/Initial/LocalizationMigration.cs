@@ -55,6 +55,16 @@ public class LocalizationMigration : MigrationBase
             new("Admin.Corporations.EducationalDepartments.Fields.DepartmentLeadCustomerId", "Yönetici Hesabı", "Department Lead Account"),
 
             #endregion
+
+            #region Classroom
+
+            new("Admin.Corporations.Classrooms.Fields.Name", "Ad", "Name"),
+            new("Admin.Corporations.Classrooms.Fields.Description", "Açıklama", "Description"),
+            new("Admin.Corporations.Classrooms.Fields.Capacity", "Kapasite", "Capacity"),
+            new("Admin.Corporations.Classrooms.Fields.MinCapacity", "Min Kapasite", "MinCapacity"),
+            new("Admin.Corporations.Classrooms.Fields.MaxCapacity", "Max Kapasite", "MaxCapacity")
+
+            #endregion
         };
 
         //table types

@@ -37,4 +37,22 @@ public interface ICorporationService
     Task UpdateEducationalDepartmentAsync(EducationalDepartment educationalDepartment);
 
     #endregion
+
+    #region Classroom
+
+    Task DeleteClassroomAsync(Classroom classroom);
+
+    Task<Classroom> GetClassroomByIdAsync(int classroomId);
+
+    Task<IList<Classroom>> GetAllClassroomsAsync(
+        string name = null,
+        int minCapacity = 0,
+        int maxCapacity = 0);
+
+    Task InsertClassroomAsync(Classroom classroom);
+
+    Task UpdateClassroomAsync(Classroom classroom);
+
+
+    #endregion
 }
