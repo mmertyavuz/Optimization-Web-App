@@ -1,0 +1,23 @@
+﻿@model Nop.Web.Areas.Admin.Models.Corporations.FacultyModel
+
+<div class="card-body">
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-label asp-for="Name" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="Name"/>
+            <span asp-validation-for="Name"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-label asp-for="Description" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="Description"/>
+            <span asp-validation-for="Description"></span>
+        </div>
+    </div>
+
+</div>
