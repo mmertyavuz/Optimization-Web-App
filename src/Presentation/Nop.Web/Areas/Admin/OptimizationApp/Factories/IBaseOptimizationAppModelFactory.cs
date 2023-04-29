@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.HostFiltering;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Core.Domain.Customers;
 using Nop.Services.Customers;
@@ -131,5 +132,7 @@ public class BaseOptimizationAppModelFactory : IBaseOptimizationAppModelFactory
             Text = customText ?? await _localizationService.GetResourceAsync("Admin.Common.All"),
             Value = "0"
         });
+
+        return items;
     }
 }

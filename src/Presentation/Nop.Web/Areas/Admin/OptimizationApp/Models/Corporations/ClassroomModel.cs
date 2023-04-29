@@ -5,12 +5,15 @@ namespace Nop.Web.Areas.Admin.Models.Corporations;
 
 public record ClassroomModel : BaseNopEntityModel
 {
+    //A102
     [NopResourceDisplayName("Admin.Corporations.Classrooms.Fields.Name")]
     public string Name { get; set; }
 
+    //Sınıfı tanımlayan kısa bir açıklama.
     [NopResourceDisplayName("Admin.Corporations.Classrooms.Fields.Description")]
     public string Description { get; set; }
 
+    //25
     [NopResourceDisplayName("Admin.Corporations.Classrooms.Fields.Capacity")]
     public int Capacity { get; set; }
 }

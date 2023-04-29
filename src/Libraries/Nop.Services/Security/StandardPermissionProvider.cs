@@ -229,12 +229,14 @@ namespace Nop.Services.Security
     public partial class OptimizationAppPermissionProvider : IPermissionProvider
     {
         public static readonly PermissionRecord ManageCorporations = new() { Name = "Manage Corporations", SystemName = "ManageCorporations", Category = "Corporation" };
+        public static readonly PermissionRecord ManageClassrooms = new() { Name = "Manage Classrooms", SystemName = "ManageClassrooms", Category = "Corporation" };
 
         public IEnumerable<PermissionRecord> GetPermissions()
         {
             return new[]
             {
-                ManageCorporations
+                ManageCorporations,
+                ManageClassrooms
             };
         }
 
