@@ -14,7 +14,9 @@ public interface IBaseOptimizationAppModelFactory
 {
     public Task<IList<SelectListItem>> PrepareFacultiesAsync(IList<SelectListItem> items, string customText = null);
 
-    Task<IList<SelectListItem>> PrepareDepartmentLeadsAsync(IList<SelectListItem> items, string customText = null);
+    public Task<IList<SelectListItem>> PrepareDepartmentLeadsAsync(IList<SelectListItem> items, string customText = null);
+    
+    public Task<IList<SelectListItem>> PrepareEducationalDepartmentsAsync(IList<SelectListItem> items, string customText = null);
 }
 
 public class BaseOptimizationAppModelFactory : IBaseOptimizationAppModelFactory
@@ -64,7 +66,6 @@ public class BaseOptimizationAppModelFactory : IBaseOptimizationAppModelFactory
 
     public async Task<IList<SelectListItem>> PrepareDepartmentLeadsAsync(IList<SelectListItem> items, string customText = null)
     {
-        
         var departmentLeadRole = await _customerService.GetCustomerRoleBySystemNameAsync(NopCustomerDefaults.DepartmentLeadRoleName);
 
         if (departmentLeadRole is not null)
@@ -109,5 +110,26 @@ public class BaseOptimizationAppModelFactory : IBaseOptimizationAppModelFactory
         }
 
         return items;
+    }
+
+    public async Task<IList<SelectListItem>> PrepareEducationalDepartmentsAsync(IList<SelectListItem> items,
+        string customText = null)
+    {
+        var educationalDepartments = await _corporationService.GetAllEducationalDepartmentsAsync();
+        
+        foreach (var educationalDepartment in educationalDepartments)
+        {
+            items.Add(new SelectListItem
+            {
+                Text = educationalDepartment.Name,
+                Value = educationalDepartment.Id.ToString()
+            });
+        }
+                
+        items.Add(new SelectListItem
+        {
+            Text = customText ?? await _localizationService.GetResourceAsync("Admin.Common.All"),
+            Value = "0"
+        });
     }
 }

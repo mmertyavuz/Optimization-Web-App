@@ -46,6 +46,7 @@ using Nop.Web.Areas.Admin.Models.Corporations;
 using Nop.Web.Areas.Admin.Models.Customers;
 using Nop.Web.Areas.Admin.Models.Directory;
 using Nop.Web.Areas.Admin.Models.Discounts;
+using Nop.Web.Areas.Admin.Models.Education;
 using Nop.Web.Areas.Admin.Models.ExternalAuthentication;
 using Nop.Web.Areas.Admin.Models.Forums;
 using Nop.Web.Areas.Admin.Models.Localization;
@@ -1731,6 +1732,9 @@ namespace Nop.Web.Areas.Admin.Infrastructure.Mapper
             
             CreateMap<Classroom, ClassroomModel>();
             CreateMap<ClassroomModel, Classroom>();
+            
+            CreateMap<Course, CourseModel>();
+            CreateMap<CourseModel, Course>();
 
         }
         #endregion

@@ -7,15 +7,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="Örnek verileri oluşturacak SampleDataMigration.cs eklenmesi.">
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IClassroomModelFactory.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Corporations/ClassroomModel.cs" afterDir="false" />
+    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ICourseService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/ICourseModelFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Education/CourseModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/SampleDataMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/SampleDataMigration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/CorporationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/CorporationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ICorporationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ICorporationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Infrastructure/NopStartup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Infrastructure/NopStartup.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Migrations/OptimizationApp/Initial/LocalizationMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Migrations/OptimizationApp/Initial/LocalizationMigration.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Infrastructure/Mapper/AdminMapperConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Infrastructure/Mapper/AdminMapperConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IBaseOptimizationAppModelFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IBaseOptimizationAppModelFactory.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Infrastructure/NopStartup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Infrastructure/NopStartup.cs" afterDir="false" />
     </list>
     <list id="5d67a8a5-a03c-488e-8e2d-3f2533b42bc2" name="Dont Need To Commit" comment="">
@@ -45,7 +45,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/99f538d8bc8b4f69917ead057a6ca6d6112a00/7e/94228fd5/PersonNameGenerator.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Libraries/Nop.Services/Installation/InstallationService.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -111,7 +110,8 @@
       <workItem from="1682113159457" duration="781000" />
       <workItem from="1682271303758" duration="33000" />
       <workItem from="1682659563526" duration="8180000" />
-      <workItem from="1682671791628" duration="8144000" />
+      <workItem from="1682671791628" duration="9198000" />
+      <workItem from="1682780004814" duration="1027000" />
     </task>
     <task id="LOCAL-00001" summary="Corporaiton Modül Geliştirmeleri">
       <created>1682113816848</created>
@@ -148,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682682727093</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Clasroom modül geliştirmesi ve örnek verilerin eklenmesi.">
+      <created>1682686422136</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1682686422136</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,7 +179,8 @@
     <MESSAGE value="Domain objelerinin ve builderların oluşturulması." />
     <MESSAGE value="Faculty and EducationalDepartment module development" />
     <MESSAGE value="Örnek verileri oluşturacak SampleDataMigration.cs eklenmesi." />
-    <option name="LAST_COMMIT_MESSAGE" value="Örnek verileri oluşturacak SampleDataMigration.cs eklenmesi." />
+    <MESSAGE value="Clasroom modül geliştirmesi ve örnek verilerin eklenmesi." />
+    <option name="LAST_COMMIT_MESSAGE" value="Clasroom modül geliştirmesi ve örnek verilerin eklenmesi." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

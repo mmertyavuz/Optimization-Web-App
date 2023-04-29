@@ -8,6 +8,7 @@ using Microsoft.Extensions.FileProviders;
 using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Configuration;
+using Nop.Core.Domain;
 using Nop.Core.Domain.Media;
 using Nop.Core.Events;
 using Nop.Core.Infrastructure;
@@ -231,6 +232,7 @@ namespace Nop.Web.Framework.Infrastructure
             services.AddScoped<INopUrlHelper, NopUrlHelper>();
             
             services.AddScoped<ICorporationService, CorporationService>();
+            services.AddScoped<ICourseService, CourseService>();
             
             //plugin managers
             services.AddScoped(typeof(IPluginManager<>), typeof(PluginManager<>));

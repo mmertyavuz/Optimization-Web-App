@@ -62,7 +62,18 @@ public class LocalizationMigration : MigrationBase
             new("Admin.Corporations.Classrooms.Fields.Description", "Açıklama", "Description"),
             new("Admin.Corporations.Classrooms.Fields.Capacity", "Kapasite", "Capacity"),
             new("Admin.Corporations.Classrooms.Fields.MinCapacity", "Min Kapasite", "MinCapacity"),
-            new("Admin.Corporations.Classrooms.Fields.MaxCapacity", "Max Kapasite", "MaxCapacity")
+            new("Admin.Corporations.Classrooms.Fields.MaxCapacity", "Max Kapasite", "MaxCapacity"),
+
+            #endregion
+
+            #region Courses
+
+            new("Admin.Courses.Fields.Code", "Kod", "Code"),
+            new("Admin.Courses.Fields.Name", "Ad", "Name"),
+            new("Admin.Courses.Fields.Description", "Açıklama", "Description"),
+            new("Admin.Courses.Fields.Credit", "Kredi", "Credit"),
+            new("Admin.Courses.Fields.Ects", "AKTS", "Ects"),
+            new("Admin.Courses.Fields.EducationalDepartmentId", "Departman", "Department")
 
             #endregion
         };
