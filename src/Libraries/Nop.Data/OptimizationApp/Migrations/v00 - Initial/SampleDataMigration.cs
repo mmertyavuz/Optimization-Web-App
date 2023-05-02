@@ -521,16 +521,18 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
             
             #region Section
 
-            // Generate a random section number between 01 and 99
-            var sectionNumber = random.Next(1, 100).ToString("D2");
+            var numSections = random.Next(1, 5);
 
-            var section = new Section
+            for (var i = 1; i <= numSections; i++)
             {
-                SectionNumber = sectionNumber,
-                CourseId = course.Id
-            };
+                var section = new Section
+                {
+                    SectionNumber = i.ToString(),
+                    CourseId = course.Id
+                };
 
-            _dataProvider.InsertEntity(section);
+                _dataProvider.InsertEntity(section);
+            }
 
             #endregion
 
