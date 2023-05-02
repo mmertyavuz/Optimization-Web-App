@@ -1735,6 +1735,9 @@ namespace Nop.Web.Areas.Admin.Infrastructure.Mapper
             
             CreateMap<Course, CourseModel>();
             CreateMap<CourseModel, Course>();
+            
+            CreateMap<Section, SectionModel>();
+            CreateMap<SectionModel, Section>();
 
         }
         #endregion

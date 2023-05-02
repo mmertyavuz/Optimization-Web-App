@@ -169,6 +169,15 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
 
                     _dataProvider.InsertEntity(department);
                 }
+                
+                #region Department Courses
+
+                foreach (var department in departments)
+                {
+                    InsertCourse(department);
+                }
+
+                #endregion
             }
 
             #endregion
@@ -252,6 +261,15 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
 
                     _dataProvider.InsertEntity(department);
                 }
+                
+                #region Department Courses
+
+                foreach (var department in departments)
+                {
+                    InsertCourse(department);
+                }
+
+                #endregion
             }
 
             #endregion
@@ -335,9 +353,18 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
 
                     _dataProvider.InsertEntity(department);
                 }
+                
+                #region Department Courses
+                
+                foreach (var department in departments)
+                {
+                    InsertCourse(department);
+                }
+
+                #endregion
             }
 
-#endregion
+            #endregion
 
             #endregion
 
@@ -424,6 +451,92 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
             return user;
         }
 
+        private Course InsertCourse(EducationalDepartment department)
+        {
+            var random = new Random();
+                var descriptions = new string[]
+                {
+                    "Introduction to",
+                    "Advanced topics in",
+                    "Fundamentals of",
+                    "Exploring",
+                    "Principles of",
+                    "Applications of",
+                    "Issues in",
+                    "Emerging trends in",
+                    "Foundations of",
+                    "Innovations in",
+                    "Critical perspectives on",
+                    "Contemporary approaches to",
+                    "Theoretical perspectives on",
+                    "Applied methods in",
+                    "Ethical considerations in",
+                    "Experimental methods in",
+                    "Comparative analysis of",
+                    "Historical development of",
+                    "Social implications of",
+                    "Cultural dimensions of",
+                    "Global perspectives on",
+                    "Interdisciplinary approaches to",
+                    "Environmental impacts of",
+                    "Technological innovations in",
+                    "Political dimensions of",
+                    "Economic analysis of",
+                    "Legal frameworks for",
+                    "Educational strategies for",
+                    "Psychological aspects of",
+                    "Philosophical foundations of",
+                    "Biological underpinnings of",
+                    "Neuroscientific perspectives on",
+                    "Aesthetic dimensions of",
+                    "Spatial considerations in",
+                    "Architectural design of",
+                    "Urban planning for",
+                    "Transportation systems in",
+                    "Energy consumption in",
+                    "Renewable energy sources for",
+                    "Materials science for",
+                    "Manufacturing processes in",
+                    "Supply chain management for",
+                    "Financial analysis of",
+                    "Marketing strategies for",
+                    "Human resource management in",
+                    "Entrepreneurial opportunities in",
+                    "Leadership skills for",
+                    "Teamwork and collaboration in"
+                };
+                
+                
+            var course = new Course
+            {
+                Code = department.Code + "-" + random.Next(100, 1000),
+                Name = department.Code,
+                Description = descriptions[random.Next(0, descriptions.Length)] + " " + department.Name,
+                Credit = random.Next(1, 4),
+                Ects = random.Next(2, 7),
+                EducationalDepartmentId = department.Id
+            };
+    
+            _dataProvider.InsertEntity(course);
+            
+            #region Section
+
+            // Generate a random section number between 01 and 99
+            var sectionNumber = random.Next(1, 100).ToString("D2");
+
+            var section = new Section
+            {
+                SectionNumber = sectionNumber,
+                CourseId = course.Id
+            };
+
+            _dataProvider.InsertEntity(section);
+
+            #endregion
+
+            return course;
+        }
+        
         public override void Down()
         {
             //add the downgrade logic if necessary 

@@ -233,6 +233,7 @@ namespace Nop.Web.Framework.Infrastructure
             
             services.AddScoped<ICorporationService, CorporationService>();
             services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<ISectionService, SectionService>();
             
             //plugin managers
             services.AddScoped(typeof(IPluginManager<>), typeof(PluginManager<>));

@@ -7,17 +7,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="Course Modül geliştirmesi.">
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/ClassroomController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Classroom/Create.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Classroom/Edit.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Classroom/List.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Classroom/_CreateOrUpdate.Info.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Classroom/_CreateOrUpdate.cshtml" afterDir="false" />
+    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ISectionService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/ISectionModelFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Education/SectionModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/Security/StandardPermissionProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/Security/StandardPermissionProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/SampleDataMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/SampleDataMigration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Infrastructure/NopStartup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Infrastructure/NopStartup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Infrastructure/Mapper/AdminMapperConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Infrastructure/Mapper/AdminMapperConfiguration.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IBaseOptimizationAppModelFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IBaseOptimizationAppModelFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Corporations/ClassroomModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Corporations/ClassroomModel.cs" afterDir="false" />
     </list>
     <list id="5d67a8a5-a03c-488e-8e2d-3f2533b42bc2" name="Dont Need To Commit" comment="">
       <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Nop.Web.csproj.DotSettings" afterDir="false" />
@@ -112,7 +110,13 @@
       <workItem from="1682271303758" duration="33000" />
       <workItem from="1682659563526" duration="8180000" />
       <workItem from="1682671791628" duration="9198000" />
-      <workItem from="1682780004814" duration="5021000" />
+      <workItem from="1682780004814" duration="7447000" />
+      <workItem from="1682794029423" duration="1237000" />
+      <workItem from="1682856642987" duration="1086000" />
+      <workItem from="1682857828533" duration="1290000" />
+      <workItem from="1683005209890" duration="2765000" />
+      <workItem from="1683008414552" duration="131000" />
+      <workItem from="1683008709735" duration="2597000" />
     </task>
     <task id="LOCAL-00001" summary="Corporaiton Modül Geliştirmeleri">
       <created>1682113816848</created>
@@ -163,7 +167,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682781047459</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Clasroom Modül Controller - View geliştirmesi.">
+      <created>1682785185059</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1682785185059</updated>
+    </task>
+    <task id="LOCAL-00009" summary="FacultyController.cs'ın oluşturulması.">
+      <created>1682785588497</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1682785588497</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,7 +207,9 @@
     <MESSAGE value="Örnek verileri oluşturacak SampleDataMigration.cs eklenmesi." />
     <MESSAGE value="Clasroom modül geliştirmesi ve örnek verilerin eklenmesi." />
     <MESSAGE value="Course Modül geliştirmesi." />
-    <option name="LAST_COMMIT_MESSAGE" value="Course Modül geliştirmesi." />
+    <MESSAGE value="Clasroom Modül Controller - View geliştirmesi." />
+    <MESSAGE value="FacultyController.cs'ın oluşturulması." />
+    <option name="LAST_COMMIT_MESSAGE" value="FacultyController.cs'ın oluşturulması." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

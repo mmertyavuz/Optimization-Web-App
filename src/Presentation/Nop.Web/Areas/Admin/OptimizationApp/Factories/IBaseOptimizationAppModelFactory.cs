@@ -18,6 +18,8 @@ public interface IBaseOptimizationAppModelFactory
     public Task<IList<SelectListItem>> PrepareDepartmentLeadsAsync(IList<SelectListItem> items, string customText = null);
     
     public Task<IList<SelectListItem>> PrepareEducationalDepartmentsAsync(IList<SelectListItem> items, string customText = null);
+
+    Task<IList<SelectListItem>> PrepareCoursesAsync(IList<SelectListItem> items);
 }
 
 public class BaseOptimizationAppModelFactory : IBaseOptimizationAppModelFactory
@@ -27,16 +29,18 @@ public class BaseOptimizationAppModelFactory : IBaseOptimizationAppModelFactory
     private readonly ICorporationService _corporationService;
     private readonly ILocalizationService _localizationService;
     private readonly ICustomerService _customerService;
+    private readonly ICourseService _courseService;
 
     #endregion
 
     #region Ctor
 
-    public BaseOptimizationAppModelFactory(ICorporationService corporationService, ILocalizationService localizationService, ICustomerService customerService)
+    public BaseOptimizationAppModelFactory(ICorporationService corporationService, ILocalizationService localizationService, ICustomerService customerService, ICourseService courseService)
     {
         _corporationService = corporationService;
         _localizationService = localizationService;
         _customerService = customerService;
+        _courseService = courseService;
     }
 
     #endregion
@@ -133,6 +137,22 @@ public class BaseOptimizationAppModelFactory : IBaseOptimizationAppModelFactory
             Value = "0"
         });
 
+        return items;
+    }
+
+    public async Task<IList<SelectListItem>> PrepareCoursesAsync(IList<SelectListItem> items)
+    {
+        var courses = await _courseService.GetAllCoursesAsync();
+        
+        foreach (var course in courses)
+        {
+            items.Add(new SelectListItem
+            {
+                Text = course.Name,
+                Value = course.Id.ToString()
+            });
+        }
+        
         return items;
     }
 }
