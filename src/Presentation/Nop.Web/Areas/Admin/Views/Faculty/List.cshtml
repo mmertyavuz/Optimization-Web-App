@@ -10,6 +10,18 @@
     const string hideSearchBlockAttributeName = "FacultiesPage.HideSearchBlock";
     var hideSearchBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideSearchBlockAttributeName);
 }
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        @T("Admin.Corporations.Faculties")
+    </h1>
+    <div class="float-right">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus-square"></i>
+            @T("Admin.Common.AddNew")
+        </a>
+    </div>
+</div>
+
 <section class="content">
     <div class="container-fluid">
     <div class="form-horizontal">

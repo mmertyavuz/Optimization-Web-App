@@ -1,0 +1,20 @@
+﻿@model Nop.Web.Areas.Admin.Models.Corporations.EducationalDepartmentModel
+
+@{
+    const string hideInfoBlockAttributeName = "EducationalDepartmentDetailsPage.HideInfoBlock";
+    var educationalDepartment = await workContext.GetCurrentCustomerAsync();
+    var hideInfoBlock = await genericAttributeService.GetAttributeAsync<bool>(educationalDepartment, hideInfoBlockAttributeName);
+}
+
+<div asp-validation-summary="All"></div>
+<input asp-for="Id" type="hidden" />
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <nop-cards id="faculty-details-cards">
+                <nop-card asp-name="faculty-info" asp-icon="fas fa-info" asp-title="@T("Admin.Corporations.EducationalDepartments.Info")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">@await Html.PartialAsync("_CreateOrUpdate.Info", Model)</nop-card>
+            </nop-cards>
+        </div>
+    </div>
+</section>
