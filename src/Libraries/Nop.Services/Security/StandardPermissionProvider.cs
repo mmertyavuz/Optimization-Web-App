@@ -228,10 +228,11 @@ namespace Nop.Services.Security
     
     public partial class OptimizationAppPermissionProvider : IPermissionProvider
     {
-        public static readonly PermissionRecord ManageCorporations = new() { Name = "Manage Corporations", SystemName = "ManageCorporations", Category = "Corporation" };
-        public static readonly PermissionRecord ManageClassrooms = new() { Name = "Manage Classrooms", SystemName = "ManageClassrooms", Category = "Corporation" };
-        public static readonly PermissionRecord ManageFaculties = new() { Name = "Manage Faculties", SystemName = "ManageFaculties", Category = "Corporation" };
-        public static readonly PermissionRecord ManageEducationalDepartments = new() { Name = "Manage Educational Departments", SystemName = "ManageEducationalDepartments", Category = "Corporation" };
+        public static readonly PermissionRecord ManageCorporations = new() { Name = "Manage Corporations", SystemName = "ManageCorporations", Category = "OptimizationApp" };
+        public static readonly PermissionRecord ManageClassrooms = new() { Name = "Manage Classrooms", SystemName = "ManageClassrooms", Category = "OptimizationApp" };
+        public static readonly PermissionRecord ManageFaculties = new() { Name = "Manage Faculties", SystemName = "ManageFaculties", Category = "OptimizationApp" };
+        public static readonly PermissionRecord ManageEducationalDepartments = new() { Name = "Manage Educational Departments", SystemName = "ManageEducationalDepartments", Category = "OptimizationApp" };
+        public static readonly PermissionRecord ManageCourses = new() { Name = "Manage Courses", SystemName = "ManageCourses", Category = "OptimizationApp" };
 
         public IEnumerable<PermissionRecord> GetPermissions()
         {

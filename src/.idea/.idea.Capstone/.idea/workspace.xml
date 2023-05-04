@@ -7,13 +7,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="Section modül geliştirmesi">
+    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/CourseController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/Create.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/Edit.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/List.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/PredefinedProductAttributeValueCreatePopup.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/PredefinedProductAttributeValueEditPopup.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/_CreateOrUpdate.Info.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/_CreateOrUpdate.Section.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/_CreateOrUpdate.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/_CreateOrUpdatePredefinedProductAttributeValue.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ICourseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ICourseService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ISectionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ISectionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/Security/StandardPermissionProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/Security/StandardPermissionProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Education/CourseModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Education/CourseModel.cs" afterDir="false" />
     </list>
-    <list id="5d67a8a5-a03c-488e-8e2d-3f2533b42bc2" name="Dont Need To Commit" comment="">
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Nop.Web.csproj.DotSettings" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-    </list>
+    <list id="5d67a8a5-a03c-488e-8e2d-3f2533b42bc2" name="Dont Need To Commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +48,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/99f538d8bc8b4f69917ead057a6ca6d6112a00/7e/94228fd5/PersonNameGenerator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Libraries/Nop.Services/Installation/InstallationService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

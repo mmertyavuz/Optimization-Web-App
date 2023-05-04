@@ -10,6 +10,7 @@ public record CourseModel : BaseNopEntityModel
     public CourseModel()
     {
         AvailableEducationalDepartments = new List<SelectListItem>();
+        SectionSearchModel = new SectionSearchModel();
     }
     
     [NopResourceDisplayName("Admin.Education.Courses.Fields.Code")]
@@ -33,6 +34,8 @@ public record CourseModel : BaseNopEntityModel
     public IList<SelectListItem> AvailableEducationalDepartments { get; set; }
     
     public string EducationalDepartmentName { get; set; }
+
+    public SectionSearchModel SectionSearchModel { get; set; }
 }
 
 public record CourseListModel : BasePagedListModel<CourseModel>

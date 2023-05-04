@@ -1,0 +1,135 @@
+@using Nop.Web.Areas.Admin.Models.Education
+@model Nop.Web.Areas.Admin.Models.Education.CourseSearchModel
+@{
+    //page title
+    ViewBag.PageTitle = T("Admin.Courses").Text;
+   
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName("Courses");
+
+    const string hideSearchBlockAttributeName = "CoursesPage.HideSearchBlock";
+    var hideSearchBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideSearchBlockAttributeName);
+}
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        @T("Admin.Courses")
+    </h1>
+    <div class="float-right">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus-square"></i>
+            @T("Admin.Common.AddNew")
+        </a>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+    <div class="form-horizontal">
+        <div class="cards-group">
+            <div class="card card-default card-search">
+                <div class="card-body">
+                    <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
+                        <div class="search-text">@T("Admin.Common.Search")</div>
+                        <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
+                        <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
+                    </div>
+
+                    <div class="search-body @(hideSearchBlock ? "closed" : "")">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <nop-label asp-for="Name" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-editor asp-for="Name" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <nop-label asp-for="Code" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-editor asp-for="Code" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <nop-label asp-for="EducationalDepartmentId" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-select asp-for="EducationalDepartmentId" asp-items="Model.AvailableEducationalDepartments" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="button" id="search-courses" class="btn btn-primary btn-search">
+                                    <i class="fas fa-search"></i>
+                                    @T("Admin.Common.Search")
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-default">
+                <div class="card-body" id="courses-area">
+                    @await Html.PartialAsync("Table", new DataTablesModel
+                    {
+                        Name = "courses-grid",
+                        RowIdBasedOnField = nameof(CourseModel.Id.ToString),
+                        UrlRead = new DataUrl("List", "Course", null),
+                        SearchButtonId = "search-courses",
+                        Length = Model.PageSize,
+                        LengthMenu = Model.AvailablePageSizes,
+                        Filters = new List<FilterParameter>
+                        {
+                            new FilterParameter(nameof(Model.Name)),
+                            new FilterParameter(nameof(Model.Code)),
+                            new FilterParameter(nameof(Model.EducationalDepartmentId))
+                        },
+                        ColumnCollection = new List<ColumnProperty>
+                        {
+                            new ColumnProperty(nameof(CourseModel.Code))
+                            {
+                                Title = T("Admin.Education.Courses.Fields.Code").Text,
+                                Width = "250",
+                                ClassName = NopColumnClassDefaults.CenterAll
+                            },
+                            new ColumnProperty(nameof(CourseModel.Name))
+                            {
+                                Title = T("Admin.Education.Courses.Fields.Name").Text,
+                                ClassName = NopColumnClassDefaults.CenterAll
+                            },
+                            new ColumnProperty(nameof(CourseModel.Credit))
+                            {
+                                Title = T("Admin.Education.Courses.Fields.Credit").Text,
+                                Width = "250",
+                                ClassName = NopColumnClassDefaults.CenterAll
+                            },
+                            new ColumnProperty(nameof(CourseModel.Ects))
+                            {
+                                Title = T("Admin.Education.Courses.Fields.Ects").Text,
+                                Width = "250",
+                                ClassName = NopColumnClassDefaults.CenterAll
+                            },
+                            new ColumnProperty(nameof(CourseModel.Id))
+                            {
+                                Title = T("Admin.Common.Edit").Text,
+                                Width = "100",
+                                ClassName = NopColumnClassDefaults.Button + " column-edit",
+                                Render = new RenderButtonEdit(new DataUrl("Edit"))
+                            }
+                        }
+                    })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+

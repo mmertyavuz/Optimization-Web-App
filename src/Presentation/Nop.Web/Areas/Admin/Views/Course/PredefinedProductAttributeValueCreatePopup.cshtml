@@ -1,0 +1,26 @@
+@model Nop.Web.Areas.Admin.Models.Education.SectionModel
+
+@{
+    Layout = "_AdminPopupLayout";
+
+    //page title
+    ViewBag.PageTitle = T("Admin.Sections.AddNew").Text;
+}
+
+<form asp-controller="Course" asp-action="SectionCreatePopup"
+      asp-route-courseId="@Context.Request.Query["courseId"]"
+      asp-route-btnId="@Context.Request.Query["btnId"]"
+      asp-route-formId="@Context.Request.Query["formId"]">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Admin.Sections.AddNew")
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+        </div>
+    </div>
+    @await Html.PartialAsync("_CreateOrUpdatePredefinedProductAttributeValue", Model)
+</form>

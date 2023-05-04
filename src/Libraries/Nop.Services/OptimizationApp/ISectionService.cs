@@ -17,6 +17,8 @@ public interface ISectionService
     Task InsertSectionAsync(Section section);
 
     Task UpdateSectionAsync(Section section);
+    
+    Task DeleteSectionAsync(Section section);
 }
 
 public class SectionService : ISectionService
@@ -67,5 +69,10 @@ public class SectionService : ISectionService
     public async Task UpdateSectionAsync(Section section)
     {
         await _sectionRepository.UpdateAsync(section);
+    }
+    
+    public async Task DeleteSectionAsync(Section section)
+    {
+        await _sectionRepository.DeleteAsync(section);
     }
 }
