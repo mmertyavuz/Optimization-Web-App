@@ -231,6 +231,7 @@ namespace Nop.Services.Security
         public static readonly PermissionRecord ManageCorporations = new() { Name = "Manage Corporations", SystemName = "ManageCorporations", Category = "Corporation" };
         public static readonly PermissionRecord ManageClassrooms = new() { Name = "Manage Classrooms", SystemName = "ManageClassrooms", Category = "Corporation" };
         public static readonly PermissionRecord ManageFaculties = new() { Name = "Manage Faculties", SystemName = "ManageFaculties", Category = "Corporation" };
+        public static readonly PermissionRecord ManageEducationalDepartments = new() { Name = "Manage Educational Departments", SystemName = "ManageEducationalDepartments", Category = "Corporation" };
 
         public IEnumerable<PermissionRecord> GetPermissions()
         {
@@ -238,7 +239,8 @@ namespace Nop.Services.Security
             {
                 ManageCorporations,
                 ManageClassrooms,
-                ManageFaculties
+                ManageFaculties,
+                ManageEducationalDepartments
             };
         }
 
