@@ -1,0 +1,20 @@
+@model Nop.Web.Areas.Admin.Models.Education.SectionModel
+@{
+    //page title
+    ViewBag.PageTitle = T("Admin.Sections.Details").Text;
+   
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName("Sections");
+}
+
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Admin.Sections.Details") - @Model.CourseName -> @Model.SectionNumber
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-action="List">@T("Admin.Common.BackToList")</a>
+            </small>
+        </h1>
+    </div>
+    @await Html.PartialAsync("_Details", Model)
+

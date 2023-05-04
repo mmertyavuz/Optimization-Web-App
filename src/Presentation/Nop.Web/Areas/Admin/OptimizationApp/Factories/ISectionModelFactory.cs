@@ -26,16 +26,18 @@ public class SectionModelFactory : ISectionModelFactory
     private readonly ISectionService _sectionService;
     private readonly IBaseOptimizationAppModelFactory _baseOptimizationAppModelFactory;
     private readonly ILocalizationService _localizationService;
+    private readonly ICourseService _courseService;
 
     #endregion
 
     #region Ctor
 
-    public SectionModelFactory(ISectionService sectionService, IBaseOptimizationAppModelFactory baseOptimizationAppModelFactory, ILocalizationService localizationService)
+    public SectionModelFactory(ISectionService sectionService, IBaseOptimizationAppModelFactory baseOptimizationAppModelFactory, ILocalizationService localizationService, ICourseService courseService)
     {
         _sectionService = sectionService;
         _baseOptimizationAppModelFactory = baseOptimizationAppModelFactory;
         _localizationService = localizationService;
+        _courseService = courseService;
     }
 
     #endregion
@@ -73,6 +75,13 @@ public class SectionModelFactory : ISectionModelFactory
                 //fill in model values from the entity
                 var facultyModel = section.ToModel<SectionModel>();
 
+                var course = await _courseService.GetCourseByIdAsync(section.CourseId);
+
+                if (course is not  null)
+                {
+                    facultyModel.CourseName = course.Name;                    
+                }
+
                 return facultyModel;
             });
         });
@@ -88,6 +97,13 @@ public class SectionModelFactory : ISectionModelFactory
             if (model == null)
             {
                 model = section.ToModel<SectionModel>();
+                
+                var course = await _courseService.GetCourseByIdAsync(section.CourseId);
+
+                if (course is not  null)
+                {
+                    model.CourseName = course.Name;                    
+                }
                     
             }
         }

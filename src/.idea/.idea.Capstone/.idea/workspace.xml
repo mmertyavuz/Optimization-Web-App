@@ -7,22 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/CourseController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/Create.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/Edit.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/List.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/PredefinedProductAttributeValueCreatePopup.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/PredefinedProductAttributeValueEditPopup.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/_CreateOrUpdate.Info.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/_CreateOrUpdate.Section.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/_CreateOrUpdate.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/_CreateOrUpdatePredefinedProductAttributeValue.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ICourseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ICourseService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ISectionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ISectionService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/Security/StandardPermissionProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/Security/StandardPermissionProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Education/CourseModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Education/CourseModel.cs" afterDir="false" />
+    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="Course Controller &amp; View geliştirmeleri.">
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/SectionController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Section/Details.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Section/List.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Section/_Details.Info.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Section/_Details.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/ISectionModelFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/ISectionModelFactory.cs" afterDir="false" />
     </list>
     <list id="5d67a8a5-a03c-488e-8e2d-3f2533b42bc2" name="Dont Need To Commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,8 +41,12 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/99f538d8bc8b4f69917ead057a6ca6d6112a00/7e/94228fd5/PersonNameGenerator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Libraries/Nop.Services/Installation/InstallationService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/17.4.1/build/netcoreapp3.1/Microsoft.NET.Test.Sdk.Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -195,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683011905391</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Course Controller &amp; View geliştirmeleri.">
+      <created>1683215407842</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1683215407842</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,7 +226,8 @@
     <MESSAGE value="Clasroom Modül Controller - View geliştirmesi." />
     <MESSAGE value="FacultyController.cs'ın oluşturulması." />
     <MESSAGE value="Section modül geliştirmesi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Section modül geliştirmesi" />
+    <MESSAGE value="Course Controller &amp; View geliştirmeleri." />
+    <option name="LAST_COMMIT_MESSAGE" value="Course Controller &amp; View geliştirmeleri." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
