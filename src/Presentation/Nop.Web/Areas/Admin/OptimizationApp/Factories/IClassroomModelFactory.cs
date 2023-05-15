@@ -55,7 +55,8 @@ public class ClassroomModelFactory : IClassroomModelFactory
         var classRooms = await _corporationService.GetAllClassroomsAsync(
             name: searchModel.Name,
             minCapacity: searchModel.MinCapacity,
-            maxCapacity: searchModel.MaxCapacity);
+            maxCapacity: searchModel.MaxCapacity,
+            orderByCapacity: searchModel.orderByCapacity);
         
         var pagedClassRooms = classRooms.ToPagedList(searchModel);
         

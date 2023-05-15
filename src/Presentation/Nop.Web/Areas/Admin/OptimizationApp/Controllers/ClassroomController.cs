@@ -13,6 +13,7 @@ using Nop.Services.Security;
 using Nop.Web.Areas.Admin.Factories;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Areas.Admin.Models.Corporations;
+using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
 
 namespace Nop.Web.Areas.Admin.Controllers;
@@ -191,6 +192,24 @@ public class ClassroomController : BaseAdminController
         return RedirectToAction("List");
     }
     
+    [HttpPost]
+    public virtual async Task<IActionResult> DeleteAll()
+    {
+        if (!await _permissionService.AuthorizeAsync(OptimizationAppPermissionProvider.ManageClassrooms))
+            return AccessDeniedView();
+
+        var classRooms = await _corporationService.GetAllClassroomsAsync();
+
+        foreach (var classRoom in classRooms)
+        {
+            await _corporationService.DeleteClassroomAsync(classRoom);
+        }
+        
+        _notificationService.SuccessNotification("All classrooms are successfully deleted. You can import or add new ones.");
+        
+        return RedirectToAction("List");
+    }
+    
     #endregion
     
     public virtual async Task<IActionResult> ExportExcel()
@@ -253,7 +272,7 @@ public class ClassroomController : BaseAdminController
                 return RedirectToAction("List");
             }
 
-            _notificationService.SuccessNotification("Datas are successfully imported from given excel");
+            _notificationService.SuccessNotification("Successfully imported from given excel file.");
 
             return RedirectToAction("List");
         }

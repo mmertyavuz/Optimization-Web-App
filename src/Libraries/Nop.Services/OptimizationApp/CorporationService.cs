@@ -122,7 +122,7 @@ public class CorporationService : ICorporationService
         return await _classroomRepository.GetByIdAsync(classroomId);
     }
 
-    public async Task<IList<Classroom>> GetAllClassroomsAsync(string name = null, int minCapacity = 0, int maxCapacity = 0)
+    public async Task<IList<Classroom>> GetAllClassroomsAsync(string name = null, int minCapacity = 0, int maxCapacity = 0, bool orderByCapacity = false)
     {
         var query = _classroomRepository.Table;
         
@@ -138,8 +138,16 @@ public class CorporationService : ICorporationService
         {
             query = query.Where(ed => ed.Capacity <= maxCapacity);
         }
+        if (orderByCapacity)
+        {
+            query = query.OrderBy(x => x.Capacity);
+        }
+        else
+        {
+            query = query.OrderBy(x => x.Name);
+        }
 
-        return await query.OrderBy(x => x.Name).ToListAsync();
+        return await query.ToListAsync();
     }
 
     public async Task InsertClassroomAsync(Classroom classroom)

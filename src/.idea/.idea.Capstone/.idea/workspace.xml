@@ -7,12 +7,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="General bug fixes and little changes.">
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ExportManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/IImportManager.cs" afterDir="false" />
+    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="Clasroom modülü içni excell import &amp; export geliştirmesi.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/ExportImport/ImportManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/ExportImport/ImportManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/CorporationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/CorporationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ICorporationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ICorporationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/IImportManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/IImportManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/ClassroomController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/ClassroomController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IClassroomModelFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IClassroomModelFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Corporations/ClassroomModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Corporations/ClassroomModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Classroom/List.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Classroom/List.cshtml" afterDir="false" />
     </list>
     <list id="5d67a8a5-a03c-488e-8e2d-3f2533b42bc2" name="Dont Need To Commit" comment="" />
@@ -114,7 +116,7 @@
       <workItem from="1683005209890" duration="2765000" />
       <workItem from="1683008414552" duration="131000" />
       <workItem from="1683008709735" duration="3305000" />
-      <workItem from="1684161128392" duration="13251000" />
+      <workItem from="1684161128392" duration="15218000" />
     </task>
     <task id="LOCAL-00001" summary="Corporaiton Modül Geliştirmeleri">
       <created>1682113816848</created>
@@ -207,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684171103584</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Clasroom modülü içni excell import &amp; export geliştirmesi.">
+      <created>1684179265158</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1684179265158</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,7 +248,8 @@
     <MESSAGE value="Course Controller &amp; View geliştirmeleri." />
     <MESSAGE value="Section Modül geliştirmeleri." />
     <MESSAGE value="General bug fixes and little changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="General bug fixes and little changes." />
+    <MESSAGE value="Clasroom modülü içni excell import &amp; export geliştirmesi." />
+    <option name="LAST_COMMIT_MESSAGE" value="Clasroom modülü içni excell import &amp; export geliştirmesi." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

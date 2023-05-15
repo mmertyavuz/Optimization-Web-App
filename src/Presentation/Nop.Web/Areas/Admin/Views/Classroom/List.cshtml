@@ -15,6 +15,7 @@
         @T("Admin.Corporations.Classrooms")
     </h1>
     <div class="float-right">
+        <form asp-controller="Classroom" asp-action="DeleteAll">
         <a asp-action="ExportExcel" class="btn btn-success">
             <i class="fas fa-download"></i>
             @T("Admin.Common.Export")
@@ -27,6 +28,11 @@
             <i class="fas fa-plus-square"></i>
             @T("Admin.Common.AddNew")
         </a>
+            <button type="submit" id="delete-all" class="btn btn-danger">
+                <i class="far fa-trash-alt"></i>
+                @T("Admin.System.QueuedEmails.DeleteAll")
+            </button>
+        </form>
     </div>
 </div>
 
@@ -54,6 +60,19 @@
                                         </div>
                                     </div>
                                 
+                                
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <div class="label-wrapper">
+                                                <label class="col-form-label">
+                                                    Order by Capacity
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <nop-editor asp-for="orderByCapacity" />
+                                        </div>
+                                    </div>                        
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group row">
@@ -108,20 +127,21 @@
                             {
                                 new FilterParameter(nameof(Model.Name)),
                                 new FilterParameter(nameof(Model.MinCapacity)),
-                                new FilterParameter(nameof(Model.MaxCapacity))
+                                new FilterParameter(nameof(Model.MaxCapacity)),
+                                new FilterParameter(nameof(Model.orderByCapacity), typeof(bool)),
                             },
                             ColumnCollection = new List<ColumnProperty>
                             {
                                 new ColumnProperty(nameof(ClassroomModel.Name))
                                 {
                                     Title = T("Admin.Corporations.Classrooms.Fields.Name").Text,
-                                    Width = "250",
+                                    Width = "150",
                                     ClassName = NopColumnClassDefaults.CenterAll
                                 },
                                 new ColumnProperty(nameof(ClassroomModel.Capacity))
                                 {
                                     Title = T("Admin.Corporations.Classrooms.Fields.Capacity").Text,
-                                    Width = "250",
+                                    Width = "50",
                                     ClassName = NopColumnClassDefaults.CenterAll
                                 },
                                 new ColumnProperty(nameof(ClassroomModel.Description))

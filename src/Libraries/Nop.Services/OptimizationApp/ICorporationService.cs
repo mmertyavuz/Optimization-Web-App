@@ -47,7 +47,8 @@ public interface ICorporationService
     Task<IList<Classroom>> GetAllClassroomsAsync(
         string name = null,
         int minCapacity = 0,
-        int maxCapacity = 0);
+        int maxCapacity = 0,
+        bool orderByCapacity = false);
 
     Task InsertClassroomAsync(Classroom classroom);
 

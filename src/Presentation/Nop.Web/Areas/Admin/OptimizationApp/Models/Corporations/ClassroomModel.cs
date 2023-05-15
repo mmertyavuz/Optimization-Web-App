@@ -32,4 +32,6 @@ public record ClassroomSearchModel : BaseSearchModel
     
     [NopResourceDisplayName("Admin.Corporations.Classrooms.Fields.MaxCapacity")]
     public int MaxCapacity { get; set; }
+
+    public bool orderByCapacity { get; set; }
 }

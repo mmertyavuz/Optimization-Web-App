@@ -22,7 +22,7 @@ public partial class ImportManager
         using var workbook = new XLWorkbook(stream);
 
             var languages = await _languageService.GetAllLanguagesAsync(showHidden: true);
-
+    
             //the columns
             var metadata = GetWorkbookMetadata<Classroom>(workbook, languages);
             var defaultWorksheet = metadata.DefaultWorksheet;
@@ -32,6 +32,9 @@ public partial class ImportManager
             var manager = new PropertyManager<Classroom, Language>(defaultProperties, _catalogSettings, localizedProperties, languages);
 
             var iRow = 2;
+
+            var clasrooms = await _corporationService.GetAllClassroomsAsync();
+            
             while (true)
             {
                 var allColumnsAreEmpty = manager.GetDefaultProperties
@@ -60,7 +63,18 @@ public partial class ImportManager
                     }
                 }
 
-                await _corporationService.InsertClassroomAsync(classroom);
+                var existingClassroom = clasrooms.FirstOrDefault(c => c.Name == classroom.Name);
+
+                if (existingClassroom is null)
+                {
+                    await _corporationService.InsertClassroomAsync(classroom);
+                }
+                else
+                {
+                    existingClassroom.Description = classroom.Description;
+                    existingClassroom.Capacity = classroom.Capacity;
+                    await _corporationService.UpdateClassroomAsync(existingClassroom);
+                }
                 
                 iRow++;
             }
