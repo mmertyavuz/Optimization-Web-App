@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using FluentMigrator;
 using Nop.Core;
 using Nop.Core.Domain;
@@ -19,7 +20,7 @@ using RandomNameGeneratorLibrary;
 
 namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
 {
-    [NopMigration("2023-04-28 12:19:00", "4.60.0", UpdateMigrationType.Data, MigrationProcessType.Update)]
+    [NopMigration("2023-04-28 12:21:00", "4.60.0", UpdateMigrationType.Data, MigrationProcessType.Update)]
     public class SampleDataMigration : Migration
     {
         private readonly INopDataProvider _dataProvider;
@@ -32,8 +33,10 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
         /// <summary>
         /// Collect the UP migration expressions
         /// </summary>
-        public override void Up()
+        public override async void Up()
         {
+
+            return;
             #region Educational Departments and Faculties
 
             #region Doğa Bilimleri Fakultesi
@@ -46,7 +49,7 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
                         $"The Faculty of Engineering and Natural Sciences is an academic institution that focuses on teaching and research in the fields of engineering and natural sciences."
                 };
 
-                _dataProvider.InsertEntity(faculty);
+                 await _dataProvider.InsertEntityAsync(faculty);
 
                 var departments = new List<EducationalDepartment>()
                 {
@@ -162,19 +165,19 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
 
                 foreach (var department in departments)
                 {
-                    var departmentLead = InsertCustomer(department.Code.ToLower(),
+                    var departmentLead = await InsertCustomerAsync(department.Code.ToLower(),
                         NopCustomerDefaults.DepartmentLeadRoleName);
 
                     department.DepartmentLeadCustomerId = departmentLead.Id;
 
-                    _dataProvider.InsertEntity(department);
+                    await _dataProvider.InsertEntityAsync(department);
                 }
                 
                 #region Department Courses
 
                 foreach (var department in departments)
                 {
-                    InsertCourse(department);
+                    await InsertCourseAsync(department);
                 }
 
                 #endregion
@@ -192,7 +195,7 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
                         "The Faculty of Architecture and Design is an academic institution that focuses on teaching and research in the fields of architecture and design."
                 };
 
-                _dataProvider.InsertEntity(faculty);
+                await _dataProvider.InsertEntityAsync(faculty);
 
                 var departments = new List<EducationalDepartment>()
                 {
@@ -254,19 +257,19 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
 
                 foreach (var department in departments)
                 {
-                    var departmentLead = InsertCustomer(department.Code.ToLower(),
+                    var departmentLead = await InsertCustomerAsync(department.Code.ToLower(),
                         NopCustomerDefaults.DepartmentLeadRoleName);
 
                     department.DepartmentLeadCustomerId = departmentLead.Id;
 
-                    _dataProvider.InsertEntity(department);
+                    await _dataProvider.InsertEntityAsync(department);
                 }
                 
                 #region Department Courses
 
                 foreach (var department in departments)
                 {
-                    InsertCourse(department);
+                    await InsertCourseAsync(department);
                 }
 
                 #endregion
@@ -284,7 +287,7 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
                         "The Faculty of Educational Sciences is an academic institution that focuses on teaching and research in the fields of education and pedagogy."
                 };
 
-                _dataProvider.InsertEntity(faculty);
+                await _dataProvider.InsertEntityAsync(faculty);
 
                 var departments = new List<EducationalDepartment>()
                 {
@@ -346,19 +349,19 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
 
                 foreach (var department in departments)
                 {
-                    var departmentLead = InsertCustomer(department.Code.ToLower(),
+                    var departmentLead = await InsertCustomerAsync(department.Code.ToLower(),
                         NopCustomerDefaults.DepartmentLeadRoleName);
 
                     department.DepartmentLeadCustomerId = departmentLead.Id;
 
-                    _dataProvider.InsertEntity(department);
+                    await _dataProvider.InsertEntityAsync(department);
                 }
                 
                 #region Department Courses
                 
                 foreach (var department in departments)
                 {
-                    InsertCourse(department);
+                    await InsertCourseAsync(department);
                 }
 
                 #endregion
@@ -383,13 +386,13 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
                     Description = $"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit, arcu vel ultrices lobortis, augue sapien pulvinar odio, sed tristique arcu mauris ac ipsum.",
                 };
 
-                _dataProvider.InsertEntity(classroomEntity);
+                await _dataProvider.InsertEntityAsync(classroomEntity);
             }
 
             #endregion
         }
 
-        private Customer InsertCustomer(string emailPrefix, params string[] customerRoleNames)
+        private async Task<Customer> InsertCustomerAsync(string emailPrefix, params string[] customerRoleNames)
         {
             var personGenerator = new PersonNameGenerator();
 
@@ -424,10 +427,10 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
 
             _dataProvider.InsertEntityAsync(user);
 
-            _dataProvider.InsertEntity(new CustomerCustomerRoleMapping
+            await _dataProvider.InsertEntityAsync(new CustomerCustomerRoleMapping
                 {CustomerId = user.Id, CustomerRoleId = crRegistered.Id});
 
-            _dataProvider.InsertEntity(
+            await _dataProvider.InsertEntityAsync(
                 new CustomerPassword
                 {
                     CustomerId = user.Id,
@@ -444,14 +447,14 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
                         .FirstOrDefault(customerRole => customerRole.SystemName == customerRoleName);
 
                     if (customerRole != null)
-                        _dataProvider.InsertEntity(new CustomerCustomerRoleMapping
+                        await _dataProvider.InsertEntityAsync(new CustomerCustomerRoleMapping
                             {CustomerId = user.Id, CustomerRoleId = customerRole.Id});
                 }
 
             return user;
         }
 
-        private Course InsertCourse(EducationalDepartment department)
+        private async Task<Course> InsertCourseAsync(EducationalDepartment department)
         {
             var random = new Random();
                 var descriptions = new string[]
@@ -517,7 +520,7 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
                 EducationalDepartmentId = department.Id
             };
     
-            _dataProvider.InsertEntity(course);
+            await _dataProvider.InsertEntityAsync(course);
             
             #region Section
 
@@ -531,7 +534,7 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
                     CourseId = course.Id
                 };
 
-                _dataProvider.InsertEntity(section);
+                await _dataProvider.InsertEntityAsync(section);
             }
 
             #endregion

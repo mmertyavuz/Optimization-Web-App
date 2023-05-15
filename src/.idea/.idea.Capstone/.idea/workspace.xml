@@ -7,13 +7,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="Course Controller &amp; View geliştirmeleri.">
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/SectionController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Section/Details.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Section/List.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Section/_Details.Info.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Section/_Details.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/ISectionModelFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/ISectionModelFactory.cs" afterDir="false" />
+    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/PermissionRecordsDataMigration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/CorporationSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/CorporationSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Data/Migrations/Installation/SchemaMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Data/Migrations/Installation/SchemaMigration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/DataMigration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/SampleDataMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/SampleDataMigration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/SchemaMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/SchemaMigration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Migrations/OptimizationApp/Initial/LocalizationMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Migrations/OptimizationApp/Initial/LocalizationMigration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Migrations/OptimizationApp/Initial/SettingMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Migrations/OptimizationApp/Initial/SettingMigration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/CorporationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/CorporationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/SectionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/SectionController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/ICorporationModelFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/ICorporationModelFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Corporations/CorporationSettingsModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Corporations/CorporationSettingsModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Classroom/List.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Classroom/List.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Corporation/_CreateOrUpdate.Info.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Corporation/_CreateOrUpdate.Info.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/PredefinedProductAttributeValueCreatePopup.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/SectionCreatePopup.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/PredefinedProductAttributeValueEditPopup.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Course/SectionEditPopup.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Shared/_AdminLayout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Shared/_AdminLayout.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/sitemap.config" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/sitemap.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Views/Customer/Login.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Views/Customer/Login.cshtml" afterDir="false" />
     </list>
     <list id="5d67a8a5-a03c-488e-8e2d-3f2533b42bc2" name="Dont Need To Commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,13 +53,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/99f538d8bc8b4f69917ead057a6ca6d6112a00/7e/94228fd5/PersonNameGenerator.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Libraries/Nop.Services/Installation/InstallationService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/17.4.1/build/netcoreapp3.1/Microsoft.NET.Test.Sdk.Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -60,6 +68,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="sqlserver" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
@@ -119,6 +128,7 @@
       <workItem from="1683005209890" duration="2765000" />
       <workItem from="1683008414552" duration="131000" />
       <workItem from="1683008709735" duration="3305000" />
+      <workItem from="1684161128392" duration="8774000" />
     </task>
     <task id="LOCAL-00001" summary="Corporaiton Modül Geliştirmeleri">
       <created>1682113816848</created>
@@ -197,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683215407842</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Section Modül geliştirmeleri.">
+      <created>1683216565765</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1683216565765</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,7 +244,8 @@
     <MESSAGE value="FacultyController.cs'ın oluşturulması." />
     <MESSAGE value="Section modül geliştirmesi" />
     <MESSAGE value="Course Controller &amp; View geliştirmeleri." />
-    <option name="LAST_COMMIT_MESSAGE" value="Course Controller &amp; View geliştirmeleri." />
+    <MESSAGE value="Section Modül geliştirmeleri." />
+    <option name="LAST_COMMIT_MESSAGE" value="Section Modül geliştirmeleri." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -244,6 +262,32 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/SampleDataMigration.cs</url>
+          <line>396</line>
+          <properties documentPath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/SampleDataMigration.cs" initialLine="393" containingFunctionPresentation="method 'InsertCustomer'">
+            <startOffsets>
+              <option value="19712" />
+            </startOffsets>
+            <endOffsets>
+              <option value="19760" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/ICorporationModelFactory.cs</url>
+          <line>31</line>
+          <properties documentPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/ICorporationModelFactory.cs" initialLine="31" containingFunctionPresentation="method 'PrepareCorporationSettingsModel'">
+            <startOffsets>
+              <option value="801" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1112" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

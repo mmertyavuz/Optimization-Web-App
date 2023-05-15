@@ -45,9 +45,16 @@
                                         <nop-editor asp-for="Name" />
                                     </div>
                                 </div>
+                                
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group row">
                                     <div class="col-md-4">
-                                        <nop-label asp-for="MinCapacity" />
+                                        <div class="label-wrapper">
+                                            <label class="col-form-label">
+                                                Min Capacity
+                                            </label>
+                                        </div>
                                     </div>
                                     <div class="col-md-8">
                                         <nop-editor asp-for="MinCapacity" />
@@ -55,7 +62,11 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-4">
-                                        <nop-label asp-for="MaxCapacity" />
+                                        <div class="label-wrapper">
+                                            <label class="col-form-label">
+                                                Max Capacity
+                                            </label>
+                                        </div>
                                     </div>
                                     <div class="col-md-8">
                                         <nop-editor asp-for="MaxCapacity" />

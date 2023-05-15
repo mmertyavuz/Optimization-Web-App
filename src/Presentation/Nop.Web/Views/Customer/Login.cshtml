@@ -1,5 +1,7 @@
 ﻿@model LoginModel
+@inject CorporationSettings corporationSettings;
 @using Nop.Core
+@using Nop.Core.Domain
 @using Nop.Core.Domain.Customers
 
 @inject IWebHelper webHelper
@@ -19,23 +21,28 @@
     text-align: center;
     }
 </style>
-<div class="master-wrapper-page">
+<div class="master-wrapper-page" style="margin-top: 50px">
     <div class="master-wrapper-content">
        <div class="master-column-wrapper">
            <div class="center-1">
                <div class="page login-page">
-                   <div class="page-title">
-                       <h1>@T("Account.Login.Welcome")</h1>
+                   <div class="page-title" style="border-bottom: none">
+                       @if (!string.IsNullOrEmpty(corporationSettings.LogoUrl))
+                       {
+                           <img src="@corporationSettings.LogoUrl" height="100px" alt="logo" style="margin-bottom: 50px"/>
+                       }
+                       <h1>
+                           <b>@corporationSettings.CorporationName</b>
+                       </h1>
+                       <h1>
+                           Classroom Assignment System
+                       </h1>
                    </div>
-                   @await Html.PartialAsync("_ExternalAuthentication.Errors")
                    <div class="page-body">
                        <div class="customer-blocks">
                            <div class="returning-wrapper fieldset" style="float: unset !important; width: 100%">
                                <form asp-route="Login" asp-route-returnurl="@Context.Request.Query["ReturnUrl"]" method="post" autocomplete="off">
                                    <div asp-validation-summary="ModelOnly" class="message-error">@T("Account.Login.Unsuccessful")</div>
-                                   <div class="title">
-                                       <strong>@T("Account.Login.ReturningCustomer")</strong>
-                                   </div>
                                    <div class="form-fields">
                                        @if (Model.UsernamesEnabled)
                                        {
@@ -61,9 +68,6 @@
                                        <div class="inputs reversed">
                                            <input asp-for="RememberMe" />
                                            <label asp-for="RememberMe"></label>
-                                           <span class="forgot-password">
-                                               <a asp-route="PasswordRecovery">@T("Account.Login.ForgotPassword")</a>
-                                           </span>
                                        </div>
                                        @if (Model.DisplayCaptcha)
                                        {
@@ -76,10 +80,6 @@
                                </form>
                            </div>
                        </div>
-                       <div class="external-authentication">
-                           @await Component.InvokeAsync("ExternalMethods", "ExternalAuthentication")
-                       </div>
-                       @await Component.InvokeAsync("TopicBlock", new { systemName = "LoginRegistrationInfo" })
                    </div>
                </div>
            </div>

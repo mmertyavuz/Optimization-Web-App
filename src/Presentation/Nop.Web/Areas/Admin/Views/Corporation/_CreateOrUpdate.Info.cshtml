@@ -3,7 +3,11 @@
 <div class="card-body">
     <div class="form-group row">
         <div class="col-md-3">
-            <nop-label asp-for="CorporationName"/>
+            <div class="label-wrapper">
+                <label class="col-form-label">
+                    Name
+                </label>
+            </div>
         </div>
         <div class="col-md-9">
             <nop-editor asp-for="CorporationName"/>
@@ -12,11 +16,69 @@
     </div>
     <div class="form-group row">
         <div class="col-md-3">
-            <nop-label asp-for="CorporationWebsite"/>
+            <div class="label-wrapper">
+                <label class="col-form-label">
+                    Website
+                </label>
+            </div>
         </div>
         <div class="col-md-9">
             <nop-editor asp-for="CorporationWebsite"/>
             <span asp-validation-for="CorporationWebsite"></span>
         </div>
     </div>
+    <div class="form-group row">
+        <div class="col-md-3">
+            <div class="label-wrapper">
+                <label class="col-form-label">
+                    Logo Url
+                </label>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="LogoUrl"/>
+            <span asp-validation-for="LogoUrl"></span>
+            <div style="margin-top: 5px; background-color: whitesmoke">
+                <img height="100px" id="corporation-logo" src="@Model.LogoUrl" alt="corporation-logo"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3">
+            <div class="label-wrapper">
+                <label class="col-form-label">
+                    Mini Logo Url
+                </label>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="MiniLogoUrl"/>
+            <span asp-validation-for="MiniLogoUrl"></span>
+            <div style="margin-top: 5px; background-color: whitesmoke">
+                <img height="100px" id="corporation-mini-logo" src="@Model.MiniLogoUrl" alt="corporation-logo"/>
+            </div>
+        </div>
+    </div>
 </div> 
+
+<script>
+
+var logoInput = $('#@Html.IdFor(x => x.LogoUrl)');
+var corporationLogo = $('#corporation-logo');
+
+logoInput.on('input', function() {
+  var newLogoUrl = $(this).val();
+  corporationLogo.attr('src', newLogoUrl);
+});
+
+var miniLogoInput = $('#@Html.IdFor(x => x.MiniLogoUrl)');
+var corporationMiniLogo = $('#corporation-mini-logo');
+
+miniLogoInput.on('input', function() {
+  var newMiniLogoUrl = $(this).val();
+  corporationMiniLogo.attr('src', newMiniLogoUrl);
+});
+
+
+
+</script>

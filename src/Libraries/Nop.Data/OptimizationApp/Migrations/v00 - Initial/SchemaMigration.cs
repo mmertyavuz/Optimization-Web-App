@@ -7,7 +7,7 @@ using Nop.Data.Migrations;
 
 namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
 {
-    [NopMigration("2023-04-28 00:00:00", "Initial Migration", MigrationProcessType.Update)]
+    [NopMigration("2023-04-27 00:00:00", "Initial Migration", MigrationProcessType.Update)]
     public class SchemaMigration : Migration
     {
         /// <summary>

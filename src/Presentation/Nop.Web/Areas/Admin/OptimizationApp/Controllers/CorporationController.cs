@@ -37,7 +37,11 @@ public class CorporationController : BaseAdminController
     }
 
     #endregion
-    
+
+    public IActionResult Index()
+    {
+        return RedirectToAction(nameof(Details));
+    }
     public virtual async Task<IActionResult> Details()
     {
         if (!await _permissionService.AuthorizeAsync(OptimizationAppPermissionProvider.ManageCorporations))
@@ -55,26 +59,16 @@ public class CorporationController : BaseAdminController
         if (!await _permissionService.AuthorizeAsync(OptimizationAppPermissionProvider.ManageCorporations))
             return AccessDeniedView();
         
-        var corporationSettings = _settingService.LoadSettingAsync<CorporationSettings>().Result;
-        
-        if (!string.IsNullOrEmpty(model.CorporationName))
-        {
-            if (model.CorporationName != _corporationSettings.CorporationName)
-            {
-                _corporationSettings.CorporationName = model.CorporationName;
-                _settingService.SaveSettingAsync(corporationSettings, settings => settings.CorporationName).Wait();
-            }
-        }
-
-        if (!string.IsNullOrEmpty(model.CorporationWebsite))
-        {
-            if (model.CorporationWebsite != _corporationSettings.CorporationWebsite)
-            {
-                _corporationSettings.CorporationWebsite = model.CorporationWebsite;
-                _settingService.SaveSettingAsync(corporationSettings, settings => settings.CorporationWebsite).Wait();
-            }
-            
-        }
+        _corporationSettings.CorporationName = model.CorporationName;
+        _corporationSettings.CorporationWebsite = model.CorporationWebsite;
+        _corporationSettings.LogoUrl = model.LogoUrl;
+        _corporationSettings.MiniLogoUrl = model.MiniLogoUrl;
+       
+        _settingService.SaveSettingAsync(_corporationSettings, settings => settings.CorporationName).Wait();
+        _settingService.SaveSettingAsync(_corporationSettings, settings => settings.CorporationWebsite).Wait();
+        _settingService.SaveSettingAsync(_corporationSettings, settings => settings.LogoUrl).Wait();
+        _settingService.SaveSettingAsync(_corporationSettings, settings => settings.MiniLogoUrl).Wait();
+       
         
         _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Corporations.Updated"));
 

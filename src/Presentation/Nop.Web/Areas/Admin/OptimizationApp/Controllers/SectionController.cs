@@ -42,7 +42,7 @@ public class SectionController : BaseAdminController
             return AccessDeniedView();
 
         //prepare model
-        var model = _sectionModelFactory.PrepareSectionSearchModelAsync(new SectionSearchModel());
+        var model = await _sectionModelFactory.PrepareSectionSearchModelAsync(new SectionSearchModel());
 
         return View(model);
     }

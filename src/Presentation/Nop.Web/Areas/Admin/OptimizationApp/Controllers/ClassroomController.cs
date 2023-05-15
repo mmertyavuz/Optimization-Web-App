@@ -1,6 +1,9 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Nop.Core;
 using Nop.Core.Domain;
+using Nop.Services.ExportImport;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
 using Nop.Services.OptimizationApp;
@@ -21,6 +24,7 @@ public class ClassroomController : BaseAdminController
     private readonly IPermissionService _permissionService;
     private readonly INotificationService _notificationService;
     private readonly ILocalizationService _localizationService;
+    private readonly IExportManager _exportManager;
     
     #endregion
 
@@ -29,13 +33,14 @@ public class ClassroomController : BaseAdminController
     public ClassroomController(
         IClassroomModelFactory classroomModelFactory,
         ICorporationService corporationService,
-        IPermissionService permissionService, INotificationService notificationService, ILocalizationService localizationService)
+        IPermissionService permissionService, INotificationService notificationService, ILocalizationService localizationService, IExportManager exportManager)
     {
         _classroomModelFactory = classroomModelFactory;
         _corporationService = corporationService;
         _permissionService = permissionService;
         _notificationService = notificationService;
         _localizationService = localizationService;
+        _exportManager = exportManager;
     }
 
     #endregion
@@ -181,5 +186,24 @@ public class ClassroomController : BaseAdminController
     }
     
     #endregion
+    
+    public virtual async Task<IActionResult> ExportExcell()
+    {
+        if (!await _permissionService.AuthorizeAsync(OptimizationAppPermissionProvider.ManageClassrooms))
+            return AccessDeniedView();
+
+        try
+        {
+            var bytes = await _exportManager
+                .ExportCategoriesToXlsxAsync((await _categoryService.GetAllCategoriesAsync(showHidden: true)).ToList());
+
+            return File(bytes, MimeTypes.TextXlsx, "categories.xlsx");
+        }
+        catch (Exception exc)
+        {
+            await _notificationService.ErrorNotificationAsync(exc);
+            return RedirectToAction("List");
+        }
+    }
     
 }

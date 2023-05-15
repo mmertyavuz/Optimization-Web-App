@@ -29,15 +29,14 @@ public class CorporationModelFactory : ICorporationModelFactory
 
     public CorporationSettingsModel PrepareCorporationSettingsModel(CorporationSettingsModel model)
     {
-        if (model is null)
+        model = new CorporationSettingsModel
         {
-            model = new CorporationSettingsModel
-            {
-                CorporationName = _corporationSettings.CorporationName,
-                CorporationWebsite = _corporationSettings.CorporationWebsite
-            };
-        }
-
+            CorporationName = _corporationSettings.CorporationName,
+            CorporationWebsite = _corporationSettings.CorporationWebsite,
+            LogoUrl = _corporationSettings.LogoUrl,
+            MiniLogoUrl = _corporationSettings.MiniLogoUrl,
+        };
+        
         return model;
     }
 }

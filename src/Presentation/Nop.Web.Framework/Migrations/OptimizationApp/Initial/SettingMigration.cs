@@ -9,7 +9,7 @@ using Nop.Services.Configuration;
 
 namespace Nop.Web.Framework.Migrations.Initial
 {
-    [NopMigration("2023-04-14 13:12:01", "4.60.0", UpdateMigrationType.Settings, MigrationProcessType.Update)]
+    [NopMigration("2023-04-14 13:14:01", "4.60.0", UpdateMigrationType.Settings, MigrationProcessType.Update)]
     public class SettingMigration : MigrationBase
     {
         /// <summary>Collect the UP migration expressions</summary>
@@ -21,7 +21,6 @@ namespace Nop.Web.Framework.Migrations.Initial
             var settingRepository = EngineContext.Current.Resolve<IRepository<Setting>>();
             var settingService = EngineContext.Current.Resolve<ISettingService>();
 
-
             #region Corporation Settings
 
             var corporationSettings = settingService.LoadSettingAsync<CorporationSettings>().Result;
@@ -31,6 +30,12 @@ namespace Nop.Web.Framework.Migrations.Initial
 
             corporationSettings.CorporationWebsite = $"https://bau.edu.tr/";
             settingService.SaveSettingAsync(corporationSettings, settings => settings.CorporationWebsite).Wait();
+            
+            corporationSettings.LogoUrl = $"https://cdn.bau.edu.tr/public/bau-logo-25-yil-white.png";
+            settingService.SaveSettingAsync(corporationSettings, settings => settings.LogoUrl).Wait();
+            
+            corporationSettings.MiniLogoUrl = $"https://cdn.bau.edu.tr/news/klkvssdz4ko9k-baunew.jpg";
+            settingService.SaveSettingAsync(corporationSettings, settings => settings.MiniLogoUrl).Wait();
 
             #endregion
 

@@ -1,4 +1,5 @@
 ﻿using FluentMigrator;
+using Nop.Core.Domain;
 using Nop.Core.Domain.Affiliates;
 using Nop.Core.Domain.Blogs;
 using Nop.Core.Domain.Catalog;
@@ -163,6 +164,18 @@ namespace Nop.Data.Migrations.Installation
             //Create.TableFor<VendorNote>();
             
             Create.TableFor<Video>();
+            
+            Create.TableFor<Classroom>();
+            Create.TableFor<Course>();
+            Create.TableFor<CourseSectionPlan>();
+            Create.TableFor<CourseSectionPlanEducatorMapping>();
+            Create.TableFor<EducationalDepartment>();
+            Create.TableFor<Educator>();
+            Create.TableFor<Faculty>();
+            Create.TableFor<Section>();
+            Create.TableFor<Student>();
+            Create.TableFor<StudentSectionMapping>();
+
         }
     }
 }

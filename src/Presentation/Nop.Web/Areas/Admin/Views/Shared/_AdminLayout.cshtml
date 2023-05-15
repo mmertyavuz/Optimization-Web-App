@@ -4,6 +4,7 @@
 @inject ICustomerService customerService
 @inject IEventPublisher eventPublisher
 @inject LocalizationSettings localizationSettings
+@inject CorporationSettings corporationSettings
 @inject StoreInformationSettings storeInformationSettings
 @inject Nop.Services.Localization.ILanguageService languageService
 @using System.Globalization
@@ -81,7 +82,14 @@
                     @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.HeaderToggleAfter })
                 </ul>
                 <a href="@Url.Content("~/Admin")" class="brand-link navbar-dark">
-                    <img src="~/css/admin/images/logo.png" alt="logo.png" class="brand-image logo d-block d-md-none d-sm-block d-sm-none">
+                    @if (string.IsNullOrEmpty(corporationSettings.LogoUrl))
+                    {
+                        <img src="~/css/admin/images/logo.png" alt="logo.png" class="brand-image logo d-block d-md-none d-sm-block d-sm-none">
+                    }
+                    else
+                    {
+                        <img src="@corporationSettings.LogoUrl" alt="logo.png" class="brand-image logo d-block d-md-none d-sm-block d-sm-none">
+                    }
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -158,8 +166,23 @@
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
             <a href="@Url.Content("~/Admin")" class="brand-link navbar-dark logo-switch">
+                
+                @if (string.IsNullOrEmpty(corporationSettings.LogoUrl))
+                {
                     <img src="~/css/admin/images/logo.png" alt="logo.png" class="brand-image-xl logo-xl">
+                }
+                else
+                {
+                    <img src="@corporationSettings.LogoUrl" alt="logo.png" class="brand-image-xl logo-xl">
+                }
+                @if (string.IsNullOrEmpty(corporationSettings.MiniLogoUrl))
+                {
                     <img src="~/css/admin/images/logo-mini.png" alt="logo.png" class="brand-image-xs logo-xs">
+                }
+                else
+                {
+                    <img src="@corporationSettings.MiniLogoUrl" alt="logo.png" class="brand-image-xs logo-xs">
+                }
                 </a>
                 <div class="sidebar">
                     <div class="sidebar-form">
@@ -195,7 +218,14 @@
                             <div class="col-md-4 col-xs-12 text-md-left text-center">
                                 @*Would you like to remove the "Powered by nopCommerce" link in the bottom of the footer?
                                     Please find more info at https://www.nopcommerce.com/nopcommerce-copyright-removal-key*@
-                                Powered by <a href="@(OfficialSite.Main + Utm.OnAdminFooter)" target="_blank">nopCommerce</a>
+                               @if (!string.IsNullOrEmpty(corporationSettings.CorporationName) && !string.IsNullOrEmpty(corporationSettings.CorporationWebsite))
+                               {
+                                   <text> Powered by <a href="@corporationSettings.CorporationWebsite" target="_blank">@corporationSettings.CorporationName</a> </text>
+                               }
+                               else
+                               {
+                                   <text> Powered by <a href="@(OfficialSite.Main + Utm.OnAdminFooter)" target="_blank">nopCommerce</a> </text>
+                               }
                             </div>
                         }
                         else
@@ -206,7 +236,7 @@
                             @((await dateTimeHelper.ConvertToUserTimeAsync(DateTime.Now)).ToString("f", CultureInfo.CurrentCulture))
                         </div>
                         <div class="col-md-4 col-xs-12 text-md-right text-center">
-                            <b>nopCommerce version @NopVersion.FULL_VERSION</b>
+                            <b>version @NopVersion.FULL_VERSION</b>
                         </div>
                     </div>
                 </div>

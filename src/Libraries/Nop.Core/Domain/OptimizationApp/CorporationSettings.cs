@@ -18,4 +18,6 @@ public class CorporationSettings : ISettings
     /// The URL of the corporation's logo.
     /// </summary>
     public string LogoUrl { get; set; }
+    
+    public string MiniLogoUrl { get; set; }
 }
