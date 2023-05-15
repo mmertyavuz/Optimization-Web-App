@@ -39,13 +39,20 @@ public class CorporationService : ICorporationService
         return await _facultyRepository.GetByIdAsync(facultyId);
     }
 
-    public async Task<IList<Faculty>> GetAllFacultiesAsync(string name = null)
+    public async Task<IList<Faculty>> GetAllFacultiesAsync(string name = null, bool showOnlyWithoutDepartment = false)
     {
+        var departments = _educationalDepartmentRepository.Table;
+        
         var query = _facultyRepository.Table;
 
         if (!string.IsNullOrWhiteSpace(name))
         {
             query = query.Where(f => f.Name.Contains(name));
+        }
+
+        if (showOnlyWithoutDepartment)
+        {
+            query = query.Where(f => !departments.Any(d => d.FacultyId == f.Id));
         }
 
         return await query.ToListAsync();

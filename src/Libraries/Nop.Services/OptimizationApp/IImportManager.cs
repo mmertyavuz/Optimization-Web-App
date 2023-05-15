@@ -13,6 +13,7 @@ namespace Nop.Services.ExportImport;
 public partial interface IImportManager
 {
     Task ImportClassroomsFromExcelAsync(Stream stream);
+    Task ImportFacultiesFromExcelAsync(Stream stream);
 }
 
 public partial class ImportManager
@@ -74,6 +75,65 @@ public partial class ImportManager
                     existingClassroom.Description = classroom.Description;
                     existingClassroom.Capacity = classroom.Capacity;
                     await _corporationService.UpdateClassroomAsync(existingClassroom);
+                }
+                
+                iRow++;
+            }
+    }
+    
+    public async Task ImportFacultiesFromExcelAsync(Stream stream)
+    {
+        using var workbook = new XLWorkbook(stream);
+
+            var languages = await _languageService.GetAllLanguagesAsync(showHidden: true);
+    
+            //the columns
+            var metadata = GetWorkbookMetadata<Faculty>(workbook, languages);
+            var defaultWorksheet = metadata.DefaultWorksheet;
+            var defaultProperties = metadata.DefaultProperties;
+            var localizedProperties = metadata.LocalizedProperties;
+
+            var manager = new PropertyManager<Faculty, Language>(defaultProperties, _catalogSettings, localizedProperties, languages);
+
+            var iRow = 2;
+
+            var faculties = await _corporationService.GetAllFacultiesAsync();
+            
+            while (true)
+            {
+                var allColumnsAreEmpty = manager.GetDefaultProperties
+                    .Select(property => defaultWorksheet.Row(iRow).Cell(property.PropertyOrderPosition))
+                    .All(cell => cell?.Value == null || string.IsNullOrEmpty(cell.Value.ToString()));
+
+                if (allColumnsAreEmpty)
+                    break;
+
+                manager.ReadDefaultFromXlsx(defaultWorksheet, iRow);
+
+                var faculty = new Faculty();
+                foreach (var property in manager.GetDefaultProperties)
+                {
+                    switch (property.PropertyName)
+                    {
+                        case nameof(Faculty.Name):
+                            faculty.Name = property.StringValue;
+                            break;
+                        case nameof(Faculty.Description):
+                            faculty.Description = property.StringValue;
+                            break;
+                    }
+                }
+
+                var existingFaculty = faculties.FirstOrDefault(c => c.Name == faculty.Name);
+
+                if (existingFaculty is null)
+                {
+                    await _corporationService.InsertFacultyAsync(faculty);
+                }
+                else
+                {
+                    existingFaculty.Description = faculty.Description;
+                    await _corporationService.UpdateFacultyAsync(existingFaculty);
                 }
                 
                 iRow++;

@@ -10,6 +10,9 @@ public record FacultyModel : BaseNopEntityModel
 
     [NopResourceDisplayName("Admin.Corporations.Faculties.Fields.Description")]
     public string Description { get; set; }
+
+    [NopResourceDisplayName("Admin.Corporations.Faculties.Fields.DepartmentCount")]
+    public int DepartmentCount { get; set; }
 }
 
 public record FacultyListModel : BasePagedListModel<FacultyModel>
@@ -21,4 +24,7 @@ public record FacultySearchModel : BaseSearchModel
 {
     [NopResourceDisplayName("Admin.Corporations.Faculties.Fields.Name")]
     public string Name { get; set; }
+
+    [NopResourceDisplayName("Admin.Corporations.Faculties.Fields.ShowOnlyWithoutDepartment")]
+    public bool ShowOnlyWithoutDepartment { get; set; }
 }

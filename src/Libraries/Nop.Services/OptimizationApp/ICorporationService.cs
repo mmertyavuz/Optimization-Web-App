@@ -13,7 +13,7 @@ public interface ICorporationService
 
     Task<Faculty> GetFacultyByIdAsync(int facultyId);
 
-    Task<IList<Faculty>> GetAllFacultiesAsync(string name = null);
+    Task<IList<Faculty>> GetAllFacultiesAsync(string name = null, bool showOnlyWithoutDepartment = false);
 
     Task InsertFacultyAsync(Faculty faculty);
 

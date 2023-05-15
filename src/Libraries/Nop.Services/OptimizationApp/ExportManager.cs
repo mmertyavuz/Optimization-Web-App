@@ -10,10 +10,16 @@ public partial interface IExportManager
 {
     Task<byte[]> ExportClassroomsToExcel(IList<Classroom> classrooms);
     Task<byte[]> ExportClassroomsToExcel();
+
+    Task<byte[]> ExportFacultiesToExcel(IList<Faculty> faculties);
+
+    Task<byte[]> ExportFacultiesToExcel();
 } 
 
 public partial class ExportManager
 {
+    #region Clasroom
+
     public virtual async Task<byte[]> ExportClassroomsToExcel(IList<Classroom> classrooms)
     {
         
@@ -36,9 +42,9 @@ public partial class ExportManager
         {
             new Classroom
             {
-            Name = "",
-            Description = "",
-            Capacity = 0,
+                Name = "",
+                Description = "",
+                Capacity = 0,
             }
         };
         //property manager 
@@ -52,4 +58,46 @@ public partial class ExportManager
 
         return await manager.ExportToXlsxAsync(classrooms);
     }
+
+    #endregion
+
+    #region Faculty
+    
+    public virtual async Task<byte[]> ExportFacultiesToExcel(IList<Faculty> faculties)
+    {
+        
+        //property manager 
+        var manager = new PropertyManager<Faculty, Language>(new[]
+        {
+            new PropertyByName<Faculty, Language>("Id", (p, l) => p.Id),
+            new PropertyByName<Faculty, Language>("Name", (p, l) => p.Name),
+            new PropertyByName<Faculty, Language>("Description", (p, l) => p.Description)
+        }, _catalogSettings);
+
+        return await manager.ExportToXlsxAsync(faculties);
+    }
+    
+    public virtual async Task<byte[]> ExportFacultiesToExcel()
+    {
+        var faculties = new[]
+        {
+            new Faculty()
+            {
+                Name = "",
+                Description = "",
+            }
+        };
+        //property manager 
+        var manager = new PropertyManager<Faculty, Language>(new[]
+        {
+            new PropertyByName<Faculty, Language>("Name", (p, l) => p.Name),
+            new PropertyByName<Faculty, Language>("Description", (p, l) => p.Description)
+            
+        }, _catalogSettings);
+
+        return await manager.ExportToXlsxAsync(faculties);
+    }
+    
+    
+    #endregion
 }

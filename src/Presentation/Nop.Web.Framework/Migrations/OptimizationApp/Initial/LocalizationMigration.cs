@@ -10,7 +10,7 @@ using Nop.Services.Localization;
 
 namespace Nop.Web.Framework.Migrations.Initial;
 
-[NopMigration("2023-04-22 15:31:00", "LocaleStringResource migration for 2023-04-22 Updates",
+[NopMigration("2023-04-22 15:33:00", "LocaleStringResource migration for 2023-04-22 Updates",
     UpdateMigrationType.Localization, MigrationProcessType.Update)]
 public class LocalizationMigration : MigrationBase
 {
@@ -122,7 +122,9 @@ public class LocalizationMigration : MigrationBase
             new("Admin.Corporations.Faculties.EditDetails", "Fakülte Detaylarını Düzenle", "Edit Faculty Details"),
             new("Admin.Corporations.Faculties.Info", "Fakülte Bilgileri", "Faculty Info"),
             new("admin.corporations.classrooms.fields.name.required", "Ad zorunludur.", "Name is required."),
-            new(" admin.corporations.classrooms.fields.capacity.required", "Kapasite zorunludur.", "Capacity is required."),
+            new("admin.corporations.classrooms.fields.capacity.required", "Kapasite zorunludur.", "Capacity is required."),
+            new("Admin.Corporations.Faculties.Fields.DepartmentCount", "Departman sayısı", "Department count"),
+            new("Admin.Corporations.Faculties.Fields.ShowOnlyWithoutDepartment", "Departmanı Olmayanları Göster", "Show Only Without Department"),
             
         };
 

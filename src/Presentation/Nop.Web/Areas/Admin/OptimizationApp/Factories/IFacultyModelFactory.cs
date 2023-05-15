@@ -55,10 +55,12 @@ public class FacultyModelFactory : IFacultyModelFactory
         if (searchModel == null)
             throw new ArgumentNullException(nameof(searchModel));
 
-        var faculties = await _corporationService.GetAllFacultiesAsync(name: searchModel.Name);
+        var faculties = await _corporationService.GetAllFacultiesAsync(name: searchModel.Name, showOnlyWithoutDepartment: true);
 
         var pagedFaculties = faculties.ToPagedList(searchModel);
 
+        var departments = await _corporationService.GetAllEducationalDepartmentsAsync();
+        
         //prepare grid model
         var model = new FacultyListModel().PrepareToGrid(searchModel, pagedFaculties, () =>
         {
@@ -67,6 +69,8 @@ public class FacultyModelFactory : IFacultyModelFactory
                 //fill in model values from the entity
                 var facultyModel = faculty.ToModel<FacultyModel>();
 
+                facultyModel.DepartmentCount = departments.Count(x => x.FacultyId == faculty.Id);
+                
                 return facultyModel;
             });
         });

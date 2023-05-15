@@ -7,7 +7,7 @@ using Nop.Data.Migrations;
 
 namespace Nop.Data.OptimizationApp.Migrations.v00___Initial;
 
-[NopMigration("2023-02-01 18:59:00", "PermissionRecordsDataMigration", UpdateMigrationType.Data,
+[NopMigration("2023-02-01 18:11:00", "PermissionRecordsDataMigration", UpdateMigrationType.Data,
     MigrationProcessType.Update)]
 public class PermissionRecordsDataMigration : Migration
 {
@@ -27,14 +27,13 @@ public class PermissionRecordsDataMigration : Migration
         var departmentLeadRole = GetOrInsertCustomerRole(NopCustomerDefaults.DepartmentLeadRoleName);
 
         var manageCorporations = new PermissionRecord { Name = "Manage Corporations", SystemName = "ManageCorporations", Category = "OptimizationApp" };
-        var manageClassrooms = new PermissionRecord
-            {Name = "Manage Classrooms", SystemName = "ManageClassrooms", Category = "OptimizationApp"};
+        var manageClassrooms = new PermissionRecord {Name = "Manage Classrooms", SystemName = "ManageClassrooms", Category = "OptimizationApp"};
+        var manageFaculties = new PermissionRecord { Name = "Manage Faculties", SystemName = "ManageFaculties", Category = "OptimizationApp"};
        
-        
         InsertPermissionRecordCustomerRoleMapping(manageCorporations, adminRole);
         InsertPermissionRecordCustomerRoleMapping(manageClassrooms, adminRole);
-        
-    }
+        InsertPermissionRecordCustomerRoleMapping(manageFaculties, adminRole);
+       }
 
     void InsertPermissionRecordCustomerRoleMapping(PermissionRecord permissionRecord, params CustomerRole[] customerRoles)
     {
