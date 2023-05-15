@@ -139,7 +139,7 @@ public class CorporationService : ICorporationService
             query = query.Where(ed => ed.Capacity <= maxCapacity);
         }
 
-        return await query.ToListAsync();
+        return await query.OrderBy(x => x.Name).ToListAsync();
     }
 
     public async Task InsertClassroomAsync(Classroom classroom)

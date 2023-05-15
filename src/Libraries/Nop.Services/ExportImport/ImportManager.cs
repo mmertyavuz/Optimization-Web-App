@@ -32,6 +32,7 @@ using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Media;
 using Nop.Services.Messages;
+using Nop.Services.OptimizationApp;
 using Nop.Services.Orders;
 using Nop.Services.Seo;
 using Nop.Services.Shipping;
@@ -88,6 +89,7 @@ namespace Nop.Services.ExportImport
         private readonly MediaSettings _mediaSettings;
         private readonly TaxSettings _taxSettings;
         private readonly VendorSettings _vendorSettings;
+        private readonly ICorporationService _corporationService;
 
         #endregion
 
@@ -131,7 +133,7 @@ namespace Nop.Services.ExportImport
             IWorkContext workContext,
             MediaSettings mediaSettings,
             TaxSettings taxSettings,
-            VendorSettings vendorSettings)
+            VendorSettings vendorSettings, ICorporationService corporationService)
         {
             _addressService = addressService;
             _backInStockSubscriptionService = backInStockSubscriptionService;
@@ -172,6 +174,7 @@ namespace Nop.Services.ExportImport
             _mediaSettings = mediaSettings;
             _taxSettings = taxSettings;
             _vendorSettings = vendorSettings;
+            _corporationService = corporationService;
         }
 
         #endregion

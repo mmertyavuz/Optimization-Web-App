@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Core.Domain;
@@ -25,6 +27,8 @@ public class ClassroomController : BaseAdminController
     private readonly INotificationService _notificationService;
     private readonly ILocalizationService _localizationService;
     private readonly IExportManager _exportManager;
+    private readonly CorporationSettings _corporationSettings;
+    private readonly IImportManager _importManager;
     
     #endregion
 
@@ -33,7 +37,7 @@ public class ClassroomController : BaseAdminController
     public ClassroomController(
         IClassroomModelFactory classroomModelFactory,
         ICorporationService corporationService,
-        IPermissionService permissionService, INotificationService notificationService, ILocalizationService localizationService, IExportManager exportManager)
+        IPermissionService permissionService, INotificationService notificationService, ILocalizationService localizationService, IExportManager exportManager, CorporationSettings corporationSettings, IImportManager importManager)
     {
         _classroomModelFactory = classroomModelFactory;
         _corporationService = corporationService;
@@ -41,6 +45,8 @@ public class ClassroomController : BaseAdminController
         _notificationService = notificationService;
         _localizationService = localizationService;
         _exportManager = exportManager;
+        _corporationSettings = corporationSettings;
+        _importManager = importManager;
     }
 
     #endregion
@@ -187,7 +193,7 @@ public class ClassroomController : BaseAdminController
     
     #endregion
     
-    public virtual async Task<IActionResult> ExportExcell()
+    public virtual async Task<IActionResult> ExportExcel()
     {
         if (!await _permissionService.AuthorizeAsync(OptimizationAppPermissionProvider.ManageClassrooms))
             return AccessDeniedView();
@@ -195,9 +201,61 @@ public class ClassroomController : BaseAdminController
         try
         {
             var bytes = await _exportManager
-                .ExportCategoriesToXlsxAsync((await _categoryService.GetAllCategoriesAsync(showHidden: true)).ToList());
+                .ExportClassroomsToExcel((await _corporationService.GetAllClassroomsAsync()).ToList());
 
-            return File(bytes, MimeTypes.TextXlsx, "categories.xlsx");
+            var fileName = _corporationSettings.CorporationName + " classrooms.xlsx";
+            
+            return File(bytes, MimeTypes.TextXlsx, fileName);
+        }
+        catch (Exception exc)
+        {
+            await _notificationService.ErrorNotificationAsync(exc);
+            return RedirectToAction("List");
+        }
+    }
+    
+    public virtual async Task<IActionResult> DownloadSampleExcel()
+    {
+        if (!await _permissionService.AuthorizeAsync(OptimizationAppPermissionProvider.ManageClassrooms))
+            return AccessDeniedView();
+
+        try
+        {
+            var bytes = await _exportManager
+                .ExportClassroomsToExcel();
+
+            var fileName = _corporationSettings.CorporationName + " sample classrooms.xlsx";
+            
+            return File(bytes, MimeTypes.TextXlsx, fileName);
+        }
+        catch (Exception exc)
+        {
+            await _notificationService.ErrorNotificationAsync(exc);
+            return RedirectToAction("List");
+        }
+    }
+    
+    [HttpPost]
+    public virtual async Task<IActionResult> ImportFromExcel(IFormFile importexcelfile)
+    {
+        if (!await _permissionService.AuthorizeAsync(OptimizationAppPermissionProvider.ManageClassrooms))
+            return AccessDeniedView();
+
+        try
+        {
+            if (importexcelfile is {Length: > 0})
+            {
+                await _importManager.ImportClassroomsFromExcelAsync(importexcelfile.OpenReadStream());
+            }
+            else
+            {
+                _notificationService.ErrorNotification("An error occured during importing data from excel. Please try again.");
+                return RedirectToAction("List");
+            }
+
+            _notificationService.SuccessNotification("Datas are successfully imported from given excel");
+
+            return RedirectToAction("List");
         }
         catch (Exception exc)
         {

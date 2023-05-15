@@ -1,0 +1,68 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using ClosedXML.Excel;
+using Nop.Core.Domain;
+using Nop.Core.Domain.Localization;
+using Nop.Services.ExportImport.Help;
+
+namespace Nop.Services.ExportImport;
+
+public partial interface IImportManager
+{
+    Task ImportClassroomsFromExcelAsync(Stream stream);
+}
+
+public partial class ImportManager
+{
+    public async Task ImportClassroomsFromExcelAsync(Stream stream)
+    {
+        using var workbook = new XLWorkbook(stream);
+
+            var languages = await _languageService.GetAllLanguagesAsync(showHidden: true);
+
+            //the columns
+            var metadata = GetWorkbookMetadata<Classroom>(workbook, languages);
+            var defaultWorksheet = metadata.DefaultWorksheet;
+            var defaultProperties = metadata.DefaultProperties;
+            var localizedProperties = metadata.LocalizedProperties;
+
+            var manager = new PropertyManager<Classroom, Language>(defaultProperties, _catalogSettings, localizedProperties, languages);
+
+            var iRow = 2;
+            while (true)
+            {
+                var allColumnsAreEmpty = manager.GetDefaultProperties
+                    .Select(property => defaultWorksheet.Row(iRow).Cell(property.PropertyOrderPosition))
+                    .All(cell => cell?.Value == null || string.IsNullOrEmpty(cell.Value.ToString()));
+
+                if (allColumnsAreEmpty)
+                    break;
+
+                manager.ReadDefaultFromXlsx(defaultWorksheet, iRow);
+
+                var classroom = new Classroom();
+                foreach (var property in manager.GetDefaultProperties)
+                {
+                    switch (property.PropertyName)
+                    {
+                        case nameof(Classroom.Name):
+                            classroom.Name = property.StringValue;
+                            break;
+                        case nameof(Classroom.Description):
+                            classroom.Description = property.StringValue;
+                            break;
+                        case nameof(Classroom.Capacity):
+                            classroom.Capacity = Convert.ToInt32(property.StringValue);
+                            break;
+                    }
+                }
+
+                await _corporationService.InsertClassroomAsync(classroom);
+                
+                iRow++;
+            }
+    }
+}
