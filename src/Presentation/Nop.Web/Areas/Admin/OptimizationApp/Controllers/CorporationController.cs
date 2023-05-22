@@ -63,11 +63,13 @@ public class CorporationController : BaseAdminController
         _corporationSettings.CorporationWebsite = model.CorporationWebsite;
         _corporationSettings.LogoUrl = model.LogoUrl;
         _corporationSettings.MiniLogoUrl = model.MiniLogoUrl;
+        _corporationSettings.CorporationEmailSuffix = model.CorporationEmailSuffix;
        
         _settingService.SaveSettingAsync(_corporationSettings, settings => settings.CorporationName).Wait();
         _settingService.SaveSettingAsync(_corporationSettings, settings => settings.CorporationWebsite).Wait();
         _settingService.SaveSettingAsync(_corporationSettings, settings => settings.LogoUrl).Wait();
         _settingService.SaveSettingAsync(_corporationSettings, settings => settings.MiniLogoUrl).Wait();
+        _settingService.SaveSettingAsync(_corporationSettings, settings => settings.CorporationEmailSuffix).Wait();
        
         
         _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Corporations.Updated"));

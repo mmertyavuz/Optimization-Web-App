@@ -16,10 +16,24 @@
         @T("Admin.Corporations.EducationalDepartments")
     </h1>
     <div class="float-right">
-        <a asp-action="Create" class="btn btn-primary">
-            <i class="fas fa-plus-square"></i>
-            @T("Admin.Common.AddNew")
-        </a>
+        <form asp-controller="EducationalDepartment" asp-action="DeleteAll">
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="fas fa-plus-square"></i>
+                @T("Admin.Common.AddNew")
+            </a>
+            <a asp-action="ExportExcel" class="btn btn-success">
+                <i class="fas fa-download"></i>
+                @T("Admin.Common.Export")
+            </a>
+            <button type="button" name="importexcel" class="btn bg-warning" data-toggle="modal" data-target="#importexcel-window">
+                <i class="fas fa-upload"></i>
+                @T("Admin.Common.Import")
+            </button>
+            <button type="submit" id="delete-all" class="btn btn-danger">
+                <i class="far fa-trash-alt"></i>
+                @T("Admin.System.QueuedEmails.DeleteAll")
+            </button>
+        </form>
     </div>
 </div>
 
@@ -46,8 +60,6 @@
                                             <nop-editor asp-for="Name" />
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="col-md-4">
                                             <nop-label asp-for="Code" />
@@ -106,19 +118,9 @@
                                     Width = "250",
                                     ClassName = NopColumnClassDefaults.CenterAll
                                 },
-                                new ColumnProperty(nameof(EducationalDepartmentModel.Description))
-                                {
-                                    Title = T("Admin.Corporations.EducationalDepartments.Fields.Description").Text
-                                },
                                 new ColumnProperty(nameof(EducationalDepartmentModel.FacultyName))
                                 {
                                     Title = T("Admin.Corporations.EducationalDepartments.Fields.FacultyName").Text,
-                                    Width = "250",
-                                    ClassName = NopColumnClassDefaults.CenterAll
-                                },
-                                new ColumnProperty(nameof(EducationalDepartmentModel.DepartmentLeadCustomerName))
-                                {
-                                    Title = T("Admin.Corporations.EducationalDepartments.Fields.DepartmentLeadCustomerName").Text,
                                     Width = "250",
                                     ClassName = NopColumnClassDefaults.CenterAll
                                 },
@@ -132,10 +134,56 @@
                             
                             }
                         })
-                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
+<div id="importexcel-window" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="importexcel-window-title">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="importexcel-window-title">@T("Admin.Common.ImportFromExcel")</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>                                
+            </div>
+            <form asp-controller="EducationalDepartment" asp-action="ImportFromExcel" method="post" enctype="multipart/form-data">
+                <div class="form-horizontal">
+                    <div class="modal-body">
+                        <ul class="common-list">
+                            <li>
+                                <em>You can perform the import operation with a format like the example excel table below. Pay attention to data formats and column names.</em>
+                                <em>Faculty name in the excel must be same from optimization system. Pay attention!</em>
+                            </li>
+                            <li style="text-align: center; margin-top: 10px">
+                                <a asp-action="DownloadSampleExcel" class="btn btn-success">
+                                    <i class="fas fa-download"></i>
+                                    Download Sample Excel File
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <div class="label-wrapper">
+                                    <label class="col-form-label">
+                                        @T("Admin.Common.ExcelFile")
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="file" id="importexcelfile" name="importexcelfile" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            @T("Admin.Common.ImportFromExcel")
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

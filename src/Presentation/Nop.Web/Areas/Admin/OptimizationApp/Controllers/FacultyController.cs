@@ -186,6 +186,8 @@ public class FacultyController : BaseAdminController
         if (departments.Any())
         {
             _notificationService.ErrorNotification("This faculty has departments. A faculty with departments cannot be deleted. Please delete the departments first or reset the optimization process from management page.");
+            
+            return RedirectToAction("Edit", new { id = faculty.Id });
         }
         
         await _corporationService.DeleteFacultyAsync(faculty);

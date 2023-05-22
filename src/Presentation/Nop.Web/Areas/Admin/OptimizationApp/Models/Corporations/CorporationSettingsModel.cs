@@ -14,4 +14,7 @@ public record CorporationSettingsModel : BaseNopModel, ISettingsModel
     public string LogoUrl { get; set; }
     
     public string MiniLogoUrl { get; set; }
+    
+    public string CorporationEmailSuffix { get; set; }
+    
 }

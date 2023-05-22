@@ -10,7 +10,7 @@ using Nop.Services.Localization;
 
 namespace Nop.Web.Framework.Migrations.Initial;
 
-[NopMigration("2023-04-22 15:33:00", "LocaleStringResource migration for 2023-04-22 Updates",
+[NopMigration("2023-04-22 15:35:00", "LocaleStringResource migration for 2023-04-22 Updates",
     UpdateMigrationType.Localization, MigrationProcessType.Update)]
 public class LocalizationMigration : MigrationBase
 {
@@ -46,9 +46,9 @@ public class LocalizationMigration : MigrationBase
             #region EducationalDepartment
 
             new("Admin.Corporations.EducationalDepartments.Fields.Name", "Ad", "Name"),
-            new("Admin.Corporations.EducationalDepartments.Fields.Name.Required", "Ad", "Name"),
+            new("Admin.Corporations.EducationalDepartments.Fields.Name.Required", "Ad zorunludur.", "Name is required."),
             new("Admin.Corporations.EducationalDepartments.Fields.Code", "Kod", "Code"),
-            new("Admin.Corporations.EducationalDepartments.Fields.Code.Required", "Kod", "Code"),
+            new("Admin.Corporations.EducationalDepartments.Fields.Code.Required", "Kod zorunludur.", "Code is required."),
             new("Admin.Corporations.EducationalDepartments.Fields.Description", "Açıklama", "Description"),
             new("Admin.Corporations.EducationalDepartments.Fields.Faculty", "Fakülte", "Faculty"),
             new("Admin.Corporations.EducationalDepartments.Fields.FacultyId.Required", "Fakülte seçimi zorunludur", "Faculty is required"),
@@ -125,6 +125,9 @@ public class LocalizationMigration : MigrationBase
             new("admin.corporations.classrooms.fields.capacity.required", "Kapasite zorunludur.", "Capacity is required."),
             new("Admin.Corporations.Faculties.Fields.DepartmentCount", "Departman sayısı", "Department count"),
             new("Admin.Corporations.Faculties.Fields.ShowOnlyWithoutDepartment", "Departmanı Olmayanları Göster", "Show Only Without Department"),
+            new("admin.corporations.educationaldepartments.fields.facultyname", "Fakulte", "Faculty"),
+            new("admin.corporations.educationaldepartments.fields.departmentleadcustomername", "Department Lead", "Department Lead"),
+            
             
         };
 

@@ -37,6 +37,7 @@ using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Media;
 using Nop.Services.Messages;
+using Nop.Services.OptimizationApp;
 using Nop.Services.Orders;
 using Nop.Services.Seo;
 using Nop.Services.Shipping;
@@ -96,6 +97,7 @@ namespace Nop.Services.ExportImport
         private readonly IWorkContext _workContext;
         private readonly OrderSettings _orderSettings;
         private readonly ProductEditorSettings _productEditorSettings;
+        private readonly ICorporationService _corporationService;
 
         #endregion
 
@@ -142,7 +144,7 @@ namespace Nop.Services.ExportImport
             IVendorService vendorService,
             IWorkContext workContext,
             OrderSettings orderSettings,
-            ProductEditorSettings productEditorSettings)
+            ProductEditorSettings productEditorSettings, ICorporationService corporationService)
         {
             _addressSettings = addressSettings;
             _catalogSettings = catalogSettings;
@@ -186,6 +188,7 @@ namespace Nop.Services.ExportImport
             _workContext = workContext;
             _orderSettings = orderSettings;
             _productEditorSettings = productEditorSettings;
+            _corporationService = corporationService;
         }
 
         #endregion

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Nop.Core.Domain;
 using Nop.Core.Domain.Localization;
@@ -14,6 +15,11 @@ public partial interface IExportManager
     Task<byte[]> ExportFacultiesToExcel(IList<Faculty> faculties);
 
     Task<byte[]> ExportFacultiesToExcel();
+    
+    Task<byte[]> ExportDepartmentToExcel(IList<EducationalDepartment> departments);
+
+    Task<byte[]> ExportDepartmentToExcel();
+    
 } 
 
 public partial class ExportManager
@@ -97,7 +103,51 @@ public partial class ExportManager
 
         return await manager.ExportToXlsxAsync(faculties);
     }
-    
-    
+
+    public async Task<byte[]> ExportDepartmentToExcel(IList<EducationalDepartment> departments)
+    {
+        var allFaculties = await _corporationService.GetAllFacultiesAsync();
+        var allCustomers = await _customerService.GetAllCustomersAsync();
+        
+        //property manager 
+        var manager = new PropertyManager<EducationalDepartment, Language>(new[]
+        {
+            new PropertyByName<EducationalDepartment, Language>("Id", (p, l) => p.Id),
+            new PropertyByName<EducationalDepartment, Language>("Name", (p, l) => p.Name),
+            new PropertyByName<EducationalDepartment, Language>("Code", (p, l) => p.Code),
+            new PropertyByName<EducationalDepartment, Language>("Description", (p, l) => p.Description),
+            new PropertyByName<EducationalDepartment, Language>("Faculty", (p, l) => allFaculties.FirstOrDefault(x => x.Id == p.FacultyId)?.Name),
+            new PropertyByName<EducationalDepartment, Language>("Lead", (p, l) => allCustomers.FirstOrDefault(x => x.Id == p.DepartmentLeadCustomerId)?.FirstName + " " + allCustomers.FirstOrDefault(x => x.Id == p.DepartmentLeadCustomerId)?.LastName),
+        }, _catalogSettings);
+
+        return await manager.ExportToXlsxAsync(departments);
+    }
+
+    public async Task<byte[]> ExportDepartmentToExcel()
+    {
+        var departments = new[]
+        {
+            new EducationalDepartment()
+            {
+                Name = "",
+                Code = "",
+                Description = "",
+                FacultyId = 0,
+                DepartmentLeadCustomerId = 0
+            }
+        };
+        
+        //property manager 
+        var manager = new PropertyManager<EducationalDepartment, Language>(new[]
+        {
+            new PropertyByName<EducationalDepartment, Language>("Name", (p, l) => p.Name),
+            new PropertyByName<EducationalDepartment, Language>("Code", (p, l) => p.Code),
+            new PropertyByName<EducationalDepartment, Language>("Description", (p, l) => p.Description),
+            new PropertyByName<EducationalDepartment, Language>("Faculty", (p, l) => "")        
+        }, _catalogSettings);
+
+        return await manager.ExportToXlsxAsync(departments);
+    }
+
     #endregion
 }

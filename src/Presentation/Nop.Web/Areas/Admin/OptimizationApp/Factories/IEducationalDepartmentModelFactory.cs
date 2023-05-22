@@ -61,7 +61,7 @@ public class EducationalDepartmentModelFactory : IEducationalDepartmentModelFact
         if (searchModel == null)
             throw new ArgumentNullException(nameof(searchModel));
 
-        var educationalDepartments = await _corporationService.GetAllEducationalDepartmentsAsync(name: searchModel.Name);
+        var educationalDepartments = await _corporationService.GetAllEducationalDepartmentsAsync(name: searchModel.Name, code: searchModel.Code, facultyId: searchModel.FacultyId);
 
         var pagedEducationalDepartments = educationalDepartments.ToPagedList(searchModel);
 
@@ -79,12 +79,10 @@ public class EducationalDepartmentModelFactory : IEducationalDepartmentModelFact
 
                 if (educationalDepartment.DepartmentLeadCustomerId > 0)
                 {
-                    var customer =
+                    var departmentLead =
                         await _customerService.GetCustomerByIdAsync(educationalDepartment.DepartmentLeadCustomerId);
-
-                    if (customer is not null)
-                        educationalDepartmentModel.DepartmentLeadCustomerName =
-                            await _customerService.GetCustomerFullNameAsync(customer);
+                    
+                    educationalDepartmentModel.DepartmentLeadCustomerName = departmentLead.FirstName + " " + departmentLead.LastName;
                 }
 
                 return educationalDepartmentModel;
@@ -103,7 +101,10 @@ public class EducationalDepartmentModelFactory : IEducationalDepartmentModelFact
                 if (model == null)
                 {
                     model = educationalDepartment.ToModel<EducationalDepartmentModel>();
+
+                    var faculty = await _corporationService.GetFacultyByIdAsync(educationalDepartment.FacultyId);
                     
+                    model.FacultyName = faculty.Name;
                 }
             }
             //set default values for the new model

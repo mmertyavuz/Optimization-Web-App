@@ -7,19 +7,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="Clasroom modül final düzenlemeleri.">
-      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/App_Data/FacultyExcellImport.xlsx" afterDir="false" />
+    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/CorporationSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/CorporationSettings.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/PermissionRecordsDataMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/PermissionRecordsDataMigration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/CorporationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/CorporationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/ExportImport/ExportManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/ExportImport/ExportManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/ExportImport/ImportManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/ExportImport/ImportManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ExportManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ExportManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ICorporationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ICorporationService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/IImportManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/IImportManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Migrations/OptimizationApp/Initial/LocalizationMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Migrations/OptimizationApp/Initial/LocalizationMigration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Migrations/OptimizationApp/Initial/SettingMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web.Framework/Migrations/OptimizationApp/Initial/SettingMigration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/CorporationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/CorporationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/EducationalDepartmentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/EducationalDepartmentController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/FacultyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/FacultyController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IBaseOptimizationAppModelFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IBaseOptimizationAppModelFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/ICorporationModelFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/ICorporationModelFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IEducationalDepartmentModelFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IEducationalDepartmentModelFactory.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IFacultyModelFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IFacultyModelFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Corporations/FacultyModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Corporations/FacultyModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Faculty/List.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Faculty/List.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Corporations/CorporationSettingsModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/Corporations/CorporationSettingsModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Corporation/_CreateOrUpdate.Info.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Corporation/_CreateOrUpdate.Info.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/EducationalDepartment/Edit.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/EducationalDepartment/Edit.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/EducationalDepartment/List.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/EducationalDepartment/List.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/EducationalDepartment/_CreateOrUpdate.Info.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/EducationalDepartment/_CreateOrUpdate.Info.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/sitemap.config" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/sitemap.config" afterDir="false" />
     </list>
     <list id="5d67a8a5-a03c-488e-8e2d-3f2533b42bc2" name="Dont Need To Commit" comment="" />
@@ -121,7 +130,13 @@
       <workItem from="1683005209890" duration="2765000" />
       <workItem from="1683008414552" duration="131000" />
       <workItem from="1683008709735" duration="3305000" />
-      <workItem from="1684161128392" duration="17701000" />
+      <workItem from="1684161128392" duration="18645000" />
+      <workItem from="1684255536347" duration="4193000" />
+      <workItem from="1684301193957" duration="595000" />
+      <workItem from="1684386279089" duration="377000" />
+      <workItem from="1684398951784" duration="779000" />
+      <workItem from="1684399834949" duration="145000" />
+      <workItem from="1684766178568" duration="5494000" />
     </task>
     <task id="LOCAL-00001" summary="Corporaiton Modül Geliştirmeleri">
       <created>1682113816848</created>
@@ -228,7 +243,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684181070598</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Faculty modül geliştirmeleri.&#10;Import &amp; Export desteği verildi.&#10;Listeleme ve filtreleme geliştirmeleri yapıldı.">
+      <created>1684183718851</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1684183718851</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,7 +284,8 @@
     <MESSAGE value="General bug fixes and little changes." />
     <MESSAGE value="Clasroom modülü içni excell import &amp; export geliştirmesi." />
     <MESSAGE value="Clasroom modül final düzenlemeleri." />
-    <option name="LAST_COMMIT_MESSAGE" value="Clasroom modül final düzenlemeleri." />
+    <MESSAGE value="Faculty modül geliştirmeleri.&#10;Import &amp; Export desteği verildi.&#10;Listeleme ve filtreleme geliştirmeleri yapıldı." />
+    <option name="LAST_COMMIT_MESSAGE" value="Faculty modül geliştirmeleri.&#10;Import &amp; Export desteği verildi.&#10;Listeleme ve filtreleme geliştirmeleri yapıldı." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -281,19 +304,6 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/SampleDataMigration.cs</url>
-          <line>396</line>
-          <properties documentPath="$PROJECT_DIR$/Libraries/Nop.Data/OptimizationApp/Migrations/v00 - Initial/SampleDataMigration.cs" initialLine="393" containingFunctionPresentation="method 'InsertCustomer'">
-            <startOffsets>
-              <option value="19712" />
-            </startOffsets>
-            <endOffsets>
-              <option value="19760" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/ICorporationModelFactory.cs</url>
           <line>31</line>
           <properties documentPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/ICorporationModelFactory.cs" initialLine="31" containingFunctionPresentation="method 'PrepareCorporationSettingsModel'">
@@ -301,7 +311,7 @@
               <option value="801" />
             </startOffsets>
             <endOffsets>
-              <option value="1112" />
+              <option value="1194" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="6" />

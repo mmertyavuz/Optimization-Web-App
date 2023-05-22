@@ -8,6 +8,7 @@ using ClosedXML.Excel;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
 using Nop.Core;
+using Nop.Core.Domain;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Directory;
@@ -90,6 +91,7 @@ namespace Nop.Services.ExportImport
         private readonly TaxSettings _taxSettings;
         private readonly VendorSettings _vendorSettings;
         private readonly ICorporationService _corporationService;
+        private readonly CorporationSettings _corporationSettings;
 
         #endregion
 
@@ -133,7 +135,7 @@ namespace Nop.Services.ExportImport
             IWorkContext workContext,
             MediaSettings mediaSettings,
             TaxSettings taxSettings,
-            VendorSettings vendorSettings, ICorporationService corporationService)
+            VendorSettings vendorSettings, ICorporationService corporationService, CorporationSettings corporationSettings)
         {
             _addressService = addressService;
             _backInStockSubscriptionService = backInStockSubscriptionService;
@@ -175,6 +177,7 @@ namespace Nop.Services.ExportImport
             _taxSettings = taxSettings;
             _vendorSettings = vendorSettings;
             _corporationService = corporationService;
+            _corporationSettings = corporationSettings;
         }
 
         #endregion

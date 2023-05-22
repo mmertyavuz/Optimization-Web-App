@@ -55,7 +55,7 @@ public class FacultyModelFactory : IFacultyModelFactory
         if (searchModel == null)
             throw new ArgumentNullException(nameof(searchModel));
 
-        var faculties = await _corporationService.GetAllFacultiesAsync(name: searchModel.Name, showOnlyWithoutDepartment: true);
+        var faculties = await _corporationService.GetAllFacultiesAsync(name: searchModel.Name, showOnlyWithoutDepartment: searchModel.ShowOnlyWithoutDepartment);
 
         var pagedFaculties = faculties.ToPagedList(searchModel);
 

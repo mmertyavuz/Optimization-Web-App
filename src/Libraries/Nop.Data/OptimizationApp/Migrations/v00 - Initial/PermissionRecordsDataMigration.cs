@@ -7,7 +7,7 @@ using Nop.Data.Migrations;
 
 namespace Nop.Data.OptimizationApp.Migrations.v00___Initial;
 
-[NopMigration("2023-02-01 18:11:00", "PermissionRecordsDataMigration", UpdateMigrationType.Data,
+[NopMigration("2023-02-01 18:15:00", "PermissionRecordsDataMigration", UpdateMigrationType.Data,
     MigrationProcessType.Update)]
 public class PermissionRecordsDataMigration : Migration
 {
@@ -26,13 +26,18 @@ public class PermissionRecordsDataMigration : Migration
         var adminRole = GetOrInsertCustomerRole(NopCustomerDefaults.AdministratorsRoleName);
         var departmentLeadRole = GetOrInsertCustomerRole(NopCustomerDefaults.DepartmentLeadRoleName);
 
+        var accessAdminArea = _allPermissionRecords.FirstOrDefault(x => x.SystemName == $"AccessAdminPanel");
+        
         var manageCorporations = new PermissionRecord { Name = "Manage Corporations", SystemName = "ManageCorporations", Category = "OptimizationApp" };
         var manageClassrooms = new PermissionRecord {Name = "Manage Classrooms", SystemName = "ManageClassrooms", Category = "OptimizationApp"};
         var manageFaculties = new PermissionRecord { Name = "Manage Faculties", SystemName = "ManageFaculties", Category = "OptimizationApp"};
+        var manageEducationalDepartments = new PermissionRecord { Name = "Manage Educational Departments", SystemName = "ManageEducationalDepartments", Category = "OptimizationApp" };
        
         InsertPermissionRecordCustomerRoleMapping(manageCorporations, adminRole);
         InsertPermissionRecordCustomerRoleMapping(manageClassrooms, adminRole);
         InsertPermissionRecordCustomerRoleMapping(manageFaculties, adminRole);
+        InsertPermissionRecordCustomerRoleMapping(manageEducationalDepartments, adminRole, departmentLeadRole);
+        InsertPermissionRecordCustomerRoleMapping(accessAdminArea, departmentLeadRole);
        }
 
     void InsertPermissionRecordCustomerRoleMapping(PermissionRecord permissionRecord, params CustomerRole[] customerRoles)
@@ -70,10 +75,10 @@ public class PermissionRecordsDataMigration : Migration
         {
             role = new CustomerRole
             {
-                Name = "Administrators",
+                Name = roleName,
                 Active = true,
                 IsSystemRole = true,
-                SystemName = NopCustomerDefaults.AdministratorsRoleName
+                SystemName = roleName
             };
 
             _dataProvider.InsertEntity(role);

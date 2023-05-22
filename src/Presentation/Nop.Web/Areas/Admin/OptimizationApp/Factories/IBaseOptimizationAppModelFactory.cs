@@ -60,7 +60,7 @@ public class BaseOptimizationAppModelFactory : IBaseOptimizationAppModelFactory
             });
         }
         
-        items.Add(new SelectListItem
+        items.Insert(0, new SelectListItem
         {
             Text = customText ?? await _localizationService.GetResourceAsync("Admin.Common.All"),
             Value = "0"

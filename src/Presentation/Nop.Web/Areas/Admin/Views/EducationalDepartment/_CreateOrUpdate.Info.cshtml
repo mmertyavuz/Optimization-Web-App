@@ -10,7 +10,9 @@
             <span asp-validation-for="Name"></span>
         </div>
     </div>
-    <div class="form-group row">
+    @if (Model.Id == 0)
+    {
+        <div class="form-group row">
             <div class="col-md-3">
                 <nop-label asp-for="Code" />
             </div>
@@ -19,6 +21,24 @@
                 <span asp-validation-for="Code"></span>
             </div>
         </div>
+    }
+    else
+    {
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper">
+                    <label class="col-form-label">
+                       Code
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="form-text-row">
+                    @Model.Code
+                </div>
+            </div>
+        </div>
+    }
     <div class="form-group row">
         <div class="col-md-3">
             <nop-label asp-for="Description" />
@@ -28,22 +48,29 @@
             <span asp-validation-for="Description"></span>
         </div>
     </div>
-    <div class="form-group row">
-        <div class="col-md-3">
-            <nop-label asp-for="FacultyName" />
-        </div>
-        <div class="col-md-9">
-            <nop-editor asp-for="FacultyName"/>
-            <span asp-validation-for="FacultyName"></span>
-        </div>
-    </div>
-    <div class="form-group row">
+    @if (Model.Id == 0)
+    {
+        <div class="form-group row">
             <div class="col-md-3">
-                <nop-label asp-for="DepartmentLeadCustomerName" />
+                <nop-label asp-for="FacultyId" />
             </div>
             <div class="col-md-9">
-                <nop-editor asp-for="DepartmentLeadCustomerName"/>
-                <span asp-validation-for="DepartmentLeadCustomerName"></span>
+                <nop-select asp-for="FacultyId" asp-items="Model.AvailableFaculties"/>
+                <span asp-validation-for="FacultyId"></span>
             </div>
         </div>
+    }
+    else
+    {
+        <div class="form-group row">
+            <div class="col-md-3">
+                <nop-label asp-for="FacultyId" />
+            </div>
+            <div class="col-md-9">
+                <div class="form-text-row">
+                    @Model.FacultyName
+                </div>
+            </div>
+        </div>
+    }
 </div>

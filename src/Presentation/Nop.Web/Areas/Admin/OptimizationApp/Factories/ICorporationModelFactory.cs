@@ -35,6 +35,7 @@ public class CorporationModelFactory : ICorporationModelFactory
             CorporationWebsite = _corporationSettings.CorporationWebsite,
             LogoUrl = _corporationSettings.LogoUrl,
             MiniLogoUrl = _corporationSettings.MiniLogoUrl,
+            CorporationEmailSuffix = _corporationSettings.CorporationEmailSuffix,
         };
         
         return model;

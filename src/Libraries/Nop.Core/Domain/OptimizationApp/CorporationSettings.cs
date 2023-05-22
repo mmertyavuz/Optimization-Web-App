@@ -9,6 +9,8 @@ public class CorporationSettings : ISettings
     /// </summary>
     public string CorporationName { get; set; }
 
+    public string CorporationEmailSuffix { get; set; }
+
     /// <summary>
     /// The corporation's website URL.
     /// </summary>
