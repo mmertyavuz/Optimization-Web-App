@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Optimization",
+  "FriendlyName": "Optimization Solver - GUROBİ Plugin",
+  "SystemName": "Bau.Plugin.Optimization.Gurobi",
+  "Version": "1.0",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "BAU",
+  "DisplayOrder": 1,
+  "FileName": "Bau.Plugin.Optimization.Gurobi.dll",
+  "Description": "This plugin allows you to use Gurobi solver in your optimization problem."
+}

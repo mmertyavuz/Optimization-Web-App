@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Bau.Plugin.Optimization.Gurobi.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nop.Core.Infrastructure;
-using Nop.Plugin.Misc.Sendinblue.Services;
 using Nop.Services.Messages;
+using Nop.Services.OptimizationApp;
 using Nop.Web.Framework.Infrastructure.Extensions;
 
-namespace Nop.Plugin.Misc.Sendinblue.Infrastructure
+namespace Bau.Plugin.Optimization.Gurobi.Infrastructure
 {
     /// <summary>
     /// Represents object for the configuring services on application startup
@@ -20,15 +21,7 @@ namespace Nop.Plugin.Misc.Sendinblue.Infrastructure
         /// <param name="configuration">Configuration of the application</param>
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddHttpClient<MarketingAutomationHttpClient>().WithProxy();
-
-            //register custom services
-            services.AddScoped<SendinblueManager>();
-            services.AddScoped<MarketingAutomationManager>();
-
-            //override services
-            services.AddScoped<IWorkflowMessageService, SendinblueMessageService>();
-            services.AddScoped<IEmailSender, SendinblueEmailSender>();
+            services.AddScoped<IOptimizationProcessingService, GurobiProcessingService>();
         }
 
         /// <summary>
