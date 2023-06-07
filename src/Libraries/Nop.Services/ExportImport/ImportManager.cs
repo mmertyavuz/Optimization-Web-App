@@ -92,6 +92,8 @@ namespace Nop.Services.ExportImport
         private readonly VendorSettings _vendorSettings;
         private readonly ICorporationService _corporationService;
         private readonly CorporationSettings _corporationSettings;
+        private readonly ICourseService _courseService;
+        private readonly ISectionService _sectionService;
 
         #endregion
 
@@ -135,7 +137,7 @@ namespace Nop.Services.ExportImport
             IWorkContext workContext,
             MediaSettings mediaSettings,
             TaxSettings taxSettings,
-            VendorSettings vendorSettings, ICorporationService corporationService, CorporationSettings corporationSettings)
+            VendorSettings vendorSettings, ICorporationService corporationService, CorporationSettings corporationSettings, ICourseService courseService, ISectionService sectionService)
         {
             _addressService = addressService;
             _backInStockSubscriptionService = backInStockSubscriptionService;
@@ -178,6 +180,8 @@ namespace Nop.Services.ExportImport
             _vendorSettings = vendorSettings;
             _corporationService = corporationService;
             _corporationSettings = corporationSettings;
+            _courseService = courseService;
+            _sectionService = sectionService;
         }
 
         #endregion

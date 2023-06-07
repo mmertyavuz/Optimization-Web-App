@@ -67,6 +67,11 @@ public class CorporationService : ICorporationService
     {
         await _facultyRepository.UpdateAsync(faculty);
     }
+    
+    public async Task DeleteAllFacultiesAsync()
+    {
+        await _facultyRepository.TruncateAsync(resetIdentity: true);
+    }
 
     #endregion
 
@@ -93,7 +98,7 @@ public class CorporationService : ICorporationService
 
         if (!string.IsNullOrEmpty(code))
         {
-            query = query.Where(ed => ed.Code.Contains(code));
+            query = query.Where(ed => ed.Code.ToUpper().Contains(code.ToUpper()));
         }
 
         if (facultyId > 0)
@@ -114,6 +119,10 @@ public class CorporationService : ICorporationService
         await _educationalDepartmentRepository.UpdateAsync(educationalDepartment);
     }
 
+    public async Task DeleteAllEducationalDepartmentsAsync()
+    {
+        await _educationalDepartmentRepository.TruncateAsync(resetIdentity: true);
+    }
     
     #endregion
 
@@ -165,6 +174,11 @@ public class CorporationService : ICorporationService
     public async Task UpdateClassroomAsync(Classroom classroom)
     {
         await _classroomRepository.UpdateAsync(classroom);
+    }
+    
+    public async Task DeleteAllClassroomsAsync()
+    {
+        await _classroomRepository.TruncateAsync(resetIdentity: true);
     }
 
     #endregion

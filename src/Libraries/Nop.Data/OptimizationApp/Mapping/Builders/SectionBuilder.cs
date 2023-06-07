@@ -9,6 +9,8 @@ public class SectionBuilder : NopEntityBuilder<Section>
     public override void MapEntity(CreateTableExpressionBuilder table)
     {
         table
-            .WithColumn(nameof(Section.SectionNumber)).AsString(50).NotNullable();
+            .WithColumn(nameof(Section.SectionNumber)).AsString(50).NotNullable()
+            .WithColumn(nameof(Section.StartTime)).AsTime()
+            .WithColumn(nameof(Section.EndTime)).AsTime();
     }
 }

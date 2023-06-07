@@ -14,6 +14,7 @@
         <div class="form-horizontal">
             <nop-cards id="course-details-cards">
                 <nop-card asp-name="course-info" asp-icon="fas fa-info" asp-title="@T("Admin.Courses.Info")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">@await Html.PartialAsync("_CreateOrUpdate.Info", Model)</nop-card>
+                <nop-card asp-name="course-sections" asp-icon="fas fa-info" asp-title="@T("Admin.Courses.Sections")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">@await Html.PartialAsync("_CreateOrUpdate.Section", Model)</nop-card>
             </nop-cards>
         </div>
     </div>

@@ -10,7 +10,7 @@ using Nop.Services.Localization;
 
 namespace Nop.Web.Framework.Migrations.Initial;
 
-[NopMigration("2023-04-22 15:35:00", "LocaleStringResource migration for 2023-04-22 Updates",
+[NopMigration("2023-04-22 15:39:00", "LocaleStringResource migration for 2023-04-22 Updates",
     UpdateMigrationType.Localization, MigrationProcessType.Update)]
 public class LocalizationMigration : MigrationBase
 {
@@ -127,8 +127,18 @@ public class LocalizationMigration : MigrationBase
             new("Admin.Corporations.Faculties.Fields.ShowOnlyWithoutDepartment", "Departmanı Olmayanları Göster", "Show Only Without Department"),
             new("admin.corporations.educationaldepartments.fields.facultyname", "Fakulte", "Faculty"),
             new("admin.corporations.educationaldepartments.fields.departmentleadcustomername", "Department Lead", "Department Lead"),
-            
-            
+            new("Admin.Corporations.Courses", "Dersler", "Courses"),
+            new("Admin.Courses.Education.Fields.EducationalDepartmentId", "Departman", "Department"),
+            new("Admin.Education.Courses.Fields.Description", "Açıklama", "Description"),
+            new("Admin.Courses.Education.Fields.EducationalDepartmentId", "Departman", "Department"),
+            new("Admin.Courses.Sections", "Sections", "Sections"),
+            new("admin.sections", "Sections", "Sections"),
+            new("Admin.Courses.Sections.Fields.Course", "Course", "Ders"),
+            new("admin.common.details", "Details", "Detay"),
+            new("Optimization", "Optimization", "Optimization"),
+
+
+
         };
 
         //table types

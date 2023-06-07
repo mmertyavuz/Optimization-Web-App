@@ -15,14 +15,23 @@
             {
                 new ColumnProperty(nameof(SectionModel.SectionNumber))
                 {
-                    Title = T("Admin.Courses.Sections.Fields.SectionNumber").Text
+                    Title = "Section"
                 },
-                new ColumnProperty(nameof(SectionModel.Id))
+                new ColumnProperty(nameof(SectionModel.DayName))
                 {
-                    Title = T("Admin.Common.Edit").Text,
-                    Width = "100",
-                    ClassName =  NopColumnClassDefaults.Button,
-                    Render = new RenderCustom("renderColumnEdit")
+                    Title = "Gün"
+                },
+                new ColumnProperty(nameof(SectionModel.StartTime))
+                {
+                    Title = "Başlangıç"
+                },
+                new ColumnProperty(nameof(SectionModel.EndTime))
+                {
+                    Title = "Bitiş"
+                },
+                new ColumnProperty(nameof(SectionModel.StudentCount))
+                {
+                    Title = "Öğrenci Sayısı"
                 },
                 new ColumnProperty(nameof(SectionModel.Id))
                 {
@@ -41,9 +50,7 @@
         </script>
     </div>
     <div class="card-footer">
-        <button type="submit" id="btnAddNewValue" onclick="javascript:OpenWindow('@(Url.Action("SectionCreatePopup", "Course", new { courseId = Model.Id, btnId = "btnRefresh", formId = "course-form" }))', 800, 550, true); return false;" class="btn btn-primary">
-            @T("Admin.Common.AddNew")
-        </button>
+        
         <button type="submit" id="btnRefresh" style="display: none"></button>
         <script>
             $(document).ready(function () {

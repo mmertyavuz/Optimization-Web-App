@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Nop.Core.Domain;
 using Nop.Core.Domain.Localization;
 using Nop.Services.ExportImport.Help;
+using Nop.Services.Helpers;
 
 namespace Nop.Services.ExportImport;
 
@@ -19,7 +20,10 @@ public partial interface IExportManager
     Task<byte[]> ExportDepartmentToExcel(IList<EducationalDepartment> departments);
 
     Task<byte[]> ExportDepartmentToExcel();
-    
+
+    Task<byte[]> ExportCoursesAndSectionsToExcel(List<Section> sections);
+    Task<byte[]> ExportCoursesAndSectionsToExcel();
+
 } 
 
 public partial class ExportManager
@@ -103,8 +107,12 @@ public partial class ExportManager
 
         return await manager.ExportToXlsxAsync(faculties);
     }
+    
+    #endregion
 
-    public async Task<byte[]> ExportDepartmentToExcel(IList<EducationalDepartment> departments)
+    #region Department
+
+        public async Task<byte[]> ExportDepartmentToExcel(IList<EducationalDepartment> departments)
     {
         var allFaculties = await _corporationService.GetAllFacultiesAsync();
         var allCustomers = await _customerService.GetAllCustomersAsync();
@@ -147,6 +155,52 @@ public partial class ExportManager
         }, _catalogSettings);
 
         return await manager.ExportToXlsxAsync(departments);
+    }
+
+    #endregion
+
+    #region Course & Sections
+
+        public async Task<byte[]> ExportCoursesAndSectionsToExcel(List<Section> sections)
+        {
+            var courses = await _courseService.GetAllCoursesAsync();
+        
+        //property manager 
+        var manager = new PropertyManager<Section, Language>(new[]
+        {
+            new PropertyByName<Section, Language>("Id", (p, l) => p.Id),
+            new PropertyByName<Section, Language>("Kod", (p, l) => courses.FirstOrDefault(x => x.Id == p.CourseId)?.Code),
+            new PropertyByName<Section, Language>("Ad", (p, l) => courses.FirstOrDefault(x => x.Id == p.CourseId)?.Name),
+            new PropertyByName<Section, Language>("Gün", (p, l) => TurkishDayConverter.ConvertToTurkishDay(p.Day)),
+            new PropertyByName<Section, Language>("Başlangıç", (p, l) => p.StartTime.ToString()),
+            new PropertyByName<Section, Language>("Bitiş", (p, l) => p.StartTime.ToString()),
+            new PropertyByName<Section, Language>("Öğrenci Adet", (p, l) => p.StudentCount),
+        }, _catalogSettings);
+
+        return await manager.ExportToXlsxAsync(sections);
+    }
+
+    public async Task<byte[]> ExportCoursesAndSectionsToExcel()
+    {
+        var sections = new[]
+        {
+            new Section()
+            {
+            }
+        };
+        
+        //property manager 
+        var manager = new PropertyManager<Section, Language>(new[]
+        {
+            new PropertyByName<Section, Language>("Kod", (p, l) => ""),
+            new PropertyByName<Section, Language>("Ad", (p, l) => ""),
+            new PropertyByName<Section, Language>("Gün", (p, l) => ""),
+            new PropertyByName<Section, Language>("Başlangıç", (p, l) => ""),
+            new PropertyByName<Section, Language>("Bitiş", (p, l) => ""),
+            new PropertyByName<Section, Language>("Öğrenci Adet", (p, l) => ""),        
+        }, _catalogSettings);
+
+        return await manager.ExportToXlsxAsync(sections);
     }
 
     #endregion

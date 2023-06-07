@@ -167,8 +167,6 @@ namespace Nop.Data.Migrations.Installation
             
             Create.TableFor<Classroom>();
             Create.TableFor<Course>();
-            Create.TableFor<CourseSectionPlan>();
-            Create.TableFor<CourseSectionPlanEducatorMapping>();
             Create.TableFor<EducationalDepartment>();
             Create.TableFor<Educator>();
             Create.TableFor<Faculty>();

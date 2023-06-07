@@ -29,17 +29,19 @@ public class CourseModelFactory : ICourseModelFactory
     private readonly ICorporationService _corporationService;
     private readonly IBaseOptimizationAppModelFactory _baseOptimizationAppModelFactory;
     private readonly ILocalizationService _localizationService;
+    private readonly ISectionModelFactory _sectionModelFactory;
 
     #endregion
 
     #region Ctor
 
-    public CourseModelFactory(ICourseService courseService, ICorporationService corporationService, IBaseOptimizationAppModelFactory baseOptimizationAppModelFactory, ILocalizationService localizationService)
+    public CourseModelFactory(ICourseService courseService, ICorporationService corporationService, IBaseOptimizationAppModelFactory baseOptimizationAppModelFactory, ILocalizationService localizationService, ISectionModelFactory sectionModelFactory)
     {
         _courseService = courseService;
         _corporationService = corporationService;
         _baseOptimizationAppModelFactory = baseOptimizationAppModelFactory;
         _localizationService = localizationService;
+        _sectionModelFactory = sectionModelFactory;
     }
 
     #endregion
@@ -101,6 +103,17 @@ public class CourseModelFactory : ICourseModelFactory
             if (model == null)
             {
                 model = course.ToModel<CourseModel>();
+            }
+            
+            await _sectionModelFactory.PrepareSectionSearchModelAsync(model.SectionSearchModel);
+            model.SectionSearchModel.CourseId = course.Id;
+            
+            var department =
+                await _corporationService.GetEducationalDepartmentByIdAsync(course.EducationalDepartmentId);
+            
+            if (department is not null)
+            {
+                model.EducationalDepartmentName = department.Name;
             }
         }
 

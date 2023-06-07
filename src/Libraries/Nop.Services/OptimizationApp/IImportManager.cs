@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Drawing;
+using Microsoft.Extensions.Azure;
 using Nop.Core.Domain;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
@@ -18,6 +20,7 @@ public partial interface IImportManager
     Task ImportClassroomsFromExcelAsync(Stream stream);
     Task ImportFacultiesFromExcelAsync(Stream stream);
     Task ImportDepartmentsFromExcelAsync(Stream stream);
+    Task ImportCoursesAndSectionsFromExcelAsync(Stream stream);
 }
 
 public partial class ImportManager
@@ -197,30 +200,191 @@ public partial class ImportManager
                         if (faculty != null) department.FacultyId = faculty.Id;
                         break;
                 }
-
-                var existingDepartment = departments.FirstOrDefault(c => c.Code == department.Code);
-
-                if (existingDepartment is null)
-                {
-                    await _corporationService.InsertEducationalDepartmentAsync(department);
-                    
-                    // var customer = await CreateEducationalDepartmentLead(department);
-                    //
-                    // if (customer is not null)
-                    // {
-                    //     department.DepartmentLeadCustomerId = customer.Id;
-                    //     await _corporationService.UpdateEducationalDepartmentAsync(department);
-                    // }
-                }
-                else
-                {
-                    existingDepartment.Description = existingDepartment.Description;
-                    await _corporationService.UpdateEducationalDepartmentAsync(existingDepartment);
-                }
-
-                iRow++;
             }
+            
+            var existingDepartment = departments.FirstOrDefault(c => c.Code == department.Code);
+
+            if (existingDepartment is null)
+            {
+                await _corporationService.InsertEducationalDepartmentAsync(department);
+            }
+            else
+            {
+                existingDepartment.Name = existingDepartment.Name;
+                existingDepartment.Code = department.Code;
+                existingDepartment.Description = department.Description;
+                    
+                await _corporationService.UpdateEducationalDepartmentAsync(existingDepartment);
+            }
+
+            iRow++;
+            
         }
+    }
+
+    public async Task ImportCoursesAndSectionsFromExcelAsync(Stream stream)
+    {
+        using var workbook = new XLWorkbook(stream);
+
+        var languages = await _languageService.GetAllLanguagesAsync(showHidden: true);
+
+        //the columns
+        var metadata = GetWorkbookMetadata<Course>(workbook, languages);
+        var defaultWorksheet = metadata.DefaultWorksheet;
+        var defaultProperties = metadata.DefaultProperties;
+        var localizedProperties = metadata.LocalizedProperties;
+
+        var manager = new PropertyManager<Course, Language>(defaultProperties, _catalogSettings,
+            localizedProperties, languages);
+
+        var iRow = 2;
+
+        var departments = await _corporationService.GetAllEducationalDepartmentsAsync();
+        var courses = await _courseService.GetAllCoursesAsync();
+        var sections = await _sectionService.GetAllSectionsAsync();
+        
+         while (true)
+        {
+            var allColumnsAreEmpty = manager.GetDefaultProperties
+                .Select(property => defaultWorksheet.Row(iRow).Cell(property.PropertyOrderPosition))
+                .All(cell => cell?.Value == null || string.IsNullOrEmpty(cell.Value.ToString()));
+
+            if (allColumnsAreEmpty)
+                break;
+
+            manager.ReadDefaultFromXlsx(defaultWorksheet, iRow);
+
+            var existingCourse = FindExistingCourse(manager, courses);
+
+            //There is not a course with this code, so we create a new one
+            if (existingCourse is null)
+            {
+                var course = new Course
+                {
+                    Description = "-"
+                };
+
+                var section = new Section
+                {
+                    SectionNumber = "1"
+                };
+
+                foreach (var property in manager.GetDefaultProperties)
+                {
+                    switch (property.PropertyName)
+                    {
+                        case "Kod":
+                            course.Code = property.StringValue;
+                            break;
+                        case "Ad":
+                            course.Name = property.StringValue;
+                            break;
+                        case "Departman":
+                            var department = departments.FirstOrDefault(x => x.Name == property.StringValue);
+                            if (department != null) course.EducationalDepartmentId = department.Id;
+                            break;
+
+                       #region Create a section for this new course
+                        
+                       case $"Gün":
+                            
+                       section.Day = property.StringValue switch
+                       {
+                           "Pazartesi" => DayOfWeek.Monday,
+                           "Salı" => DayOfWeek.Tuesday,
+                           "Çarşamba" => DayOfWeek.Wednesday,
+                           "Perşembe" => DayOfWeek.Thursday,
+                           "Cuma" => DayOfWeek.Friday,
+                           "Cumartesi" => DayOfWeek.Saturday,
+                           "Pazar" => DayOfWeek.Sunday,
+                           _ => throw new ArgumentOutOfRangeException()
+                       };
+
+                            break;
+                            case "Başlangıç":
+                                section.StartTime =TimeSpan.Parse(property.StringValue);
+                            break;
+                            case "Bitiş":
+                                section.EndTime =TimeSpan.Parse(property.StringValue);
+                            break;
+                            
+                        case "Öğrenci Adet":
+                            section.StudentCount = int.Parse(property.StringValue);
+                            break;
+                        #endregion
+                    }
+                }
+
+                await _courseService.InsertCourseAsync(course);
+                courses.Add(course);
+
+                section.CourseId = course.Id;
+                await _sectionService.InsertSectionAsync(section);
+                sections.Add(section);
+
+            }
+            //There is a course with this code, so we create a new seciton for this course
+            else
+            {
+                var allSections = sections.Where(x => x.CourseId == existingCourse.Id);
+                
+                var section = new Section
+                {
+                    SectionNumber = (allSections.Count() + 1).ToString(),
+                    CourseId = existingCourse.Id
+                };
+                
+                foreach (var property in manager.GetDefaultProperties)
+                {
+                    switch (property.PropertyName)
+                    {
+                       case $"Gün":
+                       section.Day = property.StringValue switch
+                       {
+                           "Pazartesi" => DayOfWeek.Monday,
+                           "Salı" => DayOfWeek.Tuesday,
+                           "Çarşamba" => DayOfWeek.Wednesday,
+                           "Perşembe" => DayOfWeek.Thursday,
+                           "Cuma" => DayOfWeek.Friday,
+                           "Cumartesi" => DayOfWeek.Saturday,
+                           "Pazar" => DayOfWeek.Sunday,
+                           _ => throw new ArgumentOutOfRangeException()
+                       };
+                            break;
+                            case "Başlangıç":
+                                section.StartTime =TimeSpan.Parse(property.StringValue);
+                            break;
+                            case "Bitiş":
+                                section.EndTime =TimeSpan.Parse(property.StringValue);
+                            break;
+                            
+                        case "Öğrenci Adet":
+                            section.StudentCount = int.Parse(property.StringValue);
+                            break;
+                    }
+                }
+                
+                await _sectionService.InsertSectionAsync(section);
+                sections.Add(section);
+            }
+            
+
+            iRow++;
+            
+        }
+        
+    }
+    
+    private Course FindExistingCourse(PropertyManager<Course, Language> manager, IList<Course> courses)
+    {
+        var codeProp = manager.GetDefaultProperties.FirstOrDefault(x => x.PropertyName == "Kod");
+        
+        if (codeProp is null)
+            throw new Exception("Kod sütunu bulunamadı");
+        
+        var course = courses.FirstOrDefault(x => x.Code == codeProp.StringValue);
+        
+        return course;
     }
 
     #region Utilities

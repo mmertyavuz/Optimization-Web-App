@@ -1,0 +1,83 @@
+@model Nop.Web.Areas.Admin.OptimizationApp.Models.OptimizationOverviewModel
+@inject Nop.Services.Topics.ITopicService topicService
+@using Nop.Web.Framework.Models.AdminAreaTour
+
+@{
+    //page title
+    ViewBag.PageTitle = T("Admin.ContentManagement.Topics").Text;
+    //tour step
+    ViewBag.TourStep = TourStep.TopicList;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName("Optimization");
+
+    const string hideSearchBlockAttributeName = "TopicsPage.HideSearchBlock";
+    var hideSearchBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideSearchBlockAttributeName);
+
+    const string cardId = "nopcommerce-common-statistics-card";
+    const string hideCardAttributeName = "HideCommonStatisticsCard";
+
+}
+
+
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        Start Optimization Process
+    </h1>
+    <div class="float-right">
+        <a asp-action="ClearData" class="btn btn-danger">
+            <i class="far fa-trash-alt"></i>
+            Clear All Data
+        </a>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="cards-group">
+                <div class="row">
+                    
+                    @await Html.PartialAsync("_Index.DataStatus", Model)
+                    @await Html.PartialAsync("_Index.PluginStatus", Model)
+                    @await Html.PartialAsync("_Index.Process", Model)
+                
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+  function checkAvailability() {
+    document.getElementById("checkAvailabilityButton").disabled = true;
+    
+    var postData = {};
+    addAntiForgeryToken(postData);
+
+    $.ajax({
+      cache: false,
+      type: "POST",
+      url: "@Url.Action("CheckPluginAvailability", "Optimization")",
+      data: postData,
+      dataType: "json",
+      success: function(data) {
+        var availabilityResult = document.getElementById("availabilityResult");
+
+        if (data === true) {
+          $("#plugin-available").show();
+          $("#start-optimization").show();
+          $("#plugin-availability-text").hide();
+          
+        } else {
+          $("#plugin-notavailable").show();
+          $("#plugin-availability-text").textContent = "Plugin is not available. Please fix the issue and try again.";
+        }
+      },
+      error: function(e) {
+        console.error("Ajax request failed." + e.toString());
+      },
+      complete: function() {
+      }
+    });
+  }
+</script>

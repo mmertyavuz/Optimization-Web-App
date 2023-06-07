@@ -5,72 +5,42 @@
         <div class="col-md-3">
             <nop-label asp-for="Name" />
         </div>
-        <div class="col-md-9">
-            <nop-editor asp-for="Name"/>
-            <span asp-validation-for="Name"></span>
+        <div class="col-md-9"><div class="form-text-row">
+                @Model.Name
+            </div>
         </div>
     </div>
-    @if (Model.Id == 0)
-    {
-        <div class="form-group row">
-            <div class="col-md-3">
-                <nop-label asp-for="Code" />
-            </div>
-            <div class="col-md-9">
-                <nop-editor asp-for="Code"/>
-                <span asp-validation-for="Code"></span>
+    <div class="form-group row">
+        <div class="col-md-3">
+            <div class="label-wrapper">
+                <label class="col-form-label">
+                    Code
+                </label>
             </div>
         </div>
-    }
-    else
-    {
-        <div class="form-group row">
-            <div class="col-md-3">
-                <div class="label-wrapper">
-                    <label class="col-form-label">
-                       Code
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <div class="form-text-row">
-                    @Model.Code
-                </div>
+        <div class="col-md-9">
+            <div class="form-text-row">
+                @Model.Code
             </div>
         </div>
-    }
+    </div>
     <div class="form-group row">
         <div class="col-md-3">
             <nop-label asp-for="Description" />
         </div>
-        <div class="col-md-9">
-            <nop-editor asp-for="Description"/>
-            <span asp-validation-for="Description"></span>
+        <div class="col-md-9"><div class="form-text-row">
+                @Model.Description
+            </div>
         </div>
     </div>
-    @if (Model.Id == 0)
-    {
-        <div class="form-group row">
-            <div class="col-md-3">
-                <nop-label asp-for="FacultyId" />
-            </div>
-            <div class="col-md-9">
-                <nop-select asp-for="FacultyId" asp-items="Model.AvailableFaculties"/>
-                <span asp-validation-for="FacultyId"></span>
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-label asp-for="FacultyId" />
+        </div>
+        <div class="col-md-9">
+            <div class="form-text-row">
+                <a href="/Admin/Faculty/Edit/@Model.FacultyId"> @Model.FacultyName</a>
             </div>
         </div>
-    }
-    else
-    {
-        <div class="form-group row">
-            <div class="col-md-3">
-                <nop-label asp-for="FacultyId" />
-            </div>
-            <div class="col-md-9">
-                <div class="form-text-row">
-                    @Model.FacultyName
-                </div>
-            </div>
-        </div>
-    }
+    </div>
 </div>

@@ -235,6 +235,8 @@ namespace Nop.Web.Framework.Infrastructure
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<ISectionService, SectionService>();
             
+            services.AddScoped<IOptimizationProcessingService, OptimizationProcessingService>();
+            
             //plugin managers
             services.AddScoped(typeof(IPluginManager<>), typeof(PluginManager<>));
             services.AddScoped<IAuthenticationPluginManager, AuthenticationPluginManager>();

@@ -5,6 +5,10 @@ namespace Nop.Web.Areas.Admin.Models.Corporations;
 
 public record FacultyModel : BaseNopEntityModel
 {
+    public FacultyModel()
+    {
+        EducationalDepartmentSearchModel = new EducationalDepartmentSearchModel();
+    }
     [NopResourceDisplayName("Admin.Corporations.Faculties.Fields.Name")]
     public string Name { get; set; }
 
@@ -13,6 +17,8 @@ public record FacultyModel : BaseNopEntityModel
 
     [NopResourceDisplayName("Admin.Corporations.Faculties.Fields.DepartmentCount")]
     public int DepartmentCount { get; set; }
+
+    public EducationalDepartmentSearchModel EducationalDepartmentSearchModel { get; set; }  
 }
 
 public record FacultyListModel : BasePagedListModel<FacultyModel>

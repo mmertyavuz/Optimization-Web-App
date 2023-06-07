@@ -7,8 +7,7 @@ using Nop.Data.Migrations;
 
 namespace Nop.Data.OptimizationApp.Migrations.v00___Initial;
 
-[NopMigration("2023-02-01 18:15:00", "PermissionRecordsDataMigration", UpdateMigrationType.Data,
-    MigrationProcessType.Update)]
+[NopMigration("2023-02-02 18:16:00", "Update permission records", MigrationProcessType.Update)]
 public class PermissionRecordsDataMigration : Migration
 {
     private readonly INopDataProvider _dataProvider;
@@ -32,12 +31,14 @@ public class PermissionRecordsDataMigration : Migration
         var manageClassrooms = new PermissionRecord {Name = "Manage Classrooms", SystemName = "ManageClassrooms", Category = "OptimizationApp"};
         var manageFaculties = new PermissionRecord { Name = "Manage Faculties", SystemName = "ManageFaculties", Category = "OptimizationApp"};
         var manageEducationalDepartments = new PermissionRecord { Name = "Manage Educational Departments", SystemName = "ManageEducationalDepartments", Category = "OptimizationApp" };
+        var manageCourses = new PermissionRecord { Name = "Manage Courses", SystemName = "ManageCourses", Category = "OptimizationApp" };
        
         InsertPermissionRecordCustomerRoleMapping(manageCorporations, adminRole);
         InsertPermissionRecordCustomerRoleMapping(manageClassrooms, adminRole);
         InsertPermissionRecordCustomerRoleMapping(manageFaculties, adminRole);
         InsertPermissionRecordCustomerRoleMapping(manageEducationalDepartments, adminRole, departmentLeadRole);
         InsertPermissionRecordCustomerRoleMapping(accessAdminArea, departmentLeadRole);
+        InsertPermissionRecordCustomerRoleMapping(manageCourses, adminRole);
        }
 
     void InsertPermissionRecordCustomerRoleMapping(PermissionRecord permissionRecord, params CustomerRole[] customerRoles)

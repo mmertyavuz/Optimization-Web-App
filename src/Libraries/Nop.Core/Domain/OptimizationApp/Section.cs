@@ -1,3 +1,5 @@
+using System;
+
 namespace Nop.Core.Domain;
 
 public class Section : BaseEntity
@@ -11,4 +13,21 @@ public class Section : BaseEntity
     /// The identifier of the associated course for the section.
     /// </summary>
     public int CourseId { get; set; }
+    
+    /// <summary>
+    /// The day of the week when the course section is scheduled.
+    /// </summary>
+    public DayOfWeek Day { get; set; }
+    
+    /// <summary>
+    /// The starting time of the course section on the scheduled day.
+    /// </summary>
+    public TimeSpan StartTime { get; set; }
+    
+    /// <summary>
+    /// The ending time of the course section on the scheduled day.
+    /// </summary>
+    public TimeSpan EndTime { get; set; }
+    
+    public int StudentCount { get; set; }
 }

@@ -1,0 +1,112 @@
+@model Nop.Web.Areas.Admin.OptimizationApp.Models.OptimizationOverviewModel
+
+@{
+    const string hideSearchBlockAttributeName = "TopicsPage.HideSearchBlock";
+    var hideSearchBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideSearchBlockAttributeName);
+    
+    const string cardId = "nopcommerce-common-statistics-card";
+    const string hideCardAttributeName = "HideCommonStatisticsCard";
+    
+    var hideCard = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideCardAttributeName);
+}
+
+<div class="col-6">
+                        <div class="card card-primary card-outline">
+                            <div class="card-header with-border clearfix">
+                                <div class="card-title">
+                                    <i class="far fa-chart-bar"></i>
+                                    Data Status
+                                </div>
+                                <div class="card-tools float-right">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        @if (hideCard)
+                                        {
+                                            <text><i class="fas fa-plus"></i></text>
+                                        }
+                                        else
+                                        {
+                                            <text><i class="fas fa-minus"></i></text>
+                                        }
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="small-box bg-info">
+                                            <div class="inner" style="text-align: center; font-weight: bold">
+                                                <h3>@Model.ClassroomCount</h3>
+                                                <p>Clasroom(s)</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-bag"></i>
+                                            </div>
+                                            <a asp-controller="Classroom" asp-action="List" class="small-box-footer">
+                                                Show More
+                                                <i class="fas fa-arrow-circle-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    @if (Model.IsReadyForOptimization)
+                                    {
+                                        <div class="col-6">
+                                            <div class="small-box bg-green">
+                                                <div class="inner" style="text-align: center; font-weight: bold">
+                                                    <h3>Ready for Optimization</h3>
+                                                    <p>
+                                                        Data's are ready for optimization. You can start optimization process below. Please check plugin status before start optimization process.
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-6">
+                                            <div class="small-box bg-blue">
+                                                <div class="inner" style="text-align: center; font-weight: bold">
+                                                    <h3>Waiting Data</h3>
+                                                    <p>
+                                                        @if (Model.ClassroomCount == 0 && Model.SectionCount == 0)
+                                                        {
+                                                            <text>Waiting Classroom and Section data...</text>
+                                                        }
+                                                        else if (Model.ClassroomCount == 0)
+                                                        {
+                                                            <text>Waiting Classroom data...</text>
+                                                        }
+                                                        else if (Model.SectionCount == 0)
+                                                        {
+                                                            <text>Waiting Section data...</text>
+                                                        }
+                                                        else
+                                                        {
+                                                            <text>Waiting data...</text>
+                                                        }
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="col-lg-3 col-6">
+                                        <div class="small-box bg-yellow">
+                                            <div class="inner" style="text-align: center; font-weight: bold">
+                                                <h3>@Model.SectionCount</h3>
+                                                <p>Course(s)</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-person-add"></i>
+                                            </div>
+                                            <a asp-controller="Course" asp-action="List" class="small-box-footer">
+                                                @T("Admin.Dashboard.MoreInfo")
+                                                <i class="fas fa-arrow-circle-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>

@@ -1,7 +1,11 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Nop.Core;
 using Nop.Core.Domain;
+using Nop.Services.ExportImport;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
 using Nop.Services.OptimizationApp;
@@ -25,12 +29,15 @@ public class CourseController : BaseAdminController
     private readonly ICourseModelFactory _courseModelFactory;
     private readonly ISectionModelFactory _sectionModelFactory;
     private readonly ISectionService _sectionService;
+    private readonly IImportManager _importManager;
+    private readonly IExportManager _exportManager;
+    private readonly CorporationSettings _corporationSettings;
 
     #endregion
 
     #region Ctor
 
-    public CourseController(IPermissionService permissionService, INotificationService notificationService, ILocalizationService localizationService, ICourseService courseService, ICourseModelFactory courseModelFactory, ISectionModelFactory sectionModelFactory, ISectionService sectionService)
+    public CourseController(IPermissionService permissionService, INotificationService notificationService, ILocalizationService localizationService, ICourseService courseService, ICourseModelFactory courseModelFactory, ISectionModelFactory sectionModelFactory, ISectionService sectionService, IImportManager importManager, IExportManager exportManager, CorporationSettings corporationSettings)
     {
         _permissionService = permissionService;
         _notificationService = notificationService;
@@ -39,6 +46,9 @@ public class CourseController : BaseAdminController
         _courseModelFactory = courseModelFactory;
         _sectionModelFactory = sectionModelFactory;
         _sectionService = sectionService;
+        _importManager = importManager;
+        _exportManager = exportManager;
+        _corporationSettings = corporationSettings;
     }
 
     #endregion
@@ -207,6 +217,9 @@ public class CourseController : BaseAdminController
         if (!await _permissionService.AuthorizeAsync(OptimizationAppPermissionProvider.ManageCourses))
             return AccessDeniedView();
 
+        if (model.CourseId == 0)
+            throw new ArgumentNullException(nameof(model.CourseId));
+        
         if (ModelState.IsValid)
         {
             //fill entity from model
@@ -249,6 +262,11 @@ public class CourseController : BaseAdminController
         var section = await _sectionService.GetSectionByIdAsync(model.Id)
                       ?? throw new ArgumentException("No section found with the specified id");
 
+        if (model.CourseId == 0)
+        {
+            throw new ArgumentNullException(nameof(model.CourseId));
+        }
+
         if (ModelState.IsValid)
         {
             section = model.ToEntity(section);
@@ -281,6 +299,108 @@ public class CourseController : BaseAdminController
         return new NullJsonResult();
     }
 
+    public virtual async Task<IActionResult> ExportExcel()
+    {
+        if (!await _permissionService.AuthorizeAsync(OptimizationAppPermissionProvider.ManageCourses))
+            return AccessDeniedView();
+
+        try
+        {
+            var bytes = await _exportManager
+                .ExportCoursesAndSectionsToExcel((await _sectionService.GetAllSectionsAsync()).ToList());
+
+            var fileName = _corporationSettings.CorporationName + " courses.xlsx";
+            
+            return File(bytes, MimeTypes.TextXlsx, fileName);
+        }
+        catch (Exception exc)
+        {
+            await _notificationService.ErrorNotificationAsync(exc);
+            return RedirectToAction("List");
+        }
+    }
+    
+    public virtual async Task<IActionResult> DownloadSampleExcel()
+    {
+        if (!await _permissionService.AuthorizeAsync(OptimizationAppPermissionProvider.ManageCourses))
+            return AccessDeniedView();
+
+        try
+        {
+            var bytes = await _exportManager
+                .ExportCoursesAndSectionsToExcel();
+
+            var fileName = _corporationSettings.CorporationName + " sample course import file.xlsx";
+            
+            return File(bytes, MimeTypes.TextXlsx, fileName);
+        }
+        catch (Exception exc)
+        {
+            await _notificationService.ErrorNotificationAsync(exc);
+            return RedirectToAction("List");
+        }
+    }
+    
+    [HttpPost]
+    public virtual async Task<IActionResult> ImportFromExcel(IFormFile importexcelfile)
+    {
+        if (!await _permissionService.AuthorizeAsync(OptimizationAppPermissionProvider.ManageCourses))
+            return AccessDeniedView();
+
+        var courses = await _courseService.GetAllCoursesAsync();
+        var sections = await _sectionService.GetAllSectionsAsync();
+
+        if (courses.Any() || sections.Any())
+        {
+            _notificationService.ErrorNotification("You can not import courses and sections from excel file because there are already courses or sections in the system. Please reset the optimization process.");
+            return RedirectToAction("List");
+        }
+        
+        try
+        {
+            if (importexcelfile is {Length: > 0})
+            {
+                await _importManager.ImportCoursesAndSectionsFromExcelAsync(importexcelfile.OpenReadStream());
+            }
+            else
+            {
+                _notificationService.ErrorNotification("An error occured during importing data from excel. Please try again.");
+                return RedirectToAction("List");
+            }
+
+            _notificationService.SuccessNotification("Successfully imported from given excel file.");
+
+            return RedirectToAction("List");
+        }
+        catch (Exception exc)
+        {
+            await _notificationService.ErrorNotificationAsync(exc);
+            return RedirectToAction("List");
+        }
+    }
+    
+    [HttpPost]
+    public virtual async Task<IActionResult> DeleteAll()
+    {
+        if (!await _permissionService.AuthorizeAsync(OptimizationAppPermissionProvider.ManageCourses))
+            return AccessDeniedView();
+
+
+        var courses = await _courseService.GetAllCoursesAsync();
+        var sections = await _sectionService.GetAllSectionsAsync();
+
+        foreach (var section in sections)
+        {
+            await _sectionService.DeleteSectionAsync(section);
+        }
+
+        foreach (var course in courses)
+        {
+            await _courseService.DeleteCourseAsync(course);
+        }
+        
+        return RedirectToAction("List");
+    }
 
     #endregion
 

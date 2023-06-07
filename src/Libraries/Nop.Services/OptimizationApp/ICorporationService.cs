@@ -19,6 +19,8 @@ public interface ICorporationService
 
     Task UpdateFacultyAsync(Faculty faculty);
 
+    Task DeleteAllFacultiesAsync();
+
     #endregion
 
     #region Educational Department
@@ -35,6 +37,8 @@ public interface ICorporationService
     Task InsertEducationalDepartmentAsync(EducationalDepartment educationalDepartment);
 
     Task UpdateEducationalDepartmentAsync(EducationalDepartment educationalDepartment);
+
+    Task DeleteAllEducationalDepartmentsAsync();
 
     #endregion
 
@@ -54,6 +58,7 @@ public interface ICorporationService
 
     Task UpdateClassroomAsync(Classroom classroom);
 
+    Task DeleteAllClassroomsAsync();
 
     #endregion
 }

@@ -20,6 +20,8 @@ public interface ICourseService
     Task UpdateCourseAsync(Course course);
 
     Task DeleteCourseAsync(Course course);
+
+    Task DeleteAllCoursesAsync();
 }
 
 public class CourseService : ICourseService
@@ -79,5 +81,10 @@ public class CourseService : ICourseService
     public async Task DeleteCourseAsync(Course course)
     { 
         await _courseRepository.DeleteAsync(course);
+    }
+
+    public async Task DeleteAllCoursesAsync()
+    {
+        await _courseRepository.TruncateAsync();
     }
 }

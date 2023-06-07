@@ -1,0 +1,46 @@
+﻿@using Nop.Web.Areas.Admin.Models.Corporations
+@model Nop.Web.Areas.Admin.Models.Corporations.FacultyModel
+
+@if (Model.Id > 0)
+{
+    <div class="card-body">
+        @await Html.PartialAsync("Table", new DataTablesModel
+        {
+            Name = "departments-grid",
+            UrlRead = new DataUrl("List", "EducationalDepartment", new RouteValueDictionary { [nameof(Model.EducationalDepartmentSearchModel.FacultyId)] = Model.EducationalDepartmentSearchModel.FacultyId }),
+            Length = Model.EducationalDepartmentSearchModel.PageSize,
+            LengthMenu = Model.EducationalDepartmentSearchModel.AvailablePageSizes,
+            ColumnCollection = new List<ColumnProperty>
+            {
+                new ColumnProperty(nameof(EducationalDepartmentModel.Code))
+                {
+                    Title = "Code",
+                    Width = "250",
+                },
+                new ColumnProperty(nameof(EducationalDepartmentModel.Name))
+                {
+                    Title = "Name",
+                },
+                new ColumnProperty(nameof(EducationalDepartmentModel.Id))
+                {
+                    Title = "Details",
+                    Width = "100",
+                    ClassName =  NopColumnClassDefaults.Button,
+                    Render = new RenderCustom("renderColumnEdit")
+                },
+            }
+        })
+    
+        <script>
+            function renderColumnEdit(data, type, row, meta) {
+                return '<a href="/Admin/EducationalDepartment/Edit/' + data +'">Details</a>';
+            }
+        </script>
+    </div>
+}
+else
+{
+    <div class="card-body">
+        @T("Admin.Common.SaveBeforeEdit")
+    </div>
+}

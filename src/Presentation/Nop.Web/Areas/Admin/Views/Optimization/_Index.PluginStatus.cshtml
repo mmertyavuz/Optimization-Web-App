@@ -1,0 +1,66 @@
+@model Nop.Web.Areas.Admin.OptimizationApp.Models.OptimizationOverviewModel
+
+@{
+    const string hideSearchBlockAttributeName = "TopicsPage.HideSearchBlock";
+    var hideSearchBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideSearchBlockAttributeName);
+    
+    const string cardId = "nopcommerce-common-statistics-card";
+    const string hideCardAttributeName = "HideCommonStatisticsCard";
+    
+    var hideCard = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideCardAttributeName);
+}
+
+<div class="col-6">
+                        <div class="card card-primary card-outline">
+                            <div class="card-header with-border clearfix">
+                                <div class="card-title">
+                                    <i class="far fa-chart-bar"></i>
+                                    Plugin Status
+                                </div>
+                                <div class="card-tools float-right">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        @if (hideCard)
+                                        {
+                                            <text><i class="fas fa-plus"></i></text>
+                                        }
+                                        else
+                                        {
+                                            <text><i class="fas fa-minus"></i></text>
+                                        }
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p style="font-weight: bold">
+                                            @if (Model.IsPluginInstalled)
+                                            {
+                                                <span style="color: green">
+                                                    Plugin is successfully installed. Please check availability before start optimization process.
+                                                </span>
+                                                <div>
+
+                                                    <button id="checkAvailabilityButton" class="btn btn-warning" onclick="checkAvailability()">Check Plugin Availability</button>
+
+                                                    <p id="plugin-available" style="display: none; margin-top: 10px">
+                                                        Plugin is <span style="color: green">available</span>. You can start optimization process below.
+                                                    </p>
+                                                    <p id="plugin-notavailable" style="display: none; margin-top: 10px">
+                                                        Plugin is <span style="color: red"> not available </span>. Please <a href="/Admin/Plugin/List">configure plugin</a> before start optimization process.
+                                                    </p>
+
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <span style="color: red">
+                                                    Plugin is not installed. Please <a href="/Admin/Plugin/List">install plugin</a> before start optimization process.
+                                                </span>
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

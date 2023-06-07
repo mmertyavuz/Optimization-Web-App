@@ -98,6 +98,8 @@ namespace Nop.Services.ExportImport
         private readonly OrderSettings _orderSettings;
         private readonly ProductEditorSettings _productEditorSettings;
         private readonly ICorporationService _corporationService;
+        private readonly ICourseService _courseService;
+        private readonly ISectionService _sectionService;
 
         #endregion
 
@@ -144,7 +146,7 @@ namespace Nop.Services.ExportImport
             IVendorService vendorService,
             IWorkContext workContext,
             OrderSettings orderSettings,
-            ProductEditorSettings productEditorSettings, ICorporationService corporationService)
+            ProductEditorSettings productEditorSettings, ICorporationService corporationService, ICourseService courseService, ISectionService sectionService)
         {
             _addressSettings = addressSettings;
             _catalogSettings = catalogSettings;
@@ -189,6 +191,8 @@ namespace Nop.Services.ExportImport
             _orderSettings = orderSettings;
             _productEditorSettings = productEditorSettings;
             _corporationService = corporationService;
+            _courseService = courseService;
+            _sectionService = sectionService;
         }
 
         #endregion

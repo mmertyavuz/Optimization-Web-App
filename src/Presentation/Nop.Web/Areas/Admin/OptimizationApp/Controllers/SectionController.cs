@@ -1,8 +1,11 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Nop.Core.Domain;
 using Nop.Services.OptimizationApp;
 using Nop.Services.Security;
 using Nop.Web.Areas.Admin.Factories;
+using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Areas.Admin.Models.Corporations;
 using Nop.Web.Areas.Admin.Models.Education;
 
@@ -77,4 +80,10 @@ public class SectionController : BaseAdminController
 
         return View(model);
     }
+
+    #region Periods
+
+    
+
+    #endregion
 }

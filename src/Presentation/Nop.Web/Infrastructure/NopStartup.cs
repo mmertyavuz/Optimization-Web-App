@@ -93,6 +93,7 @@ namespace Nop.Web.Infrastructure
             services.AddScoped<IFacultyModelFactory, FacultyModelFactory>();
             services.AddScoped<IClassroomModelFactory, ClassroomModelFactory>();
             services.AddScoped<ICourseModelFactory, CourseModelFactory>();
+            services.AddScoped<ISectionModelFactory, SectionModelFactory>();
 
             //factories
             services.AddScoped<Factories.IAddressModelFactory, Factories.AddressModelFactory>();

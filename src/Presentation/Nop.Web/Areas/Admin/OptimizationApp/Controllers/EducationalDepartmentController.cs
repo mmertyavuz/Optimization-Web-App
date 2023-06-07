@@ -45,7 +45,7 @@ public class EducationalDepartmentController : BaseAdminController
 
     #region Ctor
 
-    public EducationalDepartmentController(IEducationalDepartmentModelFactory educationalDepartmentFactory, ICorporationService corporationService, IPermissionService permissionService, INotificationService notificationService, ILocalizationService localizationService, ICustomerService customerService, CorporationSettings corporationSettings, IStoreContext storeContext, IStateProvinceService stateProvinceService, ICountryService countryService, IAddressService addressService, ICourseService courseService, IExportManager exportManager)
+    public EducationalDepartmentController(IEducationalDepartmentModelFactory educationalDepartmentFactory, ICorporationService corporationService, IPermissionService permissionService, INotificationService notificationService, ILocalizationService localizationService, ICustomerService customerService, CorporationSettings corporationSettings, IStoreContext storeContext, IStateProvinceService stateProvinceService, ICountryService countryService, IAddressService addressService, ICourseService courseService, IExportManager exportManager, IImportManager importManager)
     {
         _educationalDepartmentFactory = educationalDepartmentFactory;
         _corporationService = corporationService;
@@ -60,6 +60,7 @@ public class EducationalDepartmentController : BaseAdminController
         _addressService = addressService;
         _courseService = courseService;
         _exportManager = exportManager;
+        _importManager = importManager;
     }
     
 

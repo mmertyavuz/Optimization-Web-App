@@ -26,15 +26,17 @@ public class FacultyModelFactory : IFacultyModelFactory
 
     private readonly ILocalizationService _localizationService;
     private readonly ICorporationService _corporationService;
+    private readonly IEducationalDepartmentModelFactory _educationalDepartmentModelFactory;
 
     #endregion
 
     #region Ctor
 
-    public FacultyModelFactory(ILocalizationService localizationService, ICorporationService corporationService)
+    public FacultyModelFactory(ILocalizationService localizationService, ICorporationService corporationService, IEducationalDepartmentModelFactory educationalDepartmentModelFactory)
     {
         _localizationService = localizationService;
         _corporationService = corporationService;
+        _educationalDepartmentModelFactory = educationalDepartmentModelFactory;
     }
 
     #endregion
@@ -87,7 +89,13 @@ public class FacultyModelFactory : IFacultyModelFactory
             {
                 model = faculty.ToModel<FacultyModel>();
             }
+            
+            model.EducationalDepartmentSearchModel.FacultyId = faculty.Id;
         }
+        
+        await _educationalDepartmentModelFactory.PrepareEducationalDepartmentSearchModelAsync(
+            model.EducationalDepartmentSearchModel);
+        
         return model;
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Nop.Core.Domain;
+using Nop.Services.Helpers;
 using Nop.Services.Localization;
 using Nop.Services.OptimizationApp;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
@@ -17,6 +18,9 @@ public interface ISectionModelFactory
     Task<SectionListModel> PrepareSectionListModelAsync(SectionSearchModel searchModel);
 
     Task<SectionModel> PrepareSectionModelAsync(SectionModel model, Section section, bool excludeProperties = false);
+    
+    CourseSectionPlanSearchModel PrepareCourseSectionPlanSearchModel(CourseSectionPlanSearchModel searchModel,
+        Section section);
 }
 
 public class SectionModelFactory : ISectionModelFactory
@@ -66,7 +70,6 @@ public class SectionModelFactory : ISectionModelFactory
         );
         
         var pagedSections = sections.ToPagedList(searchModel);
-        
         //prepare grid model
         var model =  await new SectionListModel().PrepareToGridAsync(searchModel, pagedSections, () =>
         {
@@ -79,9 +82,9 @@ public class SectionModelFactory : ISectionModelFactory
 
                 if (course is not  null)
                 {
-                    facultyModel.CourseName = course.Name;                    
+                    facultyModel.CourseName = course.Name;
+                    facultyModel.DayName = TurkishDayConverter.ConvertToTurkishDay(section.Day);
                 }
-
                 return facultyModel;
             });
         });
@@ -100,7 +103,7 @@ public class SectionModelFactory : ISectionModelFactory
                 
                 var course = await _courseService.GetCourseByIdAsync(section.CourseId);
 
-                if (course is not  null)
+                if (course is not null)
                 {
                     model.CourseName = course.Name;                    
                 }
@@ -116,5 +119,20 @@ public class SectionModelFactory : ISectionModelFactory
         await _baseOptimizationAppModelFactory.PrepareFacultiesAsync(model.AvailableCourses, await _localizationService.GetResourceAsync($"Admin.Common.Select"));
 
         return model;
+    }
+    public CourseSectionPlanSearchModel PrepareCourseSectionPlanSearchModel(CourseSectionPlanSearchModel searchModel, Section section)
+    {
+        if (searchModel == null)
+            throw new ArgumentNullException(nameof(searchModel));
+        
+        if (section == null)
+            throw new ArgumentNullException(nameof(section));
+        
+        searchModel.SectionId = section.Id;
+        
+        //prepare page parameters
+        searchModel.SetGridPageSize();
+
+        return searchModel;
     }
 }

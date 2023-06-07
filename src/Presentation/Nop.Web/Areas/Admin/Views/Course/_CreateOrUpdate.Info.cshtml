@@ -3,20 +3,22 @@
 <div class="card-body">
     <div class="form-group row">
         <div class="col-md-3">
-            <nop-label asp-for="Code" />
+            <nop-label asp-for="Name" />
         </div>
         <div class="col-md-9">
-            <nop-editor asp-for="Code"/>
-            <span asp-validation-for="Code"></span>
+            <div class="form-text-row">
+                @Model.Name
+            </div>
         </div>
     </div>
     <div class="form-group row">
         <div class="col-md-3">
-            <nop-label asp-for="Name" />
+            <nop-label asp-for="Code" />
         </div>
         <div class="col-md-9">
-            <nop-editor asp-for="Name"/>
-            <span asp-validation-for="Name"></span>
+            <div class="form-text-row">
+                @Model.Code
+            </div>
         </div>
     </div>
     <div class="form-group row">
@@ -24,35 +26,19 @@
             <nop-label asp-for="Description" />
         </div>
         <div class="col-md-9">
-            <nop-editor asp-for="Description"/>
-            <span asp-validation-for="Description"></span>
+            <div class="form-text-row">
+                @Model.Description
+            </div>
         </div>
     </div>
     <div class="form-group row">
-        <div class="col-md-3">
-            <nop-label asp-for="Credit" />
+            <div class="col-md-3">
+                <nop-label asp-for="EducationalDepartmentId" />
+            </div>
+            <div class="col-md-9">
+                <div class="form-text-row">
+                    <a href="/admin/educationaldepartment/edit/@Model.EducationalDepartmentId">@Model.EducationalDepartmentName</a>
+                </div>
+            </div>
         </div>
-        <div class="col-md-9">
-            <nop-editor asp-for="Credit"/>
-            <span asp-validation-for="Credit"></span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-md-3">
-            <nop-label asp-for="Ects" />
-        </div>
-        <div class="col-md-9">
-            <nop-editor asp-for="Ects"/>
-            <span asp-validation-for="Ects"></span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-md-3">
-            <nop-label asp-for="EducationalDepartmentId" />
-        </div>
-        <div class="col-md-9">
-            <nop-select asp-for="EducationalDepartmentId" asp-items="@Model.AvailableEducationalDepartments" />
-            <span asp-validation-for="EducationalDepartmentId"></span>
-        </div>
-    </div>
 </div>
