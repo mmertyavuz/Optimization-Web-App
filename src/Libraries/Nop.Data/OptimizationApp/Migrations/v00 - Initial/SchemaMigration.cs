@@ -7,7 +7,7 @@ using Nop.Data.Migrations;
 
 namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
 {
-    [NopMigration("2023-04-29 00:00:00", "Initial Migration", MigrationProcessType.Update)]
+    [NopMigration("2023-04-30 00:00:00", "Initial Migration", MigrationProcessType.Update)]
     public class SchemaMigration : Migration
     {
         /// <summary>
@@ -52,6 +52,10 @@ namespace Nop.Data.OptimizationApp.Migrations.v00___Initial
             if (!Schema.Table(NameCompatibilityManager.GetTableName(typeof(StudentSectionMapping))).Exists())
             {
                 Create.TableFor<StudentSectionMapping>();
+            }
+            if (!Schema.Table(NameCompatibilityManager.GetTableName(typeof(OptimizationResult))).Exists())
+            {
+                Create.TableFor<OptimizationResult>();
             }
 
         }

@@ -1,0 +1,77 @@
+@model Nop.Web.Areas.Admin.OptimizationApp.Models.OptimizationOverviewModel
+
+@{
+    const string hideSearchBlockAttributeName = "TopicsPage.HideSearchBlock";
+    var hideSearchBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideSearchBlockAttributeName);
+    
+    const string cardId = "nopcommerce-common-statistics-card";
+    const string hideCardAttributeName = "HideCommonStatisticsCard";
+    
+    var hideCard = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideCardAttributeName);
+}
+
+<style>
+    #json-container {
+        background-color: #000;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        white-space: pre-wrap;
+        overflow: auto;
+        padding: 10px;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #json-container::before {
+        content: 'JSON Data';
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .json-key {
+        color: #fff;
+    }
+
+    .json-value {
+        color: #00ff00;
+    }
+
+    .json-value-int {
+        color: #ff0000;
+    }
+</style>
+
+<div class="col-12">
+    <div class="card card-primary card-outline">
+        <div class="card-header with-border clearfix">
+            <div class="card-title">
+                <i class="far fa-chart-bar"></i>
+                Guide
+            </div>
+            <div class="card-tools float-right">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    @if (hideCard)
+                    {
+                        <text><i class="fas fa-plus"></i></text>
+                    }
+                    else
+                    {
+                        <text><i class="fas fa-minus"></i></text>
+                    }
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    @await Html.PartialAsync("_Index.DataStatus.OptimizationData", Model)
+                </div>
+                <div class="col-6">
+                    @await Html.PartialAsync("_Index.DataStatus.OptimizedData", Model)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

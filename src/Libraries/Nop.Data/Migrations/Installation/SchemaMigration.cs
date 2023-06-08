@@ -173,6 +173,7 @@ namespace Nop.Data.Migrations.Installation
             Create.TableFor<Section>();
             Create.TableFor<Student>();
             Create.TableFor<StudentSectionMapping>();
+            Create.TableFor<OptimizationResult>();
 
         }
     }

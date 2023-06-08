@@ -1,0 +1,30 @@
+@using Nop.Web.Framework.Models.AdminAreaTour
+@model Nop.Web.Areas.Admin.OptimizationApp.Models.OptimizationJsonDataModel
+
+
+@{
+    //page title
+    ViewBag.PageTitle = "Paste Optimized data from JSON";
+
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName("Optimization");
+}
+
+<form asp-controller="Optimization" asp-action="OptimizeFromJson" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            Paste Optimized data from JSON
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-action="Index">go back</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+        </div>
+    </div>
+    @await Html.PartialAsync("_CreateOrUpdate", Model)
+</form>

@@ -1,0 +1,11 @@
+@model Nop.Web.Areas.Admin.OptimizationApp.Models.OptimizationJsonDataModel
+
+<div class="card-body">
+    <div id="info-area">
+        <div class="form-group">
+            <label asp-for="JsonValue" class="control-label"></label>
+            <textarea style="height: 950px; font-size: 10px" asp-for="JsonValue" class="form-control" rows="10"></textarea>
+            <span asp-validation-for="JsonValue" class="text-danger"></span>
+        </div>
+    </div>
+</div>

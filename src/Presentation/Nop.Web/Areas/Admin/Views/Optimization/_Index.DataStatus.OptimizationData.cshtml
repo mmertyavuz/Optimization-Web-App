@@ -1,0 +1,98 @@
+<style>
+    #json-container-2 {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            white-space: pre-wrap;
+            overflow: auto;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    
+        #json-container-2::before {
+            content: 'JSON Data';
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+</style>
+<div class="card">
+    <div class="card-header with-border">
+        <h2 class="card-title">
+            <b>Get Optimization Data</b>
+        </h2>
+        <div class="card-tools float-right">
+            <button onclick="javascript:OpenWindow('/Admin/Optimization/GetOptimizationData', 800, 600, true); return false;" class="btn btn-success float-left">RUN</button>
+        </div>
+    </div>
+    
+    <div class="card-body">
+        <p>The optimization data can be obtained from the endpoint provided below. [HTTPPOST]</p>
+        <span style="color:#c7254e;background-color:#f9f2f4">/Api/GetOptimizationData</span>
+        <hr/>
+        <b>
+            Example <u>Body</u>:
+        </b>
+        <div id="json-container-2"></div>
+    </div>
+</div>
+
+<script>
+    var jsonData = [
+           {
+              "SectionId": 1,
+              "ClassroomId": 31
+            },
+            {
+              "SectionId": 3,
+              "ClassroomId": 31
+            },
+            {
+              "SectionId": 2,
+              "ClassroomId": 95
+            },
+            {
+              "SectionId": 1,
+              "ClassroomId": 31
+            },
+            {
+              "SectionId": 3,
+              "ClassroomId": 31
+            },
+            {
+              "SectionId": 4,
+              "ClassroomId": 63
+            },
+            {
+              "SectionId": 5,
+              "ClassroomId": 52
+            },
+            {
+              "SectionId": 6,
+              "ClassroomId": 19
+            }
+        ];
+
+    var jsonContainer = document.getElementById("json-container");
+    jsonContainer.innerHTML = beautifyJson(jsonData);
+
+    function beautifyJson(jsonData) {
+        var beautifiedJson = JSON.stringify(jsonData, null, 2);
+
+        // Replace variable names with spans having .json-key class
+        beautifiedJson = beautifiedJson.replace(/"([\w]+)":/g, '"<span class="json-key">$1</span>":');
+
+        // Replace values with spans having .json-value or .json-value-int class based on type
+        beautifiedJson = beautifiedJson.replace(/:\s*"([^"]*)"/g, function(match, p1) {
+            if (!isNaN(p1)) {
+                return ': <span class="json-value-int">' + p1 + '</span>';
+            } else {
+                return ': <span class="json-value">' + p1 + '</span>';
+            }
+        });
+
+        return beautifiedJson;
+    }
+</script>

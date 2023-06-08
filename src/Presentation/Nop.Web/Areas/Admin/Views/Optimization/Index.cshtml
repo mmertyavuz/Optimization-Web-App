@@ -37,7 +37,8 @@
             <div class="cards-group">
                 <div class="row">
                     @await Html.PartialAsync("_Index.DataStatus", Model)
-                    </div>
+                    @await Html.PartialAsync("_Index.Guide", Model)
+                </div>
             </div>
         </div>
     </div>

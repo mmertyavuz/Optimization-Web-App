@@ -30,4 +30,5 @@ public record SectionOptimizationModel : BaseNopModel
     public TimeSpan StartTime { get; set; }
     public TimeSpan EndTime { get; set; }
     public int StudentCount { get; set; }
+    public string CourseCode { get; set; }
 }

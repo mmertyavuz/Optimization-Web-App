@@ -9,4 +9,6 @@ public record OptimizationOverviewModel : BaseNopModel
     public int SectionCount { get; set; }
 
     public bool IsReadyForOptimization { get; set; }
+
+    public bool IsOptimized { get; set; }
 }

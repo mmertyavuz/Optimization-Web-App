@@ -36,6 +36,4 @@ public class Section : BaseEntity
     public TimeSpan EndTime { get; set; }
     
     public int StudentCount { get; set; }
-    
-    
 }

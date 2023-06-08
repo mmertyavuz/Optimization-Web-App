@@ -47,10 +47,27 @@
                                             </a>
                                         </div>
                                     </div>
-                                    @if (Model.IsReadyForOptimization)
+                                    @if (Model.IsOptimized)
                                     {
                                         <div class="col-6">
                                             <div class="small-box bg-green">
+                                                <div class="inner" style="text-align: center; font-weight: bold">
+                                                    <h3>Ready for Optimization</h3>
+                                                    <p>
+                                                        Data's are ready for optimization. You can start optimization process below. Please check plugin status before start optimization process.
+                                                    </p>
+                                                </div>
+                                            <a asp-controller="Classroom" asp-action="List" class="small-box-footer">
+                                                Show More
+                                                <i class="fas fa-arrow-circle-right"></i>
+                                            </a>
+                                            </div>
+                                        </div>
+                                    }
+                                    else if (Model.IsReadyForOptimization)
+                                    {
+                                        <div class="col-6">
+                                            <div class="small-box bg-yellow">
                                                 <div class="inner" style="text-align: center; font-weight: bold">
                                                     <h3>Ready for Optimization</h3>
                                                     <p>

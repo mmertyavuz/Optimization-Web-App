@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Nop.Services.OptimizationApp;
@@ -12,11 +13,13 @@ public class ApiController : BasePublicController
 
     private readonly ICorporationService _corporationService;
     private readonly ISectionService _sectionService;
+    private readonly ICourseService _courseService;
 
-    public ApiController(ICorporationService corporationService, ISectionService sectionService)
+    public ApiController(ICorporationService corporationService, ISectionService sectionService, ICourseService courseService)
     {
         _corporationService = corporationService;
         _sectionService = sectionService;
+        _courseService = courseService;
     }
 
     #endregion
@@ -38,6 +41,7 @@ public class ApiController : BasePublicController
         var model = new OptimizationModel();
 
         var classrooms = await _corporationService.GetAllClassroomsAsync();
+        var courses = await _courseService.GetAllCoursesAsync();
         
         foreach (var classroom in classrooms)
         {
@@ -60,8 +64,14 @@ public class ApiController : BasePublicController
                 Day = (int)section.Day,
                 StartTime = section.StartTime,
                 EndTime = section.EndTime,
-                StudentCount = section.StudentCount
+                StudentCount = section.StudentCount,
             };
+
+            var course = courses.FirstOrDefault(x => x.Id == section.CourseId);
+            if (course is not null)
+            { 
+                sectionModel.CourseCode = course.Code;
+            }
 
             model.Sections.Add(sectionModel);
         }

@@ -1,0 +1,82 @@
+<div class="card">
+    <div class="card-header with-border">
+        <h2 class="card-title">
+           
+            <b>Set Optimized Data</b>
+        </h2>
+        
+        <div class="card-tools float-right">
+            <a href="/Admin/Optimization/OptimizeFromJson" class="btn btn-success float-left">RUN</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <p>The optimized data can be set from the endpoint provided below. [HTTPPOST]</p>
+        <span style="color:#c7254e;background-color:#f9f2f4">/Api/SetOptimizedData</span>
+        <hr/>
+        <b>
+            Example <u>Response</u>:
+        </b>
+        <div id="json-container"></div>
+    </div>
+</div>
+
+<script>
+    var modifiedData = {
+                "Classrooms": [
+                    {
+                        "Id": 53,
+                        "Capacity": 50,
+                        "Name": "A101",
+                        "CustomProperties": {}
+                    },
+                    {
+                        "Id": 82,
+                        "Capacity": 37,
+                        "Name": "A102",
+                        "CustomProperties": {}
+                    }
+                ],
+                "Sections": [
+                    {
+                        "Id": 1221,
+                              "Day": 1,
+                              "StartTime": "10:30:00",
+                              "EndTime": "12:20:00",
+                              "StudentCount": 101,
+                              "CourseCode": "PSY2004",
+                              "CustomProperties": {}
+                    },
+                    {
+                        "Id": 1222,
+                              "Day": 1,
+                              "StartTime": "08:30:00",
+                              "EndTime": "10:20:00",
+                              "StudentCount": 281,
+                              "CourseCode": "PSY2004",
+                              "CustomProperties": {}
+                    }
+                ],
+                "CustomProperties": {}
+            };
+
+    var jsonContainer2 = document.getElementById("json-container-2");
+    jsonContainer2.innerHTML = beautifyJson2(modifiedData);
+
+    function beautifyJson2(modifiedData) {
+        var beautifiedJson2 = JSON.stringify(modifiedData, null, 2);
+
+        // Replace variable names with spans having .json-key class
+        beautifiedJson2 = beautifiedJson2.replace(/"([\w]+)":/g, '"<span class="json-key">$1</span>":');
+
+        // Replace values with spans having .json-value or .json-value-int class based on type
+        beautifiedJson2 = beautifiedJson2.replace(/:\s*"([^"]*)"/g, function(match, p1) {
+            if (!isNaN(p1)) {
+                return ': <span class="json-value-int">' + p1 + '</span>';
+            } else {
+                return ': <span class="json-value">' + p1 + '</span>';
+            }
+        });
+
+        return beautifiedJson2;
+    }
+</script>
