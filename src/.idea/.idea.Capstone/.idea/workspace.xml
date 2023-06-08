@@ -7,50 +7,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="Optimizasyon kısmına kadarki modüllerin nihai halinin verilmesi.">
-      <change afterPath="$PROJECT_DIR$/Plugins/Bau.Plugin.Optimization.Gurobi/Controllers/OptimizationSolverController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/Bau.Plugin.Optimization.Gurobi/Dto/ClassroomDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/Bau.Plugin.Optimization.Gurobi/Dto/SectionDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/Bau.Plugin.Optimization.Gurobi/Models/ConfigurationModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/Bau.Plugin.Optimization.Gurobi/OptimizationSolverDefaults.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/Bau.Plugin.Optimization.Gurobi/OptimizationSolverPlugin.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/Bau.Plugin.Optimization.Gurobi/OptimizationSolverSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/Bau.Plugin.Optimization.Gurobi/Services/GurobiProcessingService.cs" afterDir="false" />
+    <list default="true" id="e2684033-647d-481b-ba50-03736e1c54c7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Factories/IOptimizationModelFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Controllers/ApiController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Models/Optimization/OptimizationModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Capstone/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Capstone.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Capstone.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Components/WidgetsSendinblueViewComponent.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Content/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Controllers/SendinblueController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Domain/SendinblueAccountLanguage.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Infrastructure/NopStartup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/Bau.Plugin.Optimization.Gurobi/Infrastructure/NopStartup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Infrastructure/RouteProvider.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/MarketingAutomation/IdentifyRequest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/MarketingAutomation/Request.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/MarketingAutomation/TrackEventRequest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Models/ConfigurationModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Models/SendinblueMessageTemplateListModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Models/SendinblueMessageTemplateModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Models/SendinblueMessageTemplateSearchModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Models/SmsListModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Models/SmsModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Models/SmsSearchModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Nop.Plugin.Misc.Sendinblue.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/Bau.Plugin.Optimization.Gurobi/Bau.Plugin.Optimization.Gurobi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/Bau.Plugin.Optimization.Gurobi/Notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/SendinblueDefaults.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/SendinbluePlugin.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/SendinblueSettings.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Services/EventConsumer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Services/MarketingAutomationHttpClient.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Services/MarketingAutomationManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Services/SendinblueEmailSender.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Services/SendinblueManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Services/SendinblueMessageService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Services/SynchronizationTask.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Views/Configure.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/Bau.Plugin.Optimization.Gurobi/Views/Configure.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Views/PublicInfo.cshtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/Views/_ViewImports.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/Bau.Plugin.Optimization.Gurobi/Views/_ViewImports.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/Bau.Plugin.Optimization.Gurobi/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Nop.Plugin.Misc.Sendinblue/plugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/Bau.Plugin.Optimization.Gurobi/plugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/CorporationSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/CorporationSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/Section.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Core/Domain/OptimizationApp/Section.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/CorporationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/CorporationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ICorporationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/ICorporationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/IOptimizationProcessingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Libraries/Nop.Services/OptimizationApp/IOptimizationProcessingService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/OptimizationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Controllers/OptimizationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/OptimizationOverviewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/OptimizationApp/Models/OptimizationOverviewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Optimization/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Optimization/Index.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Optimization/_Index.DataStatus.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Optimization/_Index.DataStatus.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Optimization/_Index.PluginStatus.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Areas/Admin/Views/Optimization/_Index.Process.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Nop.Web/Infrastructure/NopStartup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Nop.Web/Infrastructure/NopStartup.cs" afterDir="false" />
     </list>
     <list id="5d67a8a5-a03c-488e-8e2d-3f2533b42bc2" name="Dont Need To Commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -173,7 +147,9 @@
       <workItem from="1685976243611" duration="6842000" />
       <workItem from="1686069577239" duration="6778000" />
       <workItem from="1686120988668" duration="10011000" />
-      <workItem from="1686159479343" duration="9228000" />
+      <workItem from="1686159479343" duration="9294000" />
+      <workItem from="1686226528444" duration="3331000" />
+      <workItem from="1686234754717" duration="3988000" />
     </task>
     <task id="LOCAL-00001" summary="Corporaiton Modül Geliştirmeleri">
       <created>1682113816848</created>
@@ -301,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686165625133</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Optimizasyon Plugininin projeye dahil edilmesi.">
+      <created>1686168789145</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1686168789145</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -338,7 +321,8 @@
     <MESSAGE value="Faculty modül geliştirmeleri.&#10;Import &amp; Export desteği verildi.&#10;Listeleme ve filtreleme geliştirmeleri yapıldı." />
     <MESSAGE value="Department modül geliştirmeleri." />
     <MESSAGE value="Optimizasyon kısmına kadarki modüllerin nihai halinin verilmesi." />
-    <option name="LAST_COMMIT_MESSAGE" value="Optimizasyon kısmına kadarki modüllerin nihai halinin verilmesi." />
+    <MESSAGE value="Optimizasyon Plugininin projeye dahil edilmesi." />
+    <option name="LAST_COMMIT_MESSAGE" value="Optimizasyon Plugininin projeye dahil edilmesi." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

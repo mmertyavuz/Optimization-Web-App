@@ -49,8 +49,7 @@ public class OptimizationController : BaseAdminController
         {
             SectionCount = sections.Count,
             ClassroomCount = classrooms.Count,
-            IsReadyForOptimization = sections.Count > 0 && classrooms.Count > 0,
-            IsPluginInstalled = await _optimizationProcessingService.IsPluginInstalledAsync()
+            IsReadyForOptimization = sections.Count > 0 && classrooms.Count > 0
         };
 
         return View(model);
@@ -74,35 +73,4 @@ public class OptimizationController : BaseAdminController
         
     }
 
-    [HttpPost]
-    public async Task<IActionResult> CheckPluginAvailability()
-    {
-        return Json(await _optimizationProcessingService.IsPluginAvailableAsync());
-    }
-    
-    [HttpPost]
-    public async Task<IActionResult> StartProcess()
-    {
-        var isPluginInstalled = await _optimizationProcessingService.IsPluginInstalledAsync();
-        
-        if (!isPluginInstalled)
-        {
-            _notificationService.ErrorNotification($"Optimization plugin is not installed.");
-            return RedirectToAction("Index");
-        }
-
-        var isPluginAvailable = await _optimizationProcessingService.IsPluginAvailableAsync();
-        
-        if (!isPluginAvailable)
-        {
-            _notificationService.ErrorNotification($"Optimization plugin is not available.");
-            return RedirectToAction("Index");
-        }
-        
-        await _optimizationProcessingService.StartOptimizationProcessingAsync();
-        
-        _notificationService.SuccessNotification($"Optimization process has been successfully completed.");
-        
-        return RedirectToAction("Index");
-    }
 }

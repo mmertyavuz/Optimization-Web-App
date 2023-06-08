@@ -17,7 +17,13 @@ public class Section : BaseEntity
     /// <summary>
     /// The day of the week when the course section is scheduled.
     /// </summary>
-    public DayOfWeek Day { get; set; }
+    public DayOfWeek Day
+    {
+        get => (DayOfWeek)DayId;
+        set => DayId = (int)value;
+    }
+
+    public int DayId { get; set; }
     
     /// <summary>
     /// The starting time of the course section on the scheduled day.
@@ -30,4 +36,6 @@ public class Section : BaseEntity
     public TimeSpan EndTime { get; set; }
     
     public int StudentCount { get; set; }
+    
+    
 }

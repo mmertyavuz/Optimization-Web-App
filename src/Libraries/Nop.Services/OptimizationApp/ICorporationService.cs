@@ -60,5 +60,7 @@ public interface ICorporationService
 
     Task DeleteAllClassroomsAsync();
 
+    bool IsOptimizationKeyValid(string key);
+
     #endregion
 }

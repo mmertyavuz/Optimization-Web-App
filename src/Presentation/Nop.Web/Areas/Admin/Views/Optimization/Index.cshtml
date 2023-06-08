@@ -36,48 +36,9 @@
         <div class="form-horizontal">
             <div class="cards-group">
                 <div class="row">
-                    
                     @await Html.PartialAsync("_Index.DataStatus", Model)
-                    @await Html.PartialAsync("_Index.PluginStatus", Model)
-                    @await Html.PartialAsync("_Index.Process", Model)
-                
                     </div>
             </div>
         </div>
     </div>
 </section>
-
-<script>
-  function checkAvailability() {
-    document.getElementById("checkAvailabilityButton").disabled = true;
-    
-    var postData = {};
-    addAntiForgeryToken(postData);
-
-    $.ajax({
-      cache: false,
-      type: "POST",
-      url: "@Url.Action("CheckPluginAvailability", "Optimization")",
-      data: postData,
-      dataType: "json",
-      success: function(data) {
-        var availabilityResult = document.getElementById("availabilityResult");
-
-        if (data === true) {
-          $("#plugin-available").show();
-          $("#start-optimization").show();
-          $("#plugin-availability-text").hide();
-          
-        } else {
-          $("#plugin-notavailable").show();
-          $("#plugin-availability-text").textContent = "Plugin is not available. Please fix the issue and try again.";
-        }
-      },
-      error: function(e) {
-        console.error("Ajax request failed." + e.toString());
-      },
-      complete: function() {
-      }
-    });
-  }
-</script>

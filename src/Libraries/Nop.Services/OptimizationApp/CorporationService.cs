@@ -13,16 +13,18 @@ public class CorporationService : ICorporationService
     private readonly IRepository<Faculty> _facultyRepository;
     private readonly IRepository<EducationalDepartment> _educationalDepartmentRepository;
     private  readonly IRepository<Classroom> _classroomRepository;
+    private readonly CorporationSettings _corporationSettings;
 
     #endregion
 
     #region Ctor
 
-    public CorporationService(IRepository<Faculty> facultyRepository, IRepository<EducationalDepartment> educationalDepartmentRepository, IRepository<Classroom> classroomRepository)
+    public CorporationService(IRepository<Faculty> facultyRepository, IRepository<EducationalDepartment> educationalDepartmentRepository, IRepository<Classroom> classroomRepository, CorporationSettings corporationSettings)
     {
         _facultyRepository = facultyRepository;
         _educationalDepartmentRepository = educationalDepartmentRepository;
         _classroomRepository = classroomRepository;
+        _corporationSettings = corporationSettings;
     }
 
     #endregion
@@ -182,4 +184,13 @@ public class CorporationService : ICorporationService
     }
 
     #endregion
+
+    public bool IsOptimizationKeyValid(string key)
+    {
+        if (string.IsNullOrEmpty(_corporationSettings.OptimizationKey))
+        {
+            return true;
+        }
+        return key == _corporationSettings.OptimizationKey;        
+    }
 }

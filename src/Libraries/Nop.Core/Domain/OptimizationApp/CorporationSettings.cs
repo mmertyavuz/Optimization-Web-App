@@ -22,4 +22,6 @@ public class CorporationSettings : ISettings
     public string LogoUrl { get; set; }
     
     public string MiniLogoUrl { get; set; }
+
+    public string OptimizationKey { get; set; }
 }
