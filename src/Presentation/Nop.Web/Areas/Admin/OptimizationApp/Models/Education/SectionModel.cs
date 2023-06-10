@@ -75,6 +75,8 @@ public record SectionSearchModel : BaseSearchModel
     [NopResourceDisplayName("Admin.Courses.Sections.Fields.Course")]
     public int CourseId { get; set; }
 
+    public int ClassroomId { get; set; }
+
     public IList<SelectListItem> AvailableCourses { get; set; }
     
 }

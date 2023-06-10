@@ -66,6 +66,8 @@ public class OptimizationController : BaseAdminController
         if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageMaintenance))
             return AccessDeniedView();
 
+        await _optimizationProcessingService.DeleteAllOptimizationResultsAsync();
+        
         await _corporationService.DeleteAllClassroomsAsync();
         
         await _sectionService.DeleteAllSectionsAsync();
@@ -194,13 +196,10 @@ public class OptimizationController : BaseAdminController
                 ModelState.AddModelError("", "Unvalid JSON format: " + ex.Message);
             }
         }
-
-        foreach (var err in errorList)
-        {
-            ModelState.AddModelError("", err);
-        }
-    
-        return View(model);
+        
+        _notificationService.SuccessNotification("Optimization data has been saved successfully.");
+        
+        return RedirectToAction("List", $"OptimizationResult");
     }
 
 }

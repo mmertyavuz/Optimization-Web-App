@@ -1,0 +1,93 @@
+@model Nop.Web.Areas.Admin.OptimizationApp.Models.OptimizationResultModel
+
+<div class="card-body">
+    <div class="form-group row">
+        <div class="col-md-3">
+            <div class="label-wrapper">
+                <label class="col-form-label">
+                    Faculty
+                </label>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="form-text-row">
+                <a target="_blank" href="/Admin/Faculty/Edit/@Model.FacultyModel.Id">@Model.FacultyModel.Name</a>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3">
+            <div class="label-wrapper">
+                <label class="col-form-label">
+                    Department
+                </label>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="form-text-row">
+                <a target="_blank" href="/Admin/EducationalDepartment/Edit/@Model.EducationalDepartmentModel.Id">@Model.EducationalDepartmentModel.Name</a>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3">
+            <div class="label-wrapper">
+                <label class="col-form-label">
+                    Course Name
+                </label>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="form-text-row">
+                <a target="_blank" href="/Admin/Course/Edit/@Model.CourseModel.Id">(@Model.CourseCode) - @Model.CourseModel.Name</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-3">
+            <div class="label-wrapper">
+                <label class="col-form-label">
+                    Classroom
+                </label>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="form-text-row">
+                <a target="_blank" href="/Admin/Course/Edit/@Model.ClassroomModel.Id">@Model.Classroom</a>
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper">
+                    <label class="col-form-label">
+                        Section
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="form-text-row">
+                    <b>@Model.SectionModel.SectionNumber</b> | @Model.Day | @Model.StartTime - @Model.EndTime
+                </div>
+            </div>
+        </div>
+
+    
+    <div class="form-group row">
+        <div class="col-md-3">
+            <div class="label-wrapper">
+                <label class="col-form-label">
+                    Student Count
+                </label>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="form-text-row">
+                @Model.StudentCount
+            </div>
+        </div>
+    </div>
+</div>

@@ -21,6 +21,8 @@ public interface ISectionModelFactory
     
     CourseSectionPlanSearchModel PrepareCourseSectionPlanSearchModel(CourseSectionPlanSearchModel searchModel,
         Section section);
+
+    Task<SectionListModel> PrepareSectionListModelByClassroomAsync(SectionSearchModel searchModel, Classroom classroom);
 }
 
 public class SectionModelFactory : ISectionModelFactory
@@ -31,17 +33,19 @@ public class SectionModelFactory : ISectionModelFactory
     private readonly IBaseOptimizationAppModelFactory _baseOptimizationAppModelFactory;
     private readonly ILocalizationService _localizationService;
     private readonly ICourseService _courseService;
+    private readonly IOptimizationResultService _optimizationResultService;
 
     #endregion
 
     #region Ctor
 
-    public SectionModelFactory(ISectionService sectionService, IBaseOptimizationAppModelFactory baseOptimizationAppModelFactory, ILocalizationService localizationService, ICourseService courseService)
+    public SectionModelFactory(ISectionService sectionService, IBaseOptimizationAppModelFactory baseOptimizationAppModelFactory, ILocalizationService localizationService, ICourseService courseService, IOptimizationResultService optimizationResultService)
     {
         _sectionService = sectionService;
         _baseOptimizationAppModelFactory = baseOptimizationAppModelFactory;
         _localizationService = localizationService;
         _courseService = courseService;
+        _optimizationResultService = optimizationResultService;
     }
 
     #endregion
@@ -134,5 +138,38 @@ public class SectionModelFactory : ISectionModelFactory
         searchModel.SetGridPageSize();
 
         return searchModel;
+    }
+    
+    public async Task<SectionListModel> PrepareSectionListModelByClassroomAsync(SectionSearchModel searchModel, Classroom classroom)
+    {
+        if (searchModel == null)
+            throw new ArgumentNullException(nameof(searchModel));
+        
+        if (classroom == null)
+            throw new ArgumentNullException(nameof(classroom));
+
+        var sections = await _optimizationResultService.GetSectionsByClassroomIdAsync(classroom.Id);
+        
+        var pagedSections = sections.ToPagedList(searchModel);
+        //prepare grid model
+        var model =  await new SectionListModel().PrepareToGridAsync(searchModel, pagedSections, () =>
+        {
+            return pagedSections.SelectAwait(async section =>
+            {
+                //fill in model values from the entity
+                var facultyModel = section.ToModel<SectionModel>();
+
+                var course = await _courseService.GetCourseByIdAsync(section.CourseId);
+
+                if (course is not  null)
+                {
+                    facultyModel.CourseName = course.Name;
+                    facultyModel.DayName = TurkishDayConverter.ConvertToTurkishDay(section.Day);
+                }
+                return facultyModel;
+            });
+        });
+
+        return model;
     }
 }

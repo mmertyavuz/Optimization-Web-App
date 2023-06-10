@@ -21,6 +21,8 @@ public interface ISectionService
     Task DeleteSectionAsync(Section section);
 
     Task DeleteAllSectionsAsync();
+
+    Task<bool> IsThereAnySectionAsync();
 }
 
 public class SectionService : ISectionService
@@ -81,5 +83,10 @@ public class SectionService : ISectionService
     public async Task DeleteAllSectionsAsync()
     {
         await _sectionRepository.TruncateAsync(resetIdentity: true);
+    }
+    
+    public async Task<bool> IsThereAnySectionAsync()
+    {
+        return await _sectionRepository.Table.AnyAsync();
     }
 }

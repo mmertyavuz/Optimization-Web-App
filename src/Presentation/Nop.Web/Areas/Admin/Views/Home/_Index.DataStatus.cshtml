@@ -9,9 +9,7 @@
     
     var hideCard = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideCardAttributeName);
 }
-
-<div class="col-12">
-                        <div class="card card-primary card-outline">
+ <div class="card card-primary card-outline">
                             <div class="card-header with-border clearfix">
                                 <div class="card-title">
                                     <i class="far fa-chart-bar"></i>
@@ -39,7 +37,7 @@
                                                 <p>Clasroom(s)</p>
                                             </div>
                                             <div class="icon">
-                                                <i class="ion ion-bag"></i>
+                                               <i class="fa fa-square-o fa-stack-2x"></i>
                                             </div>
                                             <a asp-controller="Classroom" asp-action="List" class="small-box-footer">
                                                 Show More
@@ -114,7 +112,7 @@
                                                 <p>Course(s)</p>
                                             </div>
                                             <div class="icon">
-                                                <i class="ion ion-person-add"></i>
+
                                             </div>
                                             <a asp-controller="Course" asp-action="List" class="small-box-footer">
                                                 @T("Admin.Dashboard.MoreInfo")
@@ -126,4 +124,3 @@
                                 </div>
                             </div>
                         </div>
-                    </div>

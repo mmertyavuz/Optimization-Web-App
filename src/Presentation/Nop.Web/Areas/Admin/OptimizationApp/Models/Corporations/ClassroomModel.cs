@@ -1,3 +1,4 @@
+using Nop.Web.Areas.Admin.Models.Education;
 using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
 
@@ -5,6 +6,10 @@ namespace Nop.Web.Areas.Admin.Models.Corporations;
 
 public record ClassroomModel : BaseNopEntityModel
 {
+    public ClassroomModel()
+    {
+        SectionSearchModel = new SectionSearchModel();;
+    }
     //A102
     [NopResourceDisplayName("Admin.Corporations.Classrooms.Fields.Name")]
     public string Name { get; set; }
@@ -16,6 +21,9 @@ public record ClassroomModel : BaseNopEntityModel
     //25
     [NopResourceDisplayName("Admin.Corporations.Classrooms.Fields.Capacity")]
     public int Capacity { get; set; }
+
+    public SectionSearchModel SectionSearchModel { get; set; }
+
 }
 
 public record ClassroomListModel : BasePagedListModel<ClassroomModel>

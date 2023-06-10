@@ -236,6 +236,7 @@ namespace Nop.Web.Framework.Infrastructure
             services.AddScoped<ISectionService, SectionService>();
             
             services.AddScoped<IOptimizationProcessingService, OptimizationProcessingService>();
+            services.AddScoped<IOptimizationResultService, OptimizationResultService>();
             
             //plugin managers
             services.AddScoped(typeof(IPluginManager<>), typeof(PluginManager<>));

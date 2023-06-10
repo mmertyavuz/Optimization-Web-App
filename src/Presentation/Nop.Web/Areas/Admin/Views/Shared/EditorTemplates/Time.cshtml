@@ -1,0 +1,10 @@
+@model TimeSpan
+<input id="@Html.IdForModel()" name="@Html.NameForModel()" asp-for="@Model"/>
+<script>
+    $(document).ready(function () {
+        $("#@Html.IdForModel()").kendoTimePicker({ 
+            dateInput: true,
+            format: "HH:mm" //24 hours format
+        }); 
+    });
+</script>

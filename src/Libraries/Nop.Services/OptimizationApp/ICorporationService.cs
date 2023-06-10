@@ -62,5 +62,7 @@ public interface ICorporationService
 
     bool IsOptimizationKeyValid(string key);
 
+    Task<bool> IsThereAnyClassroomAsync();
+
     #endregion
 }

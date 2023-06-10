@@ -10,7 +10,7 @@ using Nop.Services.Localization;
 
 namespace Nop.Web.Framework.Migrations.Initial;
 
-[NopMigration("2023-04-22 15:39:00", "LocaleStringResource migration for 2023-04-22 Updates",
+[NopMigration("2023-04-22 15:40:00", "LocaleStringResource migration for 2023-04-22 Updates",
     UpdateMigrationType.Localization, MigrationProcessType.Update)]
 public class LocalizationMigration : MigrationBase
 {
@@ -136,9 +136,8 @@ public class LocalizationMigration : MigrationBase
             new("Admin.Courses.Sections.Fields.Course", "Course", "Ders"),
             new("admin.common.details", "Details", "Detay"),
             new("Optimization", "Optimization", "Optimization"),
-
-
-
+            new("OptimizationResult", "Optimization Result", "Optimization Result"),
+            
         };
 
         //table types

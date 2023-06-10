@@ -1,0 +1,293 @@
+@using Nop.Web.Areas.Admin.OptimizationApp.Models
+@model Nop.Web.Areas.Admin.OptimizationApp.Models.OptimizationResultSearchModel
+
+@{
+    //page title
+    ViewBag.PageTitle = $"Optimization Result";
+
+    NopHtml.SetActiveMenuItemSystemName("Optimization Result");
+    
+    const string hideSearchBlockAttributeName = "OptimizationResultPage.HideSearchBlock";
+    var hideSearchBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideSearchBlockAttributeName);
+}
+
+<script>
+    $(document).ready(function () {
+        $("#@Html.IdFor(model => model.FacultyId)").change(function () {
+            var selectedItem = $(this).val();
+            
+            var ddlStates = $("#@Html.IdFor(model => model.EducationalDepartmentId)");
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@(Url.Action("GetDepartmentsByCorporationId", "Corporation"))",
+                data: {
+                    "facultyId": selectedItem,
+                    "addSelectStateItem": "false"
+                },
+                success: function (data, textStatus, jqXHR) {
+                    ddlStates.html('');
+                    $.each(data,
+                        function (id, option) {
+                            ddlStates.append($('<option></option>').val(option.id).html(option.name));
+                        });
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#statesAlert").click();
+                }
+            });
+        });  
+        
+        $("#@Html.IdFor(model => model.EducationalDepartmentId)").change(function () {
+                    var selectedItem = $(this).val();
+                    
+                    var ddlStates = $("#@Html.IdFor(model => model.CourseId)");
+                    $.ajax({
+                        cache: false,
+                        type: "GET",
+                        url: "@(Url.Action("GetCoursesByDepartmentId", "Corporation"))",
+                        data: {
+                            "departmentId": selectedItem,
+                            "addSelectStateItem": "false"
+                        },
+                        success: function (data, textStatus, jqXHR) {
+                            ddlStates.html('');
+                            $.each(data,
+                                function (id, option) {
+                                    ddlStates.append($('<option></option>').val(option.id).html(option.name));
+                                });
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            $("#statesAlert").click();
+                        }
+                    });
+                });
+    });
+   
+</script>
+
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        Optimization Result
+    </h1>
+    <div class="float-right">
+        <a asp-action="DeleteAll" class="btn btn-danger">
+            Delete All
+        </a>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+    <div class="form-horizontal">
+        <div class="cards-group">
+            <div class="card card-default card-search">
+                <div class="card-body">
+                    <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
+                        <div class="search-text">@T("Admin.Common.Search")</div>
+                        <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
+                        <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
+                    </div>
+
+                    <div class="search-body @(hideSearchBlock ? "closed" : "")">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <div class="label-wrapper">
+                                            <label class="col-form-label">
+                                                Faculty
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-select asp-for="FacultyId" asp-items="Model.AvailableFaculties" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <div class="label-wrapper">
+                                            <label class="col-form-label">
+                                                Department
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-select asp-for="EducationalDepartmentId" asp-items="Model.AvailableEducationalDepartments" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <div class="label-wrapper">
+                                            <label class="col-form-label">
+                                                Course
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-select asp-for="CourseId" asp-items="Model.AvailableCourses" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <div class="label-wrapper">
+                                            <label class="col-form-label">
+                                                Classroom
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-select asp-for="ClassroomId" asp-items="Model.AvailableClassrooms" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <div class="label-wrapper">
+                                            <label class="col-form-label">
+                                                Day
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-select asp-for="DayId" asp-items="Model.AvailableDays"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <div class="label-wrapper">
+                                            <label class="col-form-label">
+                                                Start Time
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-editor asp-template="Time" asp-for="StartDate"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <div class="label-wrapper">
+                                            <label class="col-form-label">
+                                                End Time
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-editor asp-template="Time" asp-for="EndDate"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <div class="label-wrapper">
+                                            <label class="col-form-label">
+                                                Student Count
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-editor asp-for="MinStudentCount"/>
+                                        <nop-editor asp-for="MaxStudentCount"/>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="button" id="search-optimization-results" class="btn btn-primary btn-search">
+                                    <i class="fas fa-search"></i>
+                                    @T("Admin.Common.Search")
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-default">
+                <div class="card-body" id="optimization-result-area">
+                     @await Html.PartialAsync("Table", new DataTablesModel
+                    {
+                        Name = "search-optimization-results-table",
+                        RowIdBasedOnField = nameof(OptimizationResultModel.Id.ToString),
+                        UrlRead = new DataUrl("List", "OptimizationResult", null),
+                        SearchButtonId = "search-optimization-results",
+                        Length = Model.PageSize,
+                        LengthMenu = Model.AvailablePageSizes,
+                        Filters = new List<FilterParameter>
+                        {
+                            new FilterParameter(nameof(Model.FacultyId)),
+                            new FilterParameter(nameof(Model.EducationalDepartmentId)),
+                            new FilterParameter(nameof(Model.CourseId)),
+                            new FilterParameter(nameof(Model.ClassroomId)),
+                            new FilterParameter(nameof(Model.DayId)),
+                            new FilterParameter(nameof(Model.StartDate)),
+                            new FilterParameter(nameof(Model.EndDate)),
+                            new FilterParameter(nameof(Model.MaxStudentCount)),
+                            new FilterParameter(nameof(Model.MinStudentCount)),
+                        },
+                        ColumnCollection = new List<ColumnProperty>
+                        {
+                            new ColumnProperty(nameof(OptimizationResultModel.CourseName))
+                            {
+                                Title = $"Course",
+                            },
+                            new ColumnProperty(nameof(OptimizationResultModel.CourseCode))
+                            {
+                                Title = $"Course Code",
+                                Width = $"100",
+                                ClassName = NopColumnClassDefaults.CenterAll
+                            },
+                            new ColumnProperty(nameof(OptimizationResultModel.Classroom))
+                            {
+                                Title = $"Classroom",
+                                Width = $"100",
+                                ClassName = NopColumnClassDefaults.CenterAll
+                            },
+                            new ColumnProperty(nameof(OptimizationResultModel.Day))
+                            {
+                                Title = $"Day",
+                                Width = $"100",
+                                ClassName = NopColumnClassDefaults.CenterAll
+                            },
+                            new ColumnProperty(nameof(OptimizationResultModel.StartTime))
+                            {
+                                Title = $"Start Time",
+                                Width = $"100",
+                                ClassName = NopColumnClassDefaults.CenterAll
+                            },
+                            new ColumnProperty(nameof(OptimizationResultModel.EndTime))
+                            {
+                                Title = $"End Time",
+                                Width = $"100",
+                                ClassName = NopColumnClassDefaults.CenterAll
+                            },
+                            new ColumnProperty(nameof(OptimizationResultModel.StudentCount))
+                            {
+                                Title = $"Student Count",
+                                Width = $"200",
+                                ClassName = NopColumnClassDefaults.CenterAll
+                            },
+                            new ColumnProperty(nameof(OptimizationResultModel.Id))
+                            {
+                                Title = "Details",
+                                Width = "100",
+                                ClassName = NopColumnClassDefaults.Button + " column-edit",
+                                Render = new RenderCustom("renderColumnEdit")
+                            }
+                        }
+                    })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<script>
+    function renderColumnEdit(data, type, row, meta) {
+        return '<a href="/Admin/OptimizationResult/Details/' + data + '" class="btn btn-default"><i class="fas fa-pencil-alt"></i>Details</a>';
+    }
+</script>

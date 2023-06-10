@@ -178,6 +178,11 @@ public class CorporationService : ICorporationService
         await _classroomRepository.UpdateAsync(classroom);
     }
     
+    public async Task<bool> IsThereAnyClassroomAsync()
+    {
+        return await _classroomRepository.Table.AnyAsync();
+    }
+    
     public async Task DeleteAllClassroomsAsync()
     {
         await _classroomRepository.TruncateAsync(resetIdentity: true);

@@ -19,6 +19,7 @@
 }
 
 <link rel="stylesheet" href="~/lib_npm/ionicons/css/ionicons.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <div class="content-header">
     <h1>
@@ -29,14 +30,17 @@
     <div class="container-fluid">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
-                    
-                    
-                    
+                <div class="col-12">
+                    @await Html.PartialAsync("_Index.DataStatus", Model.OptimizationOverviewModel)
+                </div>
+                <div class="col-6">
+                    @await Html.PartialAsync("_Index.Graph1", Model.StudentCountByDayModel)
+                </div>
+                <div class="col-6">
+                    @await Html.PartialAsync("_Index.Graph2", Model.StudentCountByClassroomModel)
                 </div>
             </div>
         </div>
     </div>
 </section>
-    <nop-alert asp-alert-id="loadOrderStatisticsAlert" asp-alert-message="@T("Admin.SalesReport.OrderStatistics.Alert.FailedLoad")" />
-    <nop-alert asp-alert-id="loadCustomerStatisticsAlert" asp-alert-message="@T("Admin.Reports.Customers.CustomerStatistics.Alert.FailedLoad")" />
+

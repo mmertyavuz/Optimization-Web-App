@@ -23,14 +23,16 @@ public class ClassroomModelFactory : IClassroomModelFactory
     #region Fields
 
     private readonly ICorporationService _corporationService;
+    private readonly ISectionModelFactory _sectionModelFactory;
 
     #endregion
 
     #region Ctor
 
-    public ClassroomModelFactory(ICorporationService corporationService)
+    public ClassroomModelFactory(ICorporationService corporationService, ISectionModelFactory sectionModelFactory)
     {
         _corporationService = corporationService;
+        _sectionModelFactory = sectionModelFactory;
     }
 
     #endregion
@@ -84,6 +86,9 @@ public class ClassroomModelFactory : IClassroomModelFactory
             {
                 model = classroom.ToModel<ClassroomModel>();
             }
+
+            await _sectionModelFactory.PrepareSectionSearchModelAsync(model.SectionSearchModel);
+            model.SectionSearchModel.ClassroomId = classroom.Id;
         }
         return model;
     }

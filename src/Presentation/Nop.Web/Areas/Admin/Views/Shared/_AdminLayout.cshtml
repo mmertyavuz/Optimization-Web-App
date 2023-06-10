@@ -7,11 +7,13 @@
 @inject CorporationSettings corporationSettings
 @inject StoreInformationSettings storeInformationSettings
 @inject Nop.Services.Localization.ILanguageService languageService
+@inject IOptimizationProcessingService optimizationProcessionService;
 @using System.Globalization
 @using Nop.Core.Domain
 @using Nop.Core.Domain.Localization
 @using Nop.Services.Customers
 @using Nop.Services.Helpers
+@using Nop.Services.OptimizationApp
 @using Nop.Services.Security
 @using Nop.Web.Framework.UI
 
@@ -33,6 +35,8 @@
     await eventPublisher.PublishAsync(new PageRenderingEvent(NopHtml));
 
     //info: we specify "Admin" area for actions and widgets here for cases when we use this layout in a plugin that is running in a different area than "admin"
+
+    var optimizationStatus = await optimizationProcessionService.GetOptimizationStatus();
 }
 <!DOCTYPE html>
 <html lang="@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName" dir="@Html.GetUIDirection(localizationSettings.IgnoreRtlPropertyForAdminArea)">
@@ -97,6 +101,28 @@
                 @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.HeaderNavbarBefore })
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav ml-auto pl-2">
+                        <li class="nav-item">
+                            
+                                @if (optimizationStatus == OptimizationStatus.WaitingData)
+                                {
+                                    <a style="background-color: blue" href="/Admin/Optimization" class="nav-link">Optimization Status: 
+                                        <b>Waiting Data</b>
+                                    </a>
+                                }
+                                else if (optimizationStatus == OptimizationStatus.WaitingOptimization)
+                                {
+                                    <a style="background-color: yellow; color: black" href="/Admin/Optimization" class="nav-link">Optimization Status: 
+                                       <b>Ready for Optimization</b>
+                                    </a>
+                                    
+                                }
+                                else if (optimizationStatus == OptimizationStatus.Optimized)
+                                {
+                                    <a style="background-color: green" href="/Admin/OptimizationResult/List" class="nav-link">Optimization Status: 
+                                        <b>Optimized</b>
+                                    </a>
+                                }
+                        </li>
                         <li class="nav-item">
                             @await Component.InvokeAsync(typeof(AdminLanguageSelectorViewComponent))
                         </li>

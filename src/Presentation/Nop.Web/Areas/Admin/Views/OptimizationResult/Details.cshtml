@@ -1,0 +1,20 @@
+@model Nop.Web.Areas.Admin.OptimizationApp.Models.OptimizationResultModel
+
+@{
+    //page title
+    ViewBag.PageTitle = @Model.CourseCode + " - " + @Model.CourseName;
+   
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName("Optimization Result");
+}
+
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            (@Model.CourseCode)  @Model.CourseName
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-action="List">@T("Admin.Common.BackToList")</a>
+            </small>
+        </h1>
+    </div>
+    @await Html.PartialAsync("_CreateOrUpdate", Model)

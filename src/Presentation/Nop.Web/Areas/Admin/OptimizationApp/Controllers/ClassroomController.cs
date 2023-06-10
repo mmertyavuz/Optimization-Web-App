@@ -13,6 +13,7 @@ using Nop.Services.Security;
 using Nop.Web.Areas.Admin.Factories;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Areas.Admin.Models.Corporations;
+using Nop.Web.Areas.Admin.Models.Education;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
 
@@ -30,6 +31,7 @@ public class ClassroomController : BaseAdminController
     private readonly IExportManager _exportManager;
     private readonly CorporationSettings _corporationSettings;
     private readonly IImportManager _importManager;
+    private readonly ISectionModelFactory _sectionModelFactory;
     
     #endregion
 
@@ -38,7 +40,7 @@ public class ClassroomController : BaseAdminController
     public ClassroomController(
         IClassroomModelFactory classroomModelFactory,
         ICorporationService corporationService,
-        IPermissionService permissionService, INotificationService notificationService, ILocalizationService localizationService, IExportManager exportManager, CorporationSettings corporationSettings, IImportManager importManager)
+        IPermissionService permissionService, INotificationService notificationService, ILocalizationService localizationService, IExportManager exportManager, CorporationSettings corporationSettings, IImportManager importManager, ISectionModelFactory sectionModelFactory)
     {
         _classroomModelFactory = classroomModelFactory;
         _corporationService = corporationService;
@@ -48,6 +50,7 @@ public class ClassroomController : BaseAdminController
         _exportManager = exportManager;
         _corporationSettings = corporationSettings;
         _importManager = importManager;
+        _sectionModelFactory = sectionModelFactory;
     }
 
     #endregion
@@ -282,5 +285,20 @@ public class ClassroomController : BaseAdminController
             return RedirectToAction("List");
         }
     }
-    
+
+    [HttpPost]
+    public virtual async Task<IActionResult> SectionList(SectionSearchModel sectionSearchModel)
+    {
+        if (!await _permissionService.AuthorizeAsync(OptimizationAppPermissionProvider.ManageClassrooms))
+            return AccessDeniedView();
+        
+        var classRoom = await _corporationService.GetClassroomByIdAsync(sectionSearchModel.ClassroomId);
+        
+        if (classRoom == null)
+            return RedirectToAction("List");
+
+        var model = await _sectionModelFactory.PrepareSectionListModelByClassroomAsync(sectionSearchModel, classRoom);
+        
+        return Json(model);
+    }
 }

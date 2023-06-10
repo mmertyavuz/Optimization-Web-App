@@ -1,0 +1,53 @@
+@using Nop.Services.OptimizationApp
+@using Nop.Web.Areas.Admin.Models.Education
+@model Nop.Web.Areas.Admin.Models.Corporations.ClassroomModel
+@inject IOptimizationProcessingService _optimizationProcessingService;
+
+@{
+     var isOptimized = _optimizationProcessingService.IsOptimized();
+}
+
+<div class="card-body">
+     @if (isOptimized)
+     {
+          @await Html.PartialAsync("Table", new DataTablesModel
+          {
+               Name = "classroom-sections-grid",
+               UrlRead = new DataUrl("SectionList", "Classroom", new RouteValueDictionary { [nameof(Model.SectionSearchModel.ClassroomId)] = Model.SectionSearchModel.ClassroomId }),
+               Length = 50,
+               LengthMenu = Model.SectionSearchModel.AvailablePageSizes,
+               ColumnCollection = new List<ColumnProperty>
+               {
+                    new ColumnProperty(nameof(SectionModel.CourseName))
+                    {
+                         Title = "Course"
+                    },
+                    new ColumnProperty(nameof(SectionModel.SectionNumber))
+                    {
+                         Title = "Section"
+                    },
+                    new ColumnProperty(nameof(SectionModel.DayName))
+                    {
+                         Title = "Gün"
+                    },
+                    new ColumnProperty(nameof(SectionModel.StartTime))
+                    {
+                         Title = "Başlangıç"
+                    },
+                    new ColumnProperty(nameof(SectionModel.EndTime))
+                    {
+                         Title = "Bitiş"
+                    },
+                    new ColumnProperty(nameof(SectionModel.StudentCount))
+                    {
+                         Title = "Öğrenci Sayısı"
+                    }
+               }
+          })
+        
+     }
+     else
+     {
+          <p>Optimization process must be completed to see this sections that assigned to this classroom. </p>
+     }
+</div>

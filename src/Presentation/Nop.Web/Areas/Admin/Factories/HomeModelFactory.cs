@@ -1,14 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using Nop.Core;
 using Nop.Core.Caching;
+using Nop.Core.Domain;
 using Nop.Core.Domain.Common;
 using Nop.Services.Common;
 using Nop.Services.Configuration;
 using Nop.Services.Logging;
+using Nop.Services.OptimizationApp;
 using Nop.Web.Areas.Admin.Infrastructure.Cache;
 using Nop.Web.Areas.Admin.Models.Home;
+using Nop.Web.Areas.Admin.OptimizationApp.Models;
 
 namespace Nop.Web.Areas.Admin.Factories
 {
@@ -27,6 +32,11 @@ namespace Nop.Web.Areas.Admin.Factories
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IWorkContext _workContext;
         private readonly NopHttpClient _nopHttpClient;
+        private readonly IOptimizationModelFactory _optimizationModelFactory;
+        private readonly ISectionService _sectionService;
+        private readonly ICorporationService _corporationService;
+        private readonly IOptimizationProcessingService _optimizationProcessingService;
+        private readonly IOptimizationResultService _optimizationResultService;
 
         #endregion
 
@@ -39,7 +49,7 @@ namespace Nop.Web.Areas.Admin.Factories
             ISettingService settingService,
             IStaticCacheManager staticCacheManager,
             IWorkContext workContext,
-            NopHttpClient nopHttpClient)
+            NopHttpClient nopHttpClient, IOptimizationModelFactory optimizationModelFactory, ISectionService sectionService, ICorporationService corporationService, IOptimizationProcessingService optimizationProcessingService, IOptimizationResultService optimizationResultService)
         {
             _adminAreaSettings = adminAreaSettings;
             _commonModelFactory = commonModelFactory;
@@ -49,6 +59,11 @@ namespace Nop.Web.Areas.Admin.Factories
             _staticCacheManager = staticCacheManager;
             _workContext = workContext;
             _nopHttpClient = nopHttpClient;
+            _optimizationModelFactory = optimizationModelFactory;
+            _sectionService = sectionService;
+            _corporationService = corporationService;
+            _optimizationProcessingService = optimizationProcessingService;
+            _optimizationResultService = optimizationResultService;
         }
 
         #endregion
@@ -71,9 +86,24 @@ namespace Nop.Web.Areas.Admin.Factories
             model.IsLoggedInAsVendor = await _workContext.GetCurrentVendorAsync() != null;
 
             //prepare nested search models
-            await _commonModelFactory.PreparePopularSearchTermSearchModelAsync(model.PopularSearchTerms);
-            await _orderModelFactory.PrepareBestsellerBriefSearchModelAsync(model.BestsellersByAmount);
-            await _orderModelFactory.PrepareBestsellerBriefSearchModelAsync(model.BestsellersByQuantity);
+            var sections = await _sectionService.GetAllSectionsAsync();
+        
+            var classrooms = await _corporationService.GetAllClassroomsAsync();
+
+            model.OptimizationOverviewModel = new OptimizationOverviewModel
+            {
+                SectionCount = sections.Count,
+                ClassroomCount = classrooms.Count,
+                IsReadyForOptimization = sections.Count > 0 && classrooms.Count > 0,
+                IsOptimized = _optimizationProcessingService.IsOptimized(),
+            };
+
+            #region Graphs
+
+            model.StudentCountByDayModel = await PrepareStudentCountByDayModelAsync();
+            model.StudentCountByClassroomModel = await PrepareStudentCountByClassroomModelAsync();
+
+            #endregion
 
             return model;
         }
@@ -144,6 +174,129 @@ namespace Nop.Web.Areas.Admin.Factories
             return model;
         }
 
+        private async Task<List<StudentCountByDayModel>> PrepareStudentCountByDayModelAsync()
+        {
+            var list = new List<StudentCountByDayModel>
+            {
+                new StudentCountByDayModel
+                {
+                    Day = DayOfWeek.Monday
+                },
+                new StudentCountByDayModel
+                {
+                    Day = DayOfWeek.Tuesday
+                },
+                new StudentCountByDayModel
+                {
+                    Day = DayOfWeek.Wednesday
+                },
+                new StudentCountByDayModel
+                {
+                    Day = DayOfWeek.Thursday
+                },
+                new StudentCountByDayModel
+                {
+                    Day = DayOfWeek.Friday
+                },
+                new StudentCountByDayModel
+                {
+                    Day = DayOfWeek.Saturday
+                }
+            };
+
+            foreach (var l in list)
+            {
+                var sections = await _optimizationResultService.GetOptimizedSectionsAsync(DayId: (int) l.Day);
+
+                foreach (var section in sections)
+                {
+                    l.Count += section.StudentCount;
+                }
+            }
+
+            return list;
+        }
+        
+        private async Task<List<StudentCountByTimeModel>> PrepareStudentCountByTimeModelAsync()
+        {
+            var list = new List<StudentCountByTimeModel>()
+            {
+                new StudentCountByTimeModel
+                {
+                    Start = new TimeSpan(8, 00, 0),
+                    End = new TimeSpan(10, 00, 0)
+                },
+                new StudentCountByTimeModel
+                {
+                    Start = new TimeSpan(10, 00, 0),
+                    End = new TimeSpan(12, 00, 0)
+                },
+                new StudentCountByTimeModel
+                {
+                    Start = new TimeSpan(12, 00, 0),
+                    End = new TimeSpan(14, 00, 0)
+                },
+                new StudentCountByTimeModel
+                {
+                    Start = new TimeSpan(14, 00, 0),
+                    End = new TimeSpan(16, 00, 0)
+                },
+                new StudentCountByTimeModel
+                {
+                    Start = new TimeSpan(16, 00, 0),
+                    End = new TimeSpan(18, 00, 0)
+                },
+                new StudentCountByTimeModel
+                {
+                    Start = new TimeSpan(18, 00, 0),
+                    End = new TimeSpan(20, 00, 0)
+                },
+                
+            };
+
+            foreach (var studentCountByTimeModel in list)
+            {
+                var sections = await _optimizationResultService.GetOptimizedSectionsAsync(StartDate: studentCountByTimeModel.Start, EndDate: studentCountByTimeModel.End);
+
+                foreach (var section in sections)
+                {
+                    studentCountByTimeModel.Count += section.StudentCount;
+                }
+            }
+
+            return list;
+        }
+        
+        private async Task<List<StudentCountByClassroomModel>> PrepareStudentCountByClassroomModelAsync()
+        {
+            var classrooms = await _corporationService.GetAllClassroomsAsync();
+
+            var list = new List<StudentCountByClassroomModel>();
+            
+            foreach (var classroom in classrooms)
+            {
+                var sections = await _optimizationResultService.GetOptimizedSectionsAsync(ClassroomId: classroom.Id);
+                
+                var model = new StudentCountByClassroomModel
+                {
+                    Classroom = classroom.Name,
+                    Count = 0
+                };
+                
+                foreach (var section in sections)
+                {
+                    model.Count += section.StudentCount;
+                }
+                
+                list.Add(model);
+            }
+
+            list = list.Where(x => x.Count > 0).OrderBy(x => x.Count).ToList();
+            
+            
+            return list;
+        }
+        
         #endregion
     }
 }
