@@ -195,10 +195,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-8 offset-md-4">
+                            <div class="col-md-6 offset-md-5">
                                 <button type="button" id="search-optimization-results" class="btn btn-primary btn-search">
                                     <i class="fas fa-search"></i>
                                     @T("Admin.Common.Search")
+                                </button>
+                                <button type="button" id="export-data" class="btn btn-warning btn-search" data-toggle="modal" data-target="#export-data-window">
+                                    <i class="fas fa-download"></i>
+                                    Export Data
                                 </button>
                             </div>
                         </div>
@@ -291,3 +295,48 @@
         return '<a href="/Admin/OptimizationResult/Details/' + data + '" class="btn btn-default"><i class="fas fa-pencil-alt"></i>Details</a>';
     }
 </script>
+
+
+<div id="export-data-window" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="export-data-window-title">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="export-data-window-title">Export Data</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>                                
+            </div>
+            <form asp-controller="Classroom" asp-action="ImportFromExcel" method="post" enctype="multipart/form-data">
+                <div class="form-horizontal">
+                    <div class="modal-body">
+                        <ul class="common-list">
+                            <li>
+                                You can export the optimization result here.
+                            </li>
+                            <li>
+                                <em><b>Note:</b> The filters you make for the list will affect the data there. If you want to access all data, please remove the filters and perform this operation.</em>
+                            </li>
+                            <li style="text-align: center; margin-top: 10px">
+                                
+                            </li>
+                        </ul>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <p><b>
+                                    Please Select Export Format
+                                    </b>
+                                </p>
+                            </div>
+                            <div class="col-md-10" style="text-align: center">
+                                <button type="submit" class="btn btn-primary">
+                                    Json
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    Excel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
